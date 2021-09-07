@@ -1,3 +1,4 @@
+<%@page import="com.main.sheerhouse.user.domain.UserVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,6 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <title>메인페이지입니다.</title>
 		<script type="text/javascript" src="/resources/js/main.js"></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -188,10 +193,10 @@
         
         
         <div class="divider"></div>
-        <form class="loginForm">
-            <input type="text" name="id" placeholder="아이디를을 입력해주세요" />
+        <form class="loginForm" method="post" >
+            <input type="text" name="email" placeholder="이메일을 입력해주세요" />
             <input type="password" name="password" placeholder="비밀번호를 입력해주세요" />
-            <input class="loginSubmit" type="submit"  value="로그인 하기"/>
+            <input class="login_Submit" type="submit"  value="로그인 하기"/>
             <span onclick="moveTojoinPage()" class="movoToJoin">회원가입 하러 가기</span>
         </form>
           <div class="divider"></div>
@@ -242,6 +247,17 @@
     </div>
     </div>
       </div>
+      <script>
+      /* 로그인 버튼 클릭 메서드 */
+      $(".login_Submit").click(function(){
+
+    	  /* 로그인 메서드 서버 요청 */
+ 	  	 $("#loginForm").attr("action", "/index.do");
+         $("#loginForm").submit();
+          
+      });
+      
+      </script>
         </body>
         
 </html>
