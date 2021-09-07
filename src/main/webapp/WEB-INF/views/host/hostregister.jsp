@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/hostStyle.css" />
+<link rel="stylesheet" href="/resources/css/hostStyle.css" />
 <title>호스트등록하기</title>
 </head>
 <body>

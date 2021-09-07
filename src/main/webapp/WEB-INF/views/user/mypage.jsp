@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>My page</title>
-<script type="text/javascript" src="js/mypage.js"></script>
-<link rel="stylesheet" href="css/mypageStyle.css" />
+<script type="text/javascript" src="/resources/js/mypage.js"></script>
+<link rel="stylesheet" href="/resources/css/mypageStyle.css" />
 </head>
 <body>
  <div>
@@ -51,7 +51,7 @@
               <li class="bookingList">
                 <div>
                     <div class="accomodationImage">
-                      <img src="Images/place/place2.jpg" alt="bookingphoto" />
+                      <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
                     </div>
                     <div class="accomodationTexts">
                         <a href="#">
@@ -76,7 +76,7 @@
               <li>
                 <a href="#">
                   <div>
-                    <img src="Images/place/place2.jpg" alt="bookingphoto" />
+                    <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
                   </div>
                   <div class="wishListContent">
                     <h2>{acccomodation.title}</h2>
@@ -88,7 +88,7 @@
               <li>
                 <a href="#">
                   <div>
-                    <img src="Images/place/place2.jpg" alt="bookingphoto" />
+                    <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
                   </div>
                   <div class="wishListContent">
                     <h2>{acccomodation.title}</h2>

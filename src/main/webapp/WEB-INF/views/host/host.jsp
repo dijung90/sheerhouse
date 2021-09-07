@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>호스트 등록하기</title>
-<link rel="stylesheet" href="css/hostStyle.css" />
+<link rel="stylesheet" href="/resources/css/hostStyle.css" />
 </head>
 <body>
     <div>
@@ -20,12 +20,12 @@
         </div>
         <div class="hostBanner">
             <div>
-                <img src="Images/host/host3.jpg" />
+                <img src="/resources/Images/host/host3.jpg" />
             </div>
             <div class="bannerText">
                 <h2>즐거움을 나누는 호스팅, </h2>
                 <h3>쉬어家와 함께하세요! </h3>
-                    <a class="hostRegisterBtn" href="hostregister.jsp">호스트 등록하기</a>
+                    <a class="hostRegisterBtn" href="register.host">호스트 등록하기</a>
             </div>
         </div>
     </div>

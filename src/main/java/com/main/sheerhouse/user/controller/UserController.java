@@ -7,7 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 	
-	@GetMapping("/main.do")
-	public void main() {}
+	//메인 페이지
+	@GetMapping("/index.do")
+	public void index() {}
 	
+	//마이페이지
+	@GetMapping("/mypage.do")
+	public String mypage() {
+		return "user/mypage";
+	}
 }
