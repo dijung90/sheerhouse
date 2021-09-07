@@ -34,6 +34,9 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<mybatis-spring:scan base-package="com.main.sheerhouse.mapper" />
+	<context:component-scan base-package="com.main.sheerhouse.user.service"/>
+	<context:component-scan base-package="com.main.sheerhouse.host.service"/>
+	<context:component-scan base-package="com.main.sheerhouse.admin.service"/>
 
 
 
