@@ -23,3 +23,6 @@ function bookingInfo(bookingSeq) {
     "top=20, left=20, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no";
   window.open(tempUrl, popOption);
 }
+/**
+ * 
+ */

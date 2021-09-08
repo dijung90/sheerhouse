@@ -238,9 +238,9 @@ input[type=date]::-webkit-datetime-edit-year-field {
 }
 
 .join-modalContent {
-  margin: 2% auto;
+  margin: 1% auto;
   width: 40%;
-  height: 740px;
+  height: 760px;
   background-color: #eeeeee;
   border-radius: 0.6rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -279,17 +279,25 @@ input[type=date]::-webkit-datetime-edit-year-field {
 }
 .joinForm input {
   width: 460px;
-  height: 1.7rem;
-  margin-bottom: 0.5rem;
+  height: 1.6rem;
+  margin-bottom: 0.3rem;
   padding: 0.5rem;
   border-radius: 0.375rem;
 }
-
+.joinForm .emailCheckBtn {
+  background-color: #d65f5f;
+  color: #eeeeee;
+  width: 470px;
+  height: 1.7rem;
+  border-radius: 0.375rem;
+  margin: 5px;
+}
 .joinForm .joinSubmit {
   width: 470px;
   border: 0.01rem solid #6f6f6f;
   padding: 0.1rem;
   height: 2.6rem;
+  margin-bottom: 1.3rem;
 }
 /* 
   .alterLoginContainer {} */
@@ -302,8 +310,8 @@ input[type=date]::-webkit-datetime-edit-year-field {
   width: 50%;
   border-bottom: 1px solid #9f9f9fac;
   margin: 0 auto;
-  margin-top: 1.1em;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .alterJoinContainer .join {
   margin-bottom: 0.5rem;
@@ -318,6 +326,9 @@ input[type=date]::-webkit-datetime-edit-year-field {
 .altercontent div {
   padding: 9px;
 }
+.emailLogin {
+  margin-bottom: 1rem;
+}
 .altercontent span {
   padding: 15px 15px 8px 8px;
   font-size: 14px;
@@ -328,7 +339,6 @@ input[type=date]::-webkit-datetime-edit-year-field {
 
 .join div a {
   text-align: center;
-  background-color: yellow;
 }
 
 .join img {

@@ -11,7 +11,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/mainstyle.css" />
-		
+		  
 		<c:set var="email" value="jenny" />
 </head>
 
@@ -30,6 +30,8 @@
 					<li><a href="#">호스트 등록하기</a></li>
 				</c:if>
 				<c:if test="${email != null}">
+					<li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
+		            <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
 					<li><c:out value=" ${email}"/> 반갑습니다.</li>
 		            <li><a href="mypage.jsp">마이페이지</a></li>
 					<li><a href="host.jsp">호스트 등록하기</a></li>
@@ -125,6 +127,7 @@
               				<input type="text" name="name" placeholder="이름을 입력해주세요" />
              				<input type="number" name="phone" placeholder="전화번호를 입력해주세요" />
 							<input type="email" name="email" placeholder="이메일을 입력해주세요" />
+							<button class="emailCheckBtn" onclick="idCheck()" type="button" name="emailCheck">이메일 중복확인</button>
 							<input type="password" name="password" placeholder="비밀번호를 입력해주세요" />
 							<input type="password" name="password-re" placeholder="비밀번호를 다시 입력해주세요" />
 							<input class="joinSubmit" type="submit"  value="회원가입하기"/>
@@ -143,26 +146,30 @@
 						</div>
 						
 						<div class="join googleLogin">
-								<a href="#"/>
+								<a href="#">
 							    <div class="altercontent">
-									<div class="alterJoinIcon"><img src="Images/icons/google.png"  alt="google login"/></div>
+									<div class="alterJoinIcon">
+										<img src="Images/icons/google.png"  alt="google login"/>
+									</div>
 									<span>구글로 회원가입하기</span>
 								</div>
 							</a>
 						</div>
 			            <div class="join kakaoLogin">
-			              <a href="#"/>
+			              <a href="#" >
 			                <div class="altercontent">
-			                <div class="alterJoinIcon"><img src="Images/icons/kakao-talk.png"  alt="kakaotalk login"/></div>
+			                <div class="alterJoinIcon">
+			                	<img src="Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
+			                </div>
 			                <span>카카오톡으로 회원가입하기</span>
 			              </div>
 			            </a>
 			          </div>
-					<div class="join emilLogin">
+					<div class="join emailLogin">
 						<a href="#">	
 							<div class="altercontent">
 								<div class="alterJoinIcon">
-										<img src="Images/icons/email.png"  alt="facebook login"/>
+									<img src="Images/icons/email.png"  alt="facebook login"/>
 								</div>
 								<span>이메일로 회원가입하기</span>
 							</div>

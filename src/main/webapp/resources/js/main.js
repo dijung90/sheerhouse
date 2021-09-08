@@ -62,3 +62,6 @@ function getCheckinDate(e) {
   let checkindate = e.target.value;
   checkOutDate.setAttribute("min", checkindate);
 }
+/**
+ * 
+ */
