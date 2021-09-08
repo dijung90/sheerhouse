@@ -1,4 +1,3 @@
-<%@page import="com.main.sheerhouse.user.domain.UserVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,12 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
 <title>메인페이지입니다.</title>
-		<script type="text/javascript" src="/resources/js/main.js"></script>
+		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script  type="text/javascript" src="/resources/js/main.js"></script>
+		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -38,8 +36,8 @@
 					<li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
 		            <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
 					<li><c:out value=" ${email}"/> 반갑습니다.</li>
-		            <li><a href="mypage.do">마이페이지</a></li>
-					<li><a href="homes.host">호스트 등록하기</a></li>
+		            <li><a href="mypage.jsp">마이페이지</a></li>
+					<li><a href="host.jsp">호스트 등록하기</a></li>
 				</c:if>						
           </ul>
         </nav>
@@ -193,10 +191,10 @@
         
         
         <div class="divider"></div>
-        <form class="loginForm" method="post" >
-            <input type="text" name="email" placeholder="이메일을 입력해주세요" />
+        <form class="loginForm">
+            <input type="text" name="id" placeholder="아이디를을 입력해주세요" />
             <input type="password" name="password" placeholder="비밀번호를 입력해주세요" />
-            <input class="login_Submit" type="submit"  value="로그인 하기"/>
+            <input class="loginSubmit" type="submit"  value="로그인 하기"/>
             <span onclick="moveTojoinPage()" class="movoToJoin">회원가입 하러 가기</span>
         </form>
           <div class="divider"></div>
@@ -223,14 +221,7 @@
             </a>
           </div>
           <div class="login kakaoLogin">
-            <a href="#">
-              <div class="altercontent">
-            		  <div class="alterLoginIcon">
-              			<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
-              			</div>
-              <span>카카오톡으로 로그인하기</span>
-              </div>
-          	</a>
+            <div id="naver_id_login"></div>
         </div>
 
             <div class="login emilLogin">
@@ -247,17 +238,31 @@
     </div>
     </div>
       </div>
-      <script>
-      /* 로그인 버튼 클릭 메서드 */
-      $(".login_Submit").click(function(){
-
-    	  /* 로그인 메서드 서버 요청 */
- 	  	 $("#loginForm").attr("action", "/index.do");
-         $("#loginForm").submit();
-          
-      });
-      
-      </script>
         </body>
-        
+  <script type="text/javascript">
+  	var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("green", 3,30);
+  	naver_id_login.setDomain("http://localhost:8080/index.do");
+  	naver_id_login.setState(state);
+  	//naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  </script>
+  <script type="text/javascript">
+  var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
+  // 접근 토큰 값 출력
+  $('body').append('<h4>접속토큰:'+naver_id_login.oauthParams.access_token+'</h4>');
+  // 네이버 사용자 프로필 조회
+  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+  function naverSignInCallback() {
+    const email = naver_id_login.getProfileData('email');
+    const name = naver_id_login.getProfileData('name');
+    const age = naver_id_login.getProfileData('age');
+    const gender = naver_id_login.getProfileData('gender');
+    const birthday = naver_id_login.getProfileData('birthday');
+    const mobile = naver_id_login.getProfileData('mobile');
+   
+  }
+</script>
 </html>

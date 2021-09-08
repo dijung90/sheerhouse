@@ -2,8 +2,15 @@ package com.main.sheerhouse.user.mapper;
 
 import com.main.sheerhouse.user.domain.UserVO;
 
+
 public interface UserMapper {
-	// ë¡œê·¸ì¸
+
+	//È¸¿ø°¡ÀÔ ---------------------------------------------
+	//emailÃ¼Å© (½ÇÆĞ½Ã emailÀ» return ÇÕ´Ï´Ù)
+	public String emailCheck(String email);
+	//È¸¿ø µî·Ï (¼º°ø ¿©ºÎ¸¦ return ÇÕ´Ï´Ù)
+	public int insertUser(UserVO user);
+	//·Î±×ÀÎ----------------------------------------- 
 	public UserVO userLogin(UserVO user);
 	
 }

@@ -8,11 +8,30 @@ import com.main.sheerhouse.user.mapper.UserMapper;
 
 @Service
 public class UserServiceImpl implements UserService{
+
 	@Autowired
-	UserMapper usermapper;
+	private UserMapper mapper;
 	
+	@Override //emailCheck(중복체크)에 값이 들어있지 않다면 true를 return
+	public boolean emailCheck(String email) {
+		boolean result = false;
+		String emailCheck = mapper.emailCheck(email);
+		if(emailCheck != null) result = true;
+		return result;
+	}
+
+	@Override
+	public boolean insertUser(UserVO user) {
+		boolean result = false;
+		int check = mapper.insertUser(user);
+		if(check == 1) result = true; 
+		
+		return result;
+	}
+
+
 	@Override
 	public UserVO userLogin(UserVO user) throws Exception{
-		return usermapper.userLogin(user);
+		return mapper.userLogin(user);
 	}
 }
