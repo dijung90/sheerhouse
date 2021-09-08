@@ -61,10 +61,7 @@
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>host</servlet-name>
-		<url-pattern>*.host</url-pattern>
-	</servlet-mapping>
+	
 	<!-- 인코딩 필터 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

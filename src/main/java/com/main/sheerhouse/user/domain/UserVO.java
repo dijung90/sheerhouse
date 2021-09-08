@@ -6,6 +6,7 @@ public class UserVO {
 
 	private long mem_seq;
 	private String email;
+	private String name;
 	private String password;
 	private String phone;
 	private String role;
@@ -20,12 +21,14 @@ public class UserVO {
 	
 	public UserVO() {}
 
-	public UserVO(long mem_seq, String email, String password, String phone, String role, String gender, int birthday,
-			boolean smsConfirm, boolean emailConfirm, String address, String userInfo, Timestamp regdate,
+
+	public UserVO(long mem_seq, String email, String name, String password, String phone, String role, String gender,
+			int birthday, boolean smsConfirm, boolean emailConfirm, String address, String userInfo, Timestamp regdate,
 			Timestamp updatedate) {
 		super();
 		this.mem_seq = mem_seq;
 		this.email = email;
+		this.name = name;
 		this.password = password;
 		this.phone = phone;
 		this.role = role;
@@ -37,6 +40,15 @@ public class UserVO {
 		this.userInfo = userInfo;
 		this.regdate = regdate;
 		this.updatedate = updatedate;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public long getMem_seq() {
@@ -145,10 +157,12 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [mem_seq=" + mem_seq + ", email=" + email + ", password=" + password + ", phone=" + phone
-				+ ", role=" + role + ", gender=" + gender + ", birthday=" + birthday + ", smsConfirm=" + smsConfirm
-				+ ", emailConfirm=" + emailConfirm + ", address=" + address + ", userInfo=" + userInfo + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
+		return "UserVO [mem_seq=" + mem_seq + ", email=" + email + ", name=" + name + ", password=" + password
+				+ ", phone=" + phone + ", role=" + role + ", gender=" + gender + ", birthday=" + birthday
+				+ ", smsConfirm=" + smsConfirm + ", emailConfirm=" + emailConfirm + ", address=" + address
+				+ ", userInfo=" + userInfo + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
+
+	
 	
 }
