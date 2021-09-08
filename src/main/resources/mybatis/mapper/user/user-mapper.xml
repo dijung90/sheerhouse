@@ -10,4 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertUser">
 		insert into user(email, password, name, phone) values(#{email}, #{password}, #{name}, #{phone})
 	</insert>
+
+<!-- 로그인 -->
+	<select id="userLogin" resultType="com.main.sheerhouse.user.domain.UserVO">
+       select email, password, user_seq, phone from user where email = #{email} and password = #{password}
+    </select>
+
 </mapper>

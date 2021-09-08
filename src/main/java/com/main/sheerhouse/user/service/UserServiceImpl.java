@@ -29,5 +29,9 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
-	
+
+	@Override
+	public UserVO userLogin(UserVO user) throws Exception{
+		return mapper.userLogin(user);
+	}
 }
