@@ -14,6 +14,7 @@ function joginBtnClicked() {
 }
 
 function joinExitbtnClicked() {
+	console.log("clicked");
   document.querySelector(".join-modal").style.display = "none";
 }
 

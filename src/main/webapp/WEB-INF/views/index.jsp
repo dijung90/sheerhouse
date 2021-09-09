@@ -6,10 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인페이지입니다.</title>
-		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-  		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script  type="text/javascript" src="/resources/js/main.js"></script>
-		
+				
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -36,8 +33,8 @@
 					<li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
 		            <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
 					<li><c:out value=" ${email}"/> 반갑습니다.</li>
-		            <li><a href="mypage.jsp">마이페이지</a></li>
-					<li><a href="host.jsp">호스트 등록하기</a></li>
+		            <li><a href="mypage.do">마이페이지</a></li>
+					<li><a href="/homes.host">호스트 등록하기</a></li> <!--  매핑 오류   -->
 				</c:if>						
           </ul>
         </nav>
@@ -118,7 +115,6 @@
 
 
       <section class="footer"></section>
-		</div>
 		
 		
 		<div class="join-modal">
@@ -138,35 +134,30 @@
 						<div class="divider"></div>
 						
 						<div class="alterJoinContainer">
-
 						<div class="join facebookLogin">
-								<a href="#"/>
-									<div class="altercontent">
-											<div class="alterJoinIcon"><img src="/resources/Images/icons/facebook.png"  alt="facebook login"/></div>
-											<span>페이스북으로 회원가입하기</span>
+								<div class="altercontent">
+									<div class="alterJoinIcon">
+									<img src="/resources/Images/icons/facebook.png"  alt="facebook login"/>
 									</div>
-								</a>
+									<span>페이스북으로 회원가입하기</span>
+								</div>
 						</div>
-						
+					
 						<div class="join googleLogin">
-								<a href="#">
 							    <div class="altercontent">
 									<div class="alterJoinIcon">
 										<img src="/resources/Images/icons/google.png"  alt="google login"/>
 									</div>
 									<span>구글로 회원가입하기</span>
 								</div>
-							</a>
 						</div>
 			            <div class="join kakaoLogin">
-			              <a href="#" >
 			                <div class="altercontent">
 			                <div class="alterJoinIcon">
-			                	<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
+			                	<img src="/resources/Images/icons/naver.png"  alt="kakaotalk login"/>
 			                </div>
-			                <span>카카오톡으로 회원가입하기</span>
+			                <span>네이버로 회원가입하기</span>
 			              </div>
-			            </a>
 			          </div>
 					<div class="join emailLogin">
 						<a href="#">	
@@ -184,7 +175,7 @@
       	
 	<div class="login-modal">
       	<div class="login-modalContent">
-        <div class="login-exitBtn">
+        <div onclick="loginExitbtnClicked()" class="login-exitBtn">
         	<img src="/resources/Images/icons/close.png" alt="cancel" />
         </div>
         <h3 class="loginHeader">로그인</h3>
@@ -202,26 +193,27 @@
           <div class="alterLoginContainer">
 
          	 <div class="login facebookLogin">
-             	 <a href="#">
                		 <div class="loginAltercontent">
                     	<div class="alterJoinIcon">
                     		<img src="/resources/Images/icons/facebook.png"  alt="facebook login"/>
                     	</div>
                    		 <span>페이스북으로 로그인하기</span>
                 	</div>
-            	  </a>
           	</div>
-          
+        
           <div class="login googleLogin">
-           <a href="#">
-                <div class="loginAltercontent">
-                <div class="alterLoginIcon"><img src="/resources/Images/icons/google.png"  alt="google login"/></div>
-                <span>구글로 로그인하기</span>
+  				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="loginAltercontent" data-onsuccess="onSignIn">
+	                <div class="alterLoginIcon">
+	                	<img src="/resources/Images/icons/google.png"  alt="google login"/>
+	                </div>
+	                <span>구글로 로그인하기</span>
               </div>
-            </a>
           </div>
-          <div class="login kakaoLogin">
+          <div class="login naverLogin">
             <div id="naver_id_login"></div>
+            	<img src="/resources/Images/icons/naver.png" />
+            	<span>네이버로 로그인하기</span>
         </div>
 
             <div class="login emilLogin">
@@ -237,32 +229,50 @@
          </div>
     </div>
     </div>
-      </div>
         </body>
-  <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("green", 3,30);
-  	naver_id_login.setDomain("http://localhost:8080/index.do");
-  	naver_id_login.setState(state);
-  	//naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
-  </script>
-  <script type="text/javascript">
-  var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
-  // 접근 토큰 값 출력
-  $('body').append('<h4>접속토큰:'+naver_id_login.oauthParams.access_token+'</h4>');
-  // 네이버 사용자 프로필 조회
-  naver_id_login.get_naver_userprofile("naverSignInCallback()");
-  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-  function naverSignInCallback() {
-    const email = naver_id_login.getProfileData('email');
-    const name = naver_id_login.getProfileData('name');
-    const age = naver_id_login.getProfileData('age');
-    const gender = naver_id_login.getProfileData('gender');
-    const birthday = naver_id_login.getProfileData('birthday');
-    const mobile = naver_id_login.getProfileData('mobile');
-   
-  }
-</script>
+        <!--네이버 소셜 로그인  -->
+        <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script  type="text/javascript" src="/resources/js/main.js"></script>
+		  <script type="text/javascript">
+			  	var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
+			  	var state = naver_id_login.getUniqState();
+			  	/* naver_id_login.setButton("green", 3,30); */
+			  	naver_id_login.setDomain("http://localhost:8080/index.do");
+			  	naver_id_login.setState(state);
+			  	//naver_id_login.setPopup();
+			  	naver_id_login.init_naver_id_login();
+		  </script>
+		  <script type="text/javascript">
+			  var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
+			  // 접근 토큰 값 출력
+			  $('body').append('<h4>접속토큰:'+naver_id_login.oauthParams.access_token+'</h4>');
+			  // 네이버 사용자 프로필 조회
+			  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+			  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+			  function naverSignInCallback() {
+			    const email = naver_id_login.getProfileData('email');
+			    const name = naver_id_login.getProfileData('name');
+			    const age = naver_id_login.getProfileData('age');
+			    const gender = naver_id_login.getProfileData('gender');
+			    const birthday = naver_id_login.getProfileData('birthday');
+			    const mobile = naver_id_login.getProfileData('mobile');
+		   
+		  }
+		</script>
+		
+		<!-- 구글 소셜 로그인	  -->
+		
+		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="264249032152-8t9388spmkfge5bsoqbhmruekoi23193.apps.googleusercontent.com">
+		<script>
+			function onSignIn(googleUser) {
+				  var profile = googleUser.getBasicProfile();
+				  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+				  console.log('Name: ' + profile.getName());
+				  console.log('Image URL: ' + profile.getImageUrl());
+				  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+				}
+		</script>
 </html>

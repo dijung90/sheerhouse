@@ -457,6 +457,12 @@ input[type=date]::-webkit-datetime-edit-year-field {
   width: 1.5rem;
   padding: 0.1rem;
 }
+.naverLogin img{
+	width: 27px;
+	height: 27px;
+	padding: 5px;
+	background-color: transparent;
+}
 .footer {
   width: 100%;
   height: 40vh;
