@@ -45,6 +45,12 @@ public class UserLoginServiceImpl implements UserLoginService{
 		}
 		return result;
 	}
+
+	@Override
+	public UserVO selectUserInfo(UserVO user) {
+		user = mapper.selectUserInfo(user);
+		return user;
+	}
 	
 	
 	

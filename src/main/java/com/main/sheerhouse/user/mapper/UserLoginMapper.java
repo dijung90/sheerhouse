@@ -13,4 +13,6 @@ public interface UserLoginMapper {
 	public String passwordCheck(UserVO user);
 	
 	public int passwordUpdate(UserVO user);
+	
+	public UserVO selectUserInfo(UserVO user);
 }

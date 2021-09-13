@@ -42,10 +42,6 @@ public class UserLoginController {
 		return "user/mypage";
 	}
 	
-	//호스트 등록하기
-	@GetMapping("/host.host")
-	public void host() {}
-	
 	@PostMapping("/kakaoUserInfo.do")
 	public String naverLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session) {
 		if(user.getEmail() == null ) return "index"; 
@@ -54,7 +50,7 @@ public class UserLoginController {
 		if(!check) { //중복 이메일이 없으면 회원가입 성공
 			service.insertUser(user);
 		}
-		System.out.println(user.toString());
+		user = service.selectUserInfo(user);
 		
 		//세션에 회원정보 저장
 		session = request.getSession();
@@ -73,7 +69,7 @@ public class UserLoginController {
 		if(!check) { //중복 이메일이 없으면 회원가입 성공
 			service.insertUser(user);
 		}
-		System.out.println(user.toString());
+		user = service.selectUserInfo(user);
 
 		//세션에 회원정보 저장
 		session = request.getSession();
@@ -92,7 +88,7 @@ public class UserLoginController {
 		if(!check) { //중복 이메일이 없으면 회원가입 성공
 			service.insertUser(user);
 		}
-		System.out.println(user.toString());
+		user = service.selectUserInfo(user);
 
 		//세션에 회원정보 저장
 		session = request.getSession();
@@ -139,10 +135,11 @@ public class UserLoginController {
 			return "index";
 		}
 
+		user = service.selectUserInfo(user);
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
-		
+		System.out.println(user.getRole());
 		return "redirect:/index.do";
 		
 	}

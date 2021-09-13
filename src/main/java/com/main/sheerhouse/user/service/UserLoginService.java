@@ -8,4 +8,6 @@ public interface UserLoginService {
 	public void insertUser(UserVO user);
 	public boolean passwordCheck(UserVO user);
 	public boolean passwordUpdate(UserVO user);
+	
+	public UserVO selectUserInfo(UserVO user);
 }

@@ -30,13 +30,15 @@
           <ul class="menus">
          		 <c:if  test="${user.email eq null}" >
 		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인/회원가입</li>
-					<li><a href="">호스트 등록하기</a></li>
 				</c:if>
-				<c:if test="${user.email ne null}">
-					<li><c:out value=" ${user.email}"/> 반갑습니다.</li>
+				<c:if test="${user.role eq 'user'}">
 		            <li><a href="mypage.do">마이페이지</a></li>
-					<li><a href="host.host">호스트 등록하기</a></li>
+					<li><a href="hostRegulation.host">호스트 등록하기</a></li>
 				</c:if>						
+				<c:if test="${user.role eq 'host'}">
+					<li><a href="mypage.do">마이페이지</a></li>
+					<li><a href="host.host">호스트 페이지로 가기</a></li>
+				</c:if>
           </ul>
         </nav>
       </div>
