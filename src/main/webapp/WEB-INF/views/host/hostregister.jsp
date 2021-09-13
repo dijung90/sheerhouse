@@ -24,60 +24,66 @@
                 <button
                   onclick="propertySelect(event)"
                   name="propertyType"
-                  class="proBtn propertyApartment"
+                  class="propertyApartment"
                   id="propertyApartment"
-                  type="radio"
+                  type="button"
                   value="아파트"
+                  role="radio"
                 >
                   아파트
                 </button>
                 <button
                   onclick="propertySelect(event)"
                   name="propertyType"
-                  class="proBtn propertyHouse"
+                  class="propertyHouse"
                   id="propertyHouse"
-                  type="radio"
+                  type="button"
                   value="주택"
+                  role="radio"
                 >
                   주택
                 </button>
                 <button
                   onclick="propertySelect(event)"
-                  class="proBtn propertySpecialHouse"
+                  class="propertySpecialHouse"
                   id="propertySpecialHouse"
                   name="propertyType"
-                  type="radio"
+                  type="button"
                   value="별채"
+                  role="radio"
                 >
                   별채
                 </button>
                 <button
                   onclick="propertySelect(event)"
                   name="propertyType"
-                  class="proBtn propertyBB"
+                  class="propertyBB"
                   id="propertyBB"
-                  type="radio"
+                  type="button"
                   value="B&B"
+                  role="radio"
                 >
                   B&B
                 </button>
                 <button
                   onclick="propertySelect(event)"
-                  class="proBtn propertyUnique"
+                  class="propertyUnique"
                   id="propertyUnique"
                   name="propertyType"
-                  type="radio"
+                  type="button"
                   value="독특한 숙소"
+                  role="radio"
                 >
                   독특한 숙소
                 </button>
                 <button
                   onclick="propertySelect(event)"
-                  class="proBtn propertyHotel"
+                  class="propertyHotel"
                   id="propertyHotel"
                   name="propertyType"
-                  type="radio"
+                  type="button"
                   value="부티크 호텔"
+                  role="radio"
                 >
                   부티크 호텔
                 </button>
