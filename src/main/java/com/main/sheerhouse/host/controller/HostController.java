@@ -12,6 +12,11 @@ public class HostController {
 		return "host/host";
 	}
 	
+	@GetMapping("/hostRegulation.host")
+	public String regulation() {
+		return "host/hostRegulation";
+	}
+	
 	//¼÷¼Òµî·Ï
 	@GetMapping("/register.host")
 	public String register() {
