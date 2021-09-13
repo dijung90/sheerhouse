@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 소셜로그인 회원가입 -->
 	<insert id="insertUser">
-		insert into user(email, password, name, phone,email_confirm) values(#{email}, #{password}, #{name}, #{phone}, #{emailConfirm})
+		insert into user(email, password, name, phone, email_confirm) values(#{email}, #{password}, #{name}, #{phone}, #{emailConfirm})
 	</insert>
 	<select id="passwordCheck" resultType="String">
 		select password from user where email=#{email}

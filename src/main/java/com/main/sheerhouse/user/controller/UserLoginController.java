@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.service.UserLoginService;
 
@@ -102,8 +103,6 @@ public class UserLoginController {
 	
 	@GetMapping("/sendEmail.do")
 	public String emailSend(String email, String code) {
-		//System.out.println(email);
-		//System.out.println(code);
 		final MimeMessagePreparator pre = new MimeMessagePreparator() {
 			
 			@Override
@@ -124,7 +123,7 @@ public class UserLoginController {
 	@PostMapping("/emailUserInfo.do")
 	public String emailLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
 		boolean emailCheck = service.emailCheck(user.getEmail());
-		
+		user.setPassword(Sha256.encrypt(user.getPassword()));
 		
 		if(!emailCheck) { //중복 이메일이 없으면 회원가입 성공
 			user.setEmailConfirm(true);
@@ -158,6 +157,7 @@ public class UserLoginController {
 	@PostMapping("/passwordUpdate.do")
 	public String passwordUpdate(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
 		System.out.println(user.toString());
+		user.setPassword(Sha256.encrypt(user.getPassword()));
 		boolean result = service.passwordUpdate(user);
 		
 		if(result) {
