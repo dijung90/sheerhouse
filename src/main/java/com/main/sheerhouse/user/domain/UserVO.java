@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class UserVO {
 
-	private long mem_seq;
 	private String email;
 	private String name;
 	private String password;
@@ -21,27 +20,13 @@ public class UserVO {
 	
 	public UserVO() {}
 
-
-	public UserVO(long mem_seq, String email, String name, String password, String phone, String role, String gender,
-			int birthday, boolean smsConfirm, boolean emailConfirm, String address, String userInfo, Timestamp regdate,
-			Timestamp updatedate) {
-		super();
-		this.mem_seq = mem_seq;
-		this.email = email;
-		this.name = name;
-		this.password = password;
-		this.phone = phone;
-		this.role = role;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.smsConfirm = smsConfirm;
-		this.emailConfirm = emailConfirm;
-		this.address = address;
-		this.userInfo = userInfo;
-		this.regdate = regdate;
-		this.updatedate = updatedate;
+	public String getEmail() {
+		return email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getName() {
 		return name;
@@ -49,22 +34,6 @@ public class UserVO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public long getMem_seq() {
-		return mem_seq;
-	}
-
-	public void setMem_seq(long mem_seq) {
-		this.mem_seq = mem_seq;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPassword() {
@@ -157,12 +126,10 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [mem_seq=" + mem_seq + ", email=" + email + ", name=" + name + ", password=" + password
-				+ ", phone=" + phone + ", role=" + role + ", gender=" + gender + ", birthday=" + birthday
-				+ ", smsConfirm=" + smsConfirm + ", emailConfirm=" + emailConfirm + ", address=" + address
-				+ ", userInfo=" + userInfo + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+		return "UserVO [email=" + email + ", name=" + name + ", password=" + password + ", phone=" + phone + ", role="
+				+ role + ", gender=" + gender + ", birthday=" + birthday + ", smsConfirm=" + smsConfirm
+				+ ", emailConfirm=" + emailConfirm + ", address=" + address + ", userInfo=" + userInfo + ", regdate="
+				+ regdate + ", updatedate=" + updatedate + "]";
 	}
-
-	
 	
 }
