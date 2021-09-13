@@ -22,7 +22,7 @@ function agreeBtn1() {
     clickhere.removeAttribute("onclick");
 
     const moveToRegBtn = document.querySelector(".moveToRegi a");
-    moveToRegBtn.href = "/html"; //주소 값 변경 하기
+    moveToRegBtn.href = "register.host"; //주소 값 변경 하기
     moveToRegBtn.style.backgroundColor = "#d65f5f";
     moveToRegBtn.innerText = "호스트 등록하러 가기";
   }
