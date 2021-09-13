@@ -148,15 +148,15 @@
         <div class="divider"></div>
         <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
             <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
-            <span onClick="emailsend();" class="movoToJoin">인증번호 받기</span>
-            <input type="hidden" name="emailcheck" id="emailcheck" placeholder="인증번호를 입력해주세요" />
+            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
+            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
             <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
             <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
             <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
             <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
             <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
         </form>
-          <div class="divider"></div>
+          <div class="divider bottom-margin"></div>
           
           <div class="alterLoginContainer">
           

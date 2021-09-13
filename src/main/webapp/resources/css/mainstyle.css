@@ -304,7 +304,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
 
 .alterJoinContainer {
   width: 80%;
-  margin: 0 auto;
+  margin: 9 auto;
 }
 .divider {
   width: 50%;
@@ -312,6 +312,9 @@ input[type=date]::-webkit-datetime-edit-year-field {
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.bottom-margin{
+	margin-bottom: 50px;
 }
 .alterJoinContainer .join {
   margin-bottom: 0.5rem;
@@ -416,15 +419,20 @@ input[type=date]::-webkit-datetime-edit-year-field {
 /* 
   .alterLoginContainer {} */
 
-.movoToJoin {
-  font-size: 13px;
+.authMsg {
+  font-size: 12px;
   margin-top: 5px;
   cursor: pointer;
+  padding-bottom: 20px;
+}
+
+.emailcheck{
+	margin-top: 20px;
 }
 
 .alterLoginContainer {
   width: 80%;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .alterLoginContainer .login {
