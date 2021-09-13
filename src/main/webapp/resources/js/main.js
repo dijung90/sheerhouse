@@ -14,6 +14,7 @@ function joginBtnClicked() {
 }
 
 function joinExitbtnClicked() {
+	console.log("clicked");
   document.querySelector(".join-modal").style.display = "none";
 }
 
@@ -62,3 +63,6 @@ function getCheckinDate(e) {
   let checkindate = e.target.value;
   checkOutDate.setAttribute("min", checkindate);
 }
+/**
+ * 
+ */

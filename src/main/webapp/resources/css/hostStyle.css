@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -89,22 +90,33 @@ body {
 }
 
 .property {
-  width: 110%;
+  width: 650px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 0.475rem;
+  /* margin-top: (100% - height)/2; */
   margin-top: 20px;
+  margin-left: 90px;
+  align-items: center;
+  /* position: absolute; */
+}
+.propertyInput-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 52px;
 }
-
+.property div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .property h2 {
   margin: 35px;
 }
 
-.property-type input {
+.propertyInput-container button {
   width: 350px;
   height: 60px;
   background-color: #ffffff;
@@ -114,12 +126,14 @@ body {
   margin: 20px;
 }
 
-.property-type input:last-child {
-  margin-bottom: 60px;
+.property-type button:last-child {
+  margin-bottom: 40px;
 }
 .locationInputContainer {
   display: flex;
 }
+
+
 .locationInputBtn {
   width: 50px;
   height: 30px;
@@ -148,15 +162,17 @@ body {
   margin-left: 6px;
   margin-bottom: 80px;
 }
-.maxPeoNum div input {
-  width: 100px;
+.maxPeoNum div .maxPeopleInput {
+  width: 110px;
   height: 58px;
   border: 1.7px solid #d65f5f;
   border-radius: 0.375rem;
   font-size: 24px;
   padding-left: 5px;
+  text-align: center;
 }
-.maxPeoNum div button {
+.maxPeoNum .addBtn,
+.maxPeoNum .minusBtn {
   width: 50px;
   height: 58px;
   border-radius: 9999px;
@@ -195,4 +211,43 @@ body {
   padding-left: 7px;
   font-size: 14px;
   margin-bottom: 80px;
+}
+.arrow-container {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.right-arrow img {
+  width: 32px;
+  margin-left: 470px;
+  position: absolute;
+  top: 0;
+}
+.left-arrow img {
+  transform: rotate(180deg);
+  width: 32px;
+  margin-right: 470px;
+}
+
+.hostSubmit {
+  width: 250px;
+  height: 55px;
+  background-color: #d65f5f;
+  color: #eeeeee;
+  border-radius: 0.375rem;
+  font-size: 14px;
+  margin-bottom: 20px;
+  margin-left: 240px;
+}
+
+.property-location,
+.property-maxPeo,
+.property-price,
+.property-name,
+.property-description {
+  display: none;
+}
+
+.clicked {
+  background-color: #eeeeee;
 }

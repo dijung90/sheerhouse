@@ -25,7 +25,7 @@
             <div class="bannerText">
                 <h2>즐거움을 나누는 호스팅, </h2>
                 <h3>쉬어家와 함께하세요! </h3>
-                    <a class="hostRegisterBtn" href="register.host">호스트 등록하기</a>
+                    <a class="hostRegisterBtn" href="hostRegulation.host">호스트 등록하기</a>
             </div>
         </div>
     </div>
