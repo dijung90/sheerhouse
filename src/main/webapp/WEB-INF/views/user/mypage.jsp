@@ -23,7 +23,7 @@
       </div>
       <div class="divider"></div>
       <div class="mypageGreeting">
-        <h3>안녕하세요 {userName}님</h3>
+        <h3>안녕하세요 ${user.name}님</h3>
       </div>
       <div class="mypageSelect">
         <ul class="mypagelists">
@@ -110,6 +110,8 @@
               <input type="password" id="password" value="{userEmail}" />
               <label for="email">이메일</label>
               <input type="text" id="email" value="{userEmail}" />
+              <label for="phone">전화번호</label>
+              <input type="text" id="phone" value="{userPhone}" />
               <label for="birthInfo">생년월일</label>
               <input type="date" id="birthInfo" value="{userBirth}" />
 

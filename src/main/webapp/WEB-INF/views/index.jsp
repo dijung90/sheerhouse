@@ -1,3 +1,4 @@
+<%@page import="com.main.sheerhouse.user.domain.UserVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,18 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>메인페이지입니다.</title>
-		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-  		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script  type="text/javascript" src="/resources/js/main.js"></script>
 		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/resources/css/mainstyle.css" />
-		  
-		<c:set var="email" value="jenny" />
+  		<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+  		<meta name="google-signin-scope" content="profile email">
+   		<meta name="google-signin-client_id" content="704009539267-6g73vgvh8j2u16gfps9r01t0srqldprf.apps.googleusercontent.com">
+    	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
+	
 </head>
-
   <body class="main">
     <div>
       <div class="navContainer">
@@ -27,17 +28,14 @@
         </div>
         <nav class="menuContainer">
           <ul class="menus">
-         		 <c:if  test="${email == null}" >
-		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
-		            <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
-					<li><a href="#">호스트 등록하기</a></li>
+         		 <c:if  test="${user.email eq null}" >
+		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인/회원가입</li>
+					<li><a href="">호스트 등록하기</a></li>
 				</c:if>
-				<c:if test="${email != null}">
-					<li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
-		            <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
-					<li><c:out value=" ${email}"/> 반갑습니다.</li>
-		            <li><a href="mypage.jsp">마이페이지</a></li>
-					<li><a href="host.jsp">호스트 등록하기</a></li>
+				<c:if test="${user.email ne null}">
+					<li><c:out value=" ${user.email}"/> 반갑습니다.</li>
+		            <li><a href="mypage.do">마이페이지</a></li>
+					<li><a href="host.host">호스트 등록하기</a></li>
 				</c:if>						
           </ul>
         </nav>
@@ -124,65 +122,22 @@
 		<div class="join-modal">
 				<div class="join-modalContent">
 					<div onclick="joinExitbtnClicked()" class="join-exitBtn"><img src="/resources/Images/icons/close.png" alt="cancel" /></div>
-					<h3 class="joinHeader">회원가입</h3>
+					<h3 class="joinHeader">비밀번호 찾기</h3>
 					<div class="divider"></div>
-					<form class="joinForm">
-              				<input type="text" name="name" placeholder="이름을 입력해주세요" />
-             				<input type="number" name="phone" placeholder="전화번호를 입력해주세요" />
-							<input type="email" name="email" placeholder="이메일을 입력해주세요" />
-							<button class="emailCheckBtn" onclick="idCheck()" type="button" name="emailCheck">이메일 중복확인</button>
-							<input type="password" name="password" placeholder="비밀번호를 입력해주세요" />
-							<input type="password" name="password-re" placeholder="비밀번호를 다시 입력해주세요" />
-							<input class="joinSubmit" type="submit"  value="회원가입하기"/>
+					<form class="joinForm" action="passwordUpdate.do" method="post" name="joinForm">
+							<input type="text" name="email" id="searchEmail" placeholder="이메일을 입력해주세요" />
+							<span onClick="searchEmail();" class="movoToJoin">인증번호 받기</span>
+							<input type="hidden" name="emailcheck" id="searchEmailCheck"  placeholder="인증번호를 입력해주세요" />
+            				<span class="movoToJoin" id="searchEmailText" onClick="searchEmailCheck();"></span>
+							<input type="hidden" name="password" id="searchPassword" placeholder="변경할 비밀번호를 입력해주세요" />
+							<input type="hidden" name="passwordcheck" id="searchPasswordCheck" placeholder="변경할 비밀번호를 다시 입력해주세요" />
+							<input class="joinSubmit" type="button" onClick="passwordUpdate();" value="비밀번호 변경하기"/>
 					</form>
-						<div class="divider"></div>
-						
-						<div class="alterJoinContainer">
-
-						<div class="join facebookLogin">
-								<a href="#"/>
-									<div class="altercontent">
-											<div class="alterJoinIcon"><img src="/resources/Images/icons/facebook.png"  alt="facebook login"/></div>
-											<span>페이스북으로 회원가입하기</span>
-									</div>
-								</a>
-						</div>
-						
-						<div class="join googleLogin">
-								<a href="#">
-							    <div class="altercontent">
-									<div class="alterJoinIcon">
-										<img src="/resources/Images/icons/google.png"  alt="google login"/>
-									</div>
-									<span>구글로 회원가입하기</span>
-								</div>
-							</a>
-						</div>
-			            <div class="join kakaoLogin">
-			              <a href="#" >
-			                <div class="altercontent">
-			                <div class="alterJoinIcon">
-			                	<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
-			                </div>
-			                <span>카카오톡으로 회원가입하기</span>
-			              </div>
-			            </a>
-			          </div>
-					<div class="join emailLogin">
-						<a href="#">	
-							<div class="altercontent">
-								<div class="alterJoinIcon">
-									<img src="/resources/Images/icons/email.png"  alt="facebook login"/>
-								</div>
-								<span>이메일로 회원가입하기</span>
-							</div>
-						</a>
-					</div>
 				</div>
 			</div>
       </div>
       	
-	<div class="login-modal">
+	<div class="login-modal" >
       	<div class="login-modalContent">
         <div class="login-exitBtn">
         	<img src="/resources/Images/icons/close.png" alt="cancel" />
@@ -191,78 +146,183 @@
         
         
         <div class="divider"></div>
-        <form class="loginForm">
-            <input type="text" name="id" placeholder="아이디를을 입력해주세요" />
-            <input type="password" name="password" placeholder="비밀번호를 입력해주세요" />
-            <input class="loginSubmit" type="submit"  value="로그인 하기"/>
-            <span onclick="moveTojoinPage()" class="movoToJoin">회원가입 하러 가기</span>
+        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
+            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
+            <span onClick="emailsend();" class="movoToJoin">인증번호 받기</span>
+            <input type="hidden" name="emailcheck" id="emailcheck" placeholder="인증번호를 입력해주세요" />
+            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
+            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
+            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
+            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
+            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
         </form>
           <div class="divider"></div>
           
           <div class="alterLoginContainer">
-
-         	 <div class="login facebookLogin">
-             	 <a href="#">
+          
+          	  <div class="login facebookLogin" onclick="fnFbCustomLogin();" >
+             	 <a href="javascript:void(0)" >
                		 <div class="loginAltercontent">
                     	<div class="alterJoinIcon">
-                    		<img src="/resources/Images/icons/facebook.png"  alt="facebook login"/>
+                    		<img src="/resources/Images/icons/facebook.png" alt="facebook login"/>
                     	</div>
                    		 <span>페이스북으로 로그인하기</span>
                 	</div>
             	  </a>
           	</div>
-          
-          <div class="login googleLogin">
-           <a href="#">
-                <div class="loginAltercontent">
-                <div class="alterLoginIcon"><img src="/resources/Images/icons/google.png"  alt="google login"/></div>
-                <span>구글로 로그인하기</span>
-              </div>
+          	
+          <div class="login googleLogin" id="googleClick">
+           <a href="#" >
+               <div class="g-signin2"  data-onsuccess="onSignIn"></div>
             </a>
           </div>
-          <div class="login kakaoLogin">
-            <div id="naver_id_login"></div>
+
+ 
+         <div class="login kakaoLogin" onclick="kakaoLogin();">
+            <a href="javascript:void(0)">
+              <div class="altercontent">
+            		  <div class="alterLoginIcon">
+              			<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
+              			</div>
+              <span>카카오톡으로 로그인하기</span>
+              </div>
+          	</a>
         </div>
 
-            <div class="login emilLogin">
-              <a href="#">	
-             	 <div class="loginAltercontent">
-	                  <div class="alterLoginIcon">
-	                  		<img src="/resources/Images/icons/email.png"  alt="facebook login"/>
-	                  </div>
-                 	  <span>이메일로 로그인하기</span>
-             	 </div>
-              </a>
-            </div>
          </div>
     </div>
     </div>
       </div>
-        </body>
-  <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("green", 3,30);
-  	naver_id_login.setDomain("http://localhost:8080/index.do");
-  	naver_id_login.setState(state);
-  	//naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
-  </script>
-  <script type="text/javascript">
-  var naver_id_login = new naver_id_login("esjLTNLVKdjbHhXGBymo", "http://localhost:8080/index.do");
-  // 접근 토큰 값 출력
-  $('body').append('<h4>접속토큰:'+naver_id_login.oauthParams.access_token+'</h4>');
-  // 네이버 사용자 프로필 조회
-  naver_id_login.get_naver_userprofile("naverSignInCallback()");
-  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-  function naverSignInCallback() {
-    const email = naver_id_login.getProfileData('email');
-    const name = naver_id_login.getProfileData('name');
-    const age = naver_id_login.getProfileData('age');
-    const gender = naver_id_login.getProfileData('gender');
-    const birthday = naver_id_login.getProfileData('birthday');
-    const mobile = naver_id_login.getProfileData('mobile');
-   
-  }
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<script type="text/javascript" src="/resources/js/main.js"></script>
+ 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<script>
+
+//기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
+function statusChangeCallback(res){
+	statusChangeCallback(response);
+}
+
+function fnFbCustomLogin(){
+	FB.login(function(response) {
+		if (response.status === 'connected') {
+			FB.api('/me', 'post', {fields: 'name,email'}, function(r) {
+				var useremail = r.email;
+				var username = r.name;
+				$.ajax({
+					url: 'facebookUserInfo.do',
+					type: 'POST',
+					async: false,
+					data : {
+						email: useremail,
+						name: username
+					},
+					success: function(result){
+						location.href="index.do";
+					}
+				});
+			});
+			
+		}else{
+			colsole.log("페이스북 로그인 실패");
+		} 
+	}, {scope: 'public_profile,email'});
+}
+
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '1300945983708086', // 내 앱 ID를 입력한다.
+		cookie     : true,
+		xfbml      : true,
+		version    : 'v10.0'
+	});
+	FB.AppEvents.logPageView();   
+};
 </script>
+
+<script>
+      function onSignIn(googleUser) {
+    	 
+    	var profile = googleUser.getBasicProfile();
+        var username = profile.getName();
+        var useremail = profile.getEmail();
+
+        $("#googleClick").click(function(){
+  		  $.ajax({
+  			  url: 'googleUserInfo.do',
+  			  type: 'POST',
+			  async: false,
+  			  data:{ email: useremail,
+					name: username
+				},
+				success: function(result){
+					location.href="index.do";
+				}
+  			});
+
+
+  	  });
+    }
+    </script> 
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    	<script>
+Kakao.init('f6cac299feab96616592fa86fe86f09e'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+			var useremail = response.kakao_account.email;
+			var username = response.properties.nickname;
+
+			$.ajax({
+				url: 'kakaoUserInfo.do',
+				type: 'POST',
+				data : {
+					email: useremail,
+					name: username
+				},
+				success: function(result){
+					location.href="index.do";
+				},
+				beforeSend:function(){
+			        $('.wrap-loading').removeClass('display-none');
+			    }
+			    ,complete:function(){
+			        $('.wrap-loading').addClass('display-none');
+			    }
+
+			});
+          },
+          fail: function (error) {
+          },
+        })
+      },
+      fail: function (error) {
+      },
+    })
+  }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+</script>
+
+</body>
 </html>
