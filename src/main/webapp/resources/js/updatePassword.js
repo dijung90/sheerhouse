@@ -110,10 +110,12 @@ function passwordUpdate(){
 	var userPassword = document.getElementById("searchPassword").value;
 	var userPasswordCheck = document.getElementById("searchPasswordCheck").value;
 	var emailexp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	var check = true;
+	var passexp = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
 	if(userEmail.match(emailexp) == null){
 	}else if(userPassword == "") {
 		document.getElementById("searchPasswordMsg").innerHTML="비밀번호는 필수사항입니다.";
+	}else if(!isPassword(userPassword)){
+		document.getElementById("searchPasswordMsg").innerHTML="비밀번호는 하나 이상의 문자,숫자,특수문자를 포함해야하며 8~16자 이내여야 합니다.";
 	}else if(userPassword != userPasswordCheck){
 		document.getElementById("searchPasswordMsg").innerHTML="비밀번호가 맞지 않습니다.";
 		var password = document.getElementById("searchPassword");
@@ -126,4 +128,10 @@ function passwordUpdate(){
 		
 		joinForm.submit();
 	}
+}
+
+function isPassword(asValue) {
+	var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+	return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
 }
