@@ -420,10 +420,15 @@ input[type=date]::-webkit-datetime-edit-year-field {
   .alterLoginContainer {} */
 
 .authMsg {
-  font-size: 12px;
+  font-size: 16px;
   margin-top: 5px;
   cursor: pointer;
   padding-bottom: 20px;
+}
+
+.spanMsg{
+	font-size: 12px;
+	color: red;
 }
 
 .emailcheck{

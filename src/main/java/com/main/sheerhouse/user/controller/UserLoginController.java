@@ -97,7 +97,7 @@ public class UserLoginController {
 		return "index";
 	}
 	
-	@GetMapping("/sendEmail.do")
+	@PostMapping("/sendEmail.do")
 	public String emailSend(String email, String code) {
 		final MimeMessagePreparator pre = new MimeMessagePreparator() {
 			
@@ -139,7 +139,6 @@ public class UserLoginController {
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
-		System.out.println(user.getRole());
 		return "redirect:/index.do";
 		
 	}
@@ -153,11 +152,11 @@ public class UserLoginController {
 	
 	@PostMapping("/passwordUpdate.do")
 	public String passwordUpdate(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
-		System.out.println(user.toString());
 		user.setPassword(Sha256.encrypt(user.getPassword()));
 		boolean result = service.passwordUpdate(user);
 		
 		if(result) {
+			user = service.selectUserInfo(user);
 			session = request.getSession();
 			session.setAttribute("user", user);
 			return "redirect:/index.do";
