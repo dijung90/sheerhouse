@@ -18,7 +18,7 @@
     	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="/resources/js/main.js"></script>
     	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
-    	<script type="text/javascript" src="/resources/js/searchPassword.js"></script>
+    	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
 	
 </head>
   <body class="main">
