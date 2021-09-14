@@ -1,0 +1,306 @@
+@charset "UTF-8";
+
+@charset "EUC-KR";
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #2b2b2b;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  height: 130vh;
+}
+
+.navContainer {
+  width: 100%;
+  height: 17%;
+  display: flex;
+}
+
+.navContainer .logoContainer {
+  width: 20%;
+  text-align: center;
+  padding: 1rem;
+}
+
+.navContainer .logoContainer h2 {
+  font-size: 38px;
+  letter-spacing: 2px;
+  color: #ac0c0c;
+}
+.navContainer .logoContainer span {
+  font-size: 9px;
+  letter-spacing: 6px;
+}
+
+.myhostHeader {
+  font-size: 32px;
+  color: #2b2b2b;
+  margin-left: 100px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+.myhostHeader p {
+  top: 0;
+  font-size: 14px;
+}
+.divider {
+  width: 900px;
+  border-bottom: 0.5px solid #7c7c7c98;
+  margin: 15px 0 15px 100px;
+}
+
+.myhostGreeting {
+  margin-left: 100px;
+  margin-bottom: 30px;
+  padding-top: 12px;
+}
+
+.myhostlists {
+  display: flex;
+  margin-left: 100px;
+}
+
+.myhostlists li {
+  padding: 15px;
+  font-size: 20px;
+  margin-right: 50px;
+  cursor: pointer;
+  margin-bottom: 50px;
+  height: 30px;
+  margin-right: 80px;
+}
+
+.myhostlists li:hover {
+  border-bottom: 2px solid #d65f5f;
+  height: 28px;
+}
+.myhostlists li.active {
+  border-bottom: 2px solid #d65f5f;
+  height: 28px;
+}
+
+.detailContainer {
+  width: 940px;
+}
+.hostingList div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.hostingList div a {
+  text-decoration: none;
+  color: #2b2b2b;
+}
+.accomodationTexts {
+  width: 500px;
+}
+.accomodationContent h2 {
+  width: 500px;
+  text-align: left;
+}
+.hostingInfoBtn input {
+  width: 180px;
+  height: 38px;
+  background-color: #d65f5f;
+  color: #eeeeee;
+  font-size: 14px;
+  margin-top: 22px;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 2px;
+}
+/* .detailContainer li {
+    position: absolute;
+  } */
+.hostDetail,
+.reservationDetail,
+.hostinfoDetail {
+  position: absolute;
+}
+
+.reservationDetail,
+.historyDetail,
+.hostinfoDetail,
+.paymentDetail {
+  display: none;
+}
+.hostDetail {
+  margin-left: 100px;
+  text-align: center;
+  align-items: center;
+}
+.hostDetail > h3 {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  margin: 0 0 38px 20px;
+}
+.hostingList img {
+  width: 120px;
+  height: 140px;
+  margin-right: 50px;
+  margin-left: 30px;
+  border-radius: 5px;
+}
+.myhostlists li.active {
+  border-bottom: 2px solid #d65f5f;
+  height: 28px;
+}
+
+.accomodationContent h2 {
+  margin: 0 0 5px 0;
+}
+
+.reservationDetail {
+  width: 800px;
+  margin-left: 100px;
+}
+
+.reservationDetail > h3 {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  margin: 0 0 38px 20px;
+}
+.reservationLists,
+li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.reservationLists li a {
+  display: flex;
+}
+
+.reservationContent {
+  width: 350px;
+}
+
+.reservationLists li img {
+  width: 120px;
+  height: 140px;
+  margin-right: 50px;
+  margin-left: 30px;
+  border-radius: 5px;
+}
+.reaservation-userInfo {
+  margin: 8px 0 3px 0;
+  font-size: 16 px;
+}
+.reservationContent h3 {
+  margin: 30px 0 5px 0;
+}
+.moreInfoBtn input {
+  width: 160px;
+  height: 38px;
+  background-color: #d65f5f;
+  color: #eeeeee;
+  margin-top: 40px;
+  border-radius: 2px;
+}
+
+.hostinfoDetail {
+  width: 800px;
+  height: 900px;
+  margin-left: 130px;
+}
+.hostinfoDetail div form {
+  width: 600px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-left: 68px;
+  margin-top: 10px;
+}
+.hostinfoDetail label {
+  font-size: 20px;
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.hostinfoDetail input:nth-child(2),
+.hostinfoDetail input:nth-child(4),
+.hostinfoDetail input:nth-child(6),
+.hostinfoDetail input:nth-child(8) {
+  width: 300px;
+  height: 35px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 0.5px solid #c2c2c2;
+  padding-left: 5px;
+}
+.hostinfoDetail textarea {
+  width: 310px;
+  height: 200px;
+  border: 0.5px solid #c2c2c2;
+}
+.submitBtn {
+  margin: auto;
+  background-color: #d65f5f;
+  color: #eeeeee;
+  border-radius: 2px;
+  padding: 15px;
+  width: 300px;
+  height: 45px;
+  margin-top: 60px;
+}
+
+.hostinfoDetail > h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 10px 38px 20px;
+}
+
+.addmore button {
+  width: 180px;
+  height: 42px;
+  background-color: #d65f5f;
+  border-radius: 2px;
+  text-align: center;
+  color: #eeeeee;
+  margin-left: 100%;
+  margin-bottom: 25px;
+}
+.modal1 {
+  display: none;
+}
+.modal1-container {
+  width: 310px;
+  height: 120px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  left: 42%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.modal1-container span {
+  margin: 15px 0 0 0;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+}
+.moveToRegiBtn {
+  width: 100px;
+  height: 30px;
+  background-color: #d65f5f;
+  color: #eeeeee;
+  margin: 20px 0 10px 100px;
+}
+.modal1-img img {
+  width: 12px;
+  margin: 7px 0 0 10px;
+}
