@@ -4,8 +4,8 @@ const joinExitBtn = document.querySelector(".join-exitBtn");
 const joinModal = document.querySelector(".join-modal");
 const loginExitBtn = document.querySelector(".login-exitBtn");
 const loginModal = document.querySelector(".login-modal");
-const checkInDate = document.getElementById("CheckinDate");
-const checkOutDate = document.getElementById("CheckoutDate");
+const checkInDate = document.querySelector(".CheckinDate");
+const checkOutDate = document.querySelector(".CheckoutDate");
 const movoToJoin = document.querySelector(".movoToJoin");
 // joinModal
 
@@ -15,7 +15,6 @@ function joginBtnClicked() {
 
 function joinExitbtnClicked() {
   joinModal.style.display = "none";
-  console.log("hi");
 }
 
 function joinoutsideClick(e) {
@@ -32,7 +31,6 @@ function loginnbtnClicked() {
 
 function loginExitbtnClicked() {
   loginModal.style.display = "none";
-  console.log("hihi");
 }
 
 function loginoutsideClick(e) {
@@ -47,20 +45,20 @@ function moveTojoinPage() {
   loginModal.style.display = "none";
   joinModal.style.display = "block";
 }
-
+/*functions of check in and check out DATE settings */
 const today = new Date().toISOString().split("T")[0];
-
-function getCheckinDate(e) {
-  let checkindate = e.target.value;
-  checkOutDate.setAttribute("min", checkindate);
-}
+checkInDate.setAttribute("min", today);
+checkInDate.addEventListener("change", () => {
+	let checkindate = checkInDate.value;
+	checkOutDate.setAttribute("min", checkindate);
+});
 
 joinnbtn.addEventListener("click", joginBtnClicked);
 joinExitBtn.addEventListener("click", joinExitbtnClicked);
 window.addEventListener("click", joinoutsideClick);
 
-checkInDate.setAttribute("min", today);
-checkInDate.addEventListener("change", getCheckinDate);
+/*checkInDate.setAttribute("min", today);
+checkInDate.addEventListener("change", getCheckinDate);*/
 
 loginbtn.addEventListener("click", loginnbtnClicked);
 loginExitBtn.addEventListener("click", loginExitbtnClicked);

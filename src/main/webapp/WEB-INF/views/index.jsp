@@ -46,19 +46,19 @@
         <div class="bannerImage">
           <img src="/resources/Images/banner/banner.jpg" alt="banner" />
         </div>
-        <form class="searchContainer" action="searchResult.do?location={searchLocation}">
+        <form class="searchContainer" action="searchResult" method="get">
           <div class="searchWhere">
             <h3>Where</h3>
             <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
           </div>
           <div class="searchIn">
             <h3>Check in</h3>
-            <input name="searchCheckin" onclick="getInDate()" id="CheckinDate" type="date" aria-required="true"/>
+            <input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
             <!-- <label for="CheckinDate">체크인 날짜</label> -->
           </div>
           <div class="searchOut">
             <h3>Check out</h3>
-            <input name="searchCheckout" onclick="getOutDate()" id="CheckoutDate" type="date" aria-required="true" />
+            <input name="searchCheckout"  class="CheckoutDate" id="CheckoutDate" type="date" aria-required="true" />
             <!-- <label for="CheckoutDate">체크아웃 날짜</label>// -->
           </div>
           <div class="searchPeo">
@@ -76,7 +76,7 @@
 	                  <input
 	                  type="text"
 	                  value="0"
-	                  name="peopleBtnNum"
+	                  name="searchMaxPeople"
 	                  class="peopleBtnNumInput"
 	                />
 	                  <input
