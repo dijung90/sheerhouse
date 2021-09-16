@@ -76,12 +76,11 @@ body {
   padding: 1rem;
   padding-top: 30px;
 }
-.menuContainer .menus {
-  display: flex;
+.menuContainer .menus{
+	margin-top: 17px;
 }
-
 .menuContainer .menus li {
-  display: flex;
+  display: flex;	
 }
 
 .accomodationResults-container {

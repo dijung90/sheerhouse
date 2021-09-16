@@ -454,11 +454,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
 /* 
   .alterLoginContainer {} */
 
-.movoToJoin {
-  font-size: 13px;
-  margin-top: 5px;
-  cursor: pointer;
-}
+
 
 .alterLoginContainer {
   width: 80%;
