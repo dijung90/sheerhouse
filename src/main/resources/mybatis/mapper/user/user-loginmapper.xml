@@ -18,6 +18,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update user set password=#{password}, updatedate=CURRENT_TIMESTAMP where email=#{email}
 	</update>
 	<select id="selectUserInfo" resultType="com.main.sheerhouse.user.domain.UserVO">
-		select email, role from user where email=#{email}
+		select * from user where email=#{email}
 	</select>
 </mapper>
