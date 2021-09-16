@@ -10,59 +10,90 @@ const movoToJoin = document.querySelector(".movoToJoin");
 // joinModal
 
 function joginBtnClicked() {
-  document.querySelector(".join-modal").style.display = "block";
+  joinModal.style.display = "block";
 }
 
 function joinExitbtnClicked() {
-	console.log("clicked");
-  document.querySelector(".join-modal").style.display = "none";
+  joinModal.style.display = "none";
+  console.log("hi");
 }
 
 function joinoutsideClick(e) {
   if (e.target == joinModal) {
-    document.querySelector(".join-modal").style.display = "none";
+    joinModal.style.display = "none";
   }
 }
 
 // login modal
 
 function loginnbtnClicked() {
-  document.querySelector(".login-modal").style.display = "block";
+  loginModal.style.display = "block";
 }
 
 function loginExitbtnClicked() {
-  document.querySelector(".login-modal").style.display = "none";
+  loginModal.style.display = "none";
+  console.log("hihi");
 }
 
 function loginoutsideClick(e) {
   if (e.target == loginModal) {
-    document.querySelector(".login-modal").style.display = "none";
+    loginModal.style.display = "none";
   }
 }
 
 //move to Join
 
 function moveTojoinPage() {
-  document.querySelector(".login-modal").style.display = "none";
-  document.querySelector(".join-modal").style.display = "block";
-}
-function getInDate(){
-	const today = new Date().toISOString().split("T")[0];
-	document.getElementById("CheckinDate").setAttribute("min", today);
+  loginModal.style.display = "none";
+  joinModal.style.display = "block";
 }
 
-function getOutDate(){
-	let checkindate = document.getElementById("CheckinDate").value;
-  	document.getElementById("CheckoutDate").setAttribute("min", checkindate);
-	
-}
-
-checkInDate.addEventListener("change", getCheckinDate);
+const today = new Date().toISOString().split("T")[0];
 
 function getCheckinDate(e) {
   let checkindate = e.target.value;
   checkOutDate.setAttribute("min", checkindate);
 }
-/**
- * 
- */
+
+joinnbtn.addEventListener("click", joginBtnClicked);
+joinExitBtn.addEventListener("click", joinExitbtnClicked);
+window.addEventListener("click", joinoutsideClick);
+
+checkInDate.setAttribute("min", today);
+checkInDate.addEventListener("change", getCheckinDate);
+
+loginbtn.addEventListener("click", loginnbtnClicked);
+loginExitBtn.addEventListener("click", loginExitbtnClicked);
+window.addEventListener("click", loginoutsideClick);
+movoToJoin.addEventListener("click", moveTojoinPage);
+
+// Banner functions people incre decre Btn
+
+function search() {
+  const peopleBtnContainer = document.querySelector(".peopleBtnContainer");
+  peopleBtnContainer.style.display = "block";
+}
+
+function peopleIncre() {
+  const peopleNumInput = document.querySelector(".peopleBtnNumInput");
+  const peoInput = document.querySelector(".peopleBtnNumInput");
+  const peopleNumInfo = document.querySelector(".peopleNumInfo");
+  let currentValue = parseInt(peopleNumInput.value);
+  peoInput.value = currentValue + 1;
+  peopleNumInfo.value = currentValue + 1;
+  console.log(currentValue + 1);
+}
+
+function peopleDecre() {
+  const peopleNumInput = document.querySelector(".peopleBtnNumInput");
+  const peoInput = document.querySelector(".peopleBtnNumInput");
+  const peopleNumInfo = document.querySelector(".peopleNumInfo");
+  let currentValue = parseInt(peopleNumInput.value);
+  if (currentValue <= 0) {
+    peoInput.value = 0;
+  } else {
+    peoInput.value = currentValue - 1;
+    peopleNumInfo.value = currentValue - 1;
+  }
+  console.log(currentValue - 1);
+}

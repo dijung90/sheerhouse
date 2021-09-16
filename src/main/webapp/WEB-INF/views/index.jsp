@@ -46,29 +46,53 @@
         <div class="bannerImage">
           <img src="/resources/Images/banner/banner.jpg" alt="banner" />
         </div>
-        <form class="searchContainer">
+        <form class="searchContainer" action="searchResult.do?location={searchLocation}">
           <div class="searchWhere">
             <h3>Where</h3>
-            <input type="text" placeholder="어디로 떠나시나요?" />
+            <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
           </div>
           <div class="searchIn">
             <h3>Check in</h3>
-            <input onclick="getInDate()" id="CheckinDate" type="date" aria-required="true"/>
+            <input name="searchCheckin" onclick="getInDate()" id="CheckinDate" type="date" aria-required="true"/>
             <!-- <label for="CheckinDate">체크인 날짜</label> -->
           </div>
           <div class="searchOut">
             <h3>Check out</h3>
-            <input onclick="getOutDate()" id="CheckoutDate" type="date" aria-required="true" />
+            <input name="searchCheckout" onclick="getOutDate()" id="CheckoutDate" type="date" aria-required="true" />
             <!-- <label for="CheckoutDate">체크아웃 날짜</label>// -->
           </div>
           <div class="searchPeo">
             <h3>People</h3>
-            <input onclick=search() type="button" value="인원" />
+             <input name="searchMaxPeo" class="peopleNumInfo" onclick=search() type="button" value="인원" />	
+                <div class="peopleBtnContainer">
+	                <div>
+	                  <span class="peopleBtnHeader"> 성인 </span>
+	                  <input
+	                  class="addBtns"
+	                  type="button"
+	                  onclick="peopleIncre()"
+	                  value="+"
+	                />
+	                  <input
+	                  type="text"
+	                  value="0"
+	                  name="peopleBtnNum"
+	                  class="peopleBtnNumInput"
+	                />
+	                  <input
+	                  class="addBtns"
+	                  type="button"
+	                  onclick="peopleDecre()"
+	                  value="-"
+	                />
+	                </div>
+              </div>
           </div>
           <div class="search">
             <button type="submit">
               <img src="/resources/Images/icons/search-white.png" alt="search" />
             </button>
+           </div>
           </form>
         </div>
       </div>
@@ -116,7 +140,19 @@
         </div>
       </section>
 
-
+		  <section class="hostbanner">
+          <div class="hostbannerContainer">
+            <div>
+              <img src="/resources/Images/host/host3.jpg" />
+          </div>
+        </div>
+          <div class="bannerText">
+              <h2>즐거움을 나누는 호스팅, </h2>
+              <h3>쉬어家와 함께하세요! </h3>
+                  <a  class="hostRegisterBtn" href="hostRegulation.host">호스트 등록하기</a>
+          </div>
+         
+        </section>
       <section class="footer"></section>
 		</div>
 		
@@ -130,10 +166,10 @@
 							<input type="text" name="email" id="searchEmail" placeholder="이메일을 입력해주세요" />
 							<span onClick="searchEmail();" class="movoToJoin">인증번호 받기</span>
 							<input type="hidden" name="emailcheck" id="searchEmailCheck"  placeholder="인증번호를 입력해주세요" />
-            				<span class="movoToJoin" id="searchEmailText" onClick="searchEmailCheck();"></span>
+            				<span class="movoToJoin" id="searchEmailText" onclick="searchEmailCheck();"></span>
 							<input type="hidden" name="password" id="searchPassword" placeholder="변경할 비밀번호를 입력해주세요" />
 							<input type="hidden" name="passwordcheck" id="searchPasswordCheck" placeholder="변경할 비밀번호를 다시 입력해주세요" />
-							<input class="joinSubmit" type="button" onClick="passwordUpdate();" value="비밀번호 변경하기"/>
+							<input class="joinSubmit" type="button" onclick="passwordUpdate();" value="비밀번호 변경하기"/>
 					</form>
 				</div>
 			</div>
@@ -141,7 +177,7 @@
       	
 	<div class="login-modal" >
       	<div class="login-modalContent">
-        <div class="login-exitBtn">
+        <div class="login-exitBtn" onclick="loginExitbtnClicked()">
         	<img src="/resources/Images/icons/close.png" alt="cancel" />
         </div>
         <h3 class="loginHeader">로그인</h3>
