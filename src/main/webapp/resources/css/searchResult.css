@@ -43,15 +43,15 @@ body {
   letter-spacing: 6px;
 }
 .searchbar-small {
-  width: 450px;
-  height: 50px;
+  width: 550px;
+  height: 60px;
   margin-top: 40px;
   border-radius: 99999px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 }
 .searchbar-small {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -74,7 +74,7 @@ body {
   width: 20%;
   text-align: center;
   padding: 1rem;
-  padding-top: 30px;
+  padding-top: 40px;
 }
 .menuContainer .menus {
   display: flex;
@@ -124,11 +124,42 @@ body {
 }
 .resultAccomodationImg img {
   border-radius: 5px;
+    width: 280px;
+    height: 180px;
+
 }
 .resultAccomodation {
   display: flex;
 }
+.locationBtn span{
+  font-size: 12px;
+}
+.locationBtn input{
+  width: 130px;
+  text-align: center;
+  margin-top: 5px;
+}
 
+.dateBtn input{
+  width: 180px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.dateBtn span{
+  font-size: 12px;
+  width: 200px;
+}
+
+
+.peopleBtn span{
+  font-size: 12px;
+}
+.peopleBtn input{
+  width: 130px;
+  text-align: center;
+  margin-top: 5px;
+}
 .resultAccomodationText {
   margin-top: 10px;
 }

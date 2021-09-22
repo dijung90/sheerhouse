@@ -46,7 +46,7 @@
         <div class="bannerImage">
           <img src="/resources/Images/banner/banner.jpg" alt="banner" />
         </div>
-        <form class="searchContainer" action="searchResult" method="get">
+        <form class="searchContainer" action="/searchResult.do" method="get">
           <div class="searchWhere">
             <h3>Where</h3>
             <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
@@ -94,6 +94,9 @@
             </button>
            </div>
           </form>
+        </div>
+        <div class="subHeader">
+        	<h2>어디든 떠나고 싶을 때, 도와드릴게요!</h2>
         </div>
       </div>
 
