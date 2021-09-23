@@ -102,3 +102,6 @@ public class ResultVO {
 		this.regdate = regdate;
 	}
 }
+
+
+

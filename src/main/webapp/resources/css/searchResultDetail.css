@@ -1,4 +1,3 @@
-@charset "UTF-8";
 
 * {
   margin: 0;
@@ -21,15 +20,34 @@ body {
 }
 .navContainer {
   width: 100%;
+  height: 150px;
   margin: auto;
   display: flex;
   justify-content: space-around;
   padding-top: 40px;
   box-shadow: rgba(0, 0, 0, 0.171) 0px 3px 5px;
 }
+
+
 .menuContainer {
   display: flex;
 }
+
+.menus{
+  margin-top: 15px;
+}
+.logoContainer a {
+	color: #e55757;
+	font-size: 24px;
+}
+.logoContainer span{
+  color: #232323;
+  font-size: 12px;
+  letter-spacing: 5.5px;
+
+}
+
+
 .searchContainer {
   width: 370px;
   background-color: #ffffff;
@@ -38,6 +56,7 @@ body {
   padding-left: 15px;
   display: flex;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-top: 10px;
 }
 .searchContainer input {
   width: 112px;
@@ -200,30 +219,45 @@ body {
     opacity: 1;
   }
 }
-.descriptionsContainer {
-  display: flex;
-  width: 1000px;
-  margin: 0 auto;
-}
+
 .descriptionContainer {
-  width: 65%;
+  width: 60%;
 }
 
 .descriptionHeader .title {
   font-size: 32px;
+  margin: 20px 0 20px 0;
 }
 .descriptionHeader .hostInfo {
   font-size: 16px;
+  min-height: 50px;
+  align-items: center;
 }
+.leftSectionContainer{
+  margin-right: 28px;
 
-.descriptionContent {
 }
-
-.descrptionContainer2 {
+.leftSectionContainer div{
+  width: 650px;
+  
+}
+.sectionsContainer{
+  display: flex;
+}
+.descriptionContent div{
+  min-height: 30px;
+  padding-top: 10px;
+}
+.descriptionContent div:last-child{
+  min-height: 120px;
+}
+.rightSectionContainer {
   padding: 20px 13px 13px 13px;
   width: 35%;
-  margin-left: 10px;
+  margin-left: 25px;
   border-radius: 0.5rem;
+  max-height: 500px;
+  position: relative;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -232,6 +266,7 @@ body {
 }
 .reservationContainer {
   width: 320px;
+  margin-top: 10px;
 }
 .reservationContent1 div {
   border: 1px solid #cccccc;
@@ -247,6 +282,7 @@ body {
 .reservationContent1 span {
   font-size: 12px;
   padding-left: 5px;
+  
 }
 .reservationContent1 input {
   height: 25px;
@@ -254,6 +290,53 @@ body {
   font-size: 16px;
   background-color: transparent;
   padding-left: 5px;
+  border: none;
+}
+
+.peopleBtnContainer {
+  display: none;
+  width: 280px;
+  height: 60px;
+  border: 0.1px solid #696969;
+  margin-top: 20px;
+  border-radius: 2rem;
+  position: absolute;
+  top: 140px;
+  left: 35px;
+  margin: 10px auto;
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 5px;
+}
+.peopleBtnContainer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 11px;
+}
+.peopleBtnContainer div .peopleBtnHeader {
+  width: 80px;
+  text-align: left;
+  font-size: 14px;
+  padding-bottom: 2px;
+}
+.peopleBtnContainer input {
+  width: 40px;
+  text-align: center;
+  height: 30px;
+  background-color: transparent;
+  font-size: 16px;
+  padding-right: 10px;
+}
+
+.peopleBtnContainer .addBtns {
+  width: 45px;
+  height: 40px;
+  background-color: #e55757;
+  border-radius: 9999px;
+  margin: 10px;
+  color: #eeeeee;
+  font-size: 20px;
+  padding-right: 10px;
+  padding-bottom: 5px;
 }
 .reservationContent2 {
   border: 1px solid #cccccc;
@@ -268,28 +351,71 @@ body {
   font-size: 12px;
   display: inline-block;
   padding-left: 5px;
+  padding-top: 5px;
 }
 
 .reservationContent2 input {
   background-color: transparent;
-  padding-left: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
   font-size: 16px;
+  border: none;
+  height: 30px
 }
 
 .reservationBtn {
   width: 100%;
-  margin: 10px auto;
+  margin: 5px auto;
   height: 50px;
   background-color: #e55757;
   border-radius: 0.7rem;
   font-size: 18px;
-  color: #eeeeee;
+  /* color: #eeeeee; */
   font-weight: 600;
 }
 .divider-long {
   width: 100%;
   margin: auto;
-  border-bottom: 0.3px solid #eeeeee;
+  border-bottom: 0.3px solid #dddddd;
   margin: 10px 0 10px 0;
-  box-shadow: rgba(0, 0, 0, 0.041) 0px 1px 1px;
+}
+.reviewsContainer {
+  width: 900px;
+  margin: 60px auto;
+}
+.reviewsContainer {
+  width: 700px;
+  margin: 60px auto;
+}
+.reservationPrices{
+  margin: 20px auto;
+  width: 300px
+}
+.reviews span{
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+
+.reservationPrices div{
+	display: flex;
+	justify-content: space-between
+}
+
+.pricePerNight{
+  width: 140px;
+}
+
+.pricePerNight span{
+  font-size: 14px;
+}
+.pricePerNight span:last-child{
+  padding-top: 3px;
+}
+.totalPrice {
+  width: 180px;
+}
+.totalPrice input{
+  font-size: 16px;
 }

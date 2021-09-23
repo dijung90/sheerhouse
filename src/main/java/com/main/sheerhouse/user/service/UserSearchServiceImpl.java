@@ -14,33 +14,21 @@ public class UserSearchServiceImpl implements UserSearchService {
 	private UserSearchResultMapper mapper;
 
 	@Override
-	public List<ResultVO> searhResultList(SearchVO search) {
+	public List<ResultVO> searhDetailList(SearchVO search) {
 		// TODO Auto-generated method stub
 		return mapper.getResult(search);
 	}
 
-	/*
-	 * @Override public List<ResultVO> searhDetailList(ResultVO result) { // TODO
-	 * Auto-generated method stub return mapper.getDetail(result); }
-	 */
+
 
 	@Override
-	public List<ResultVO> searhDetailList(SearchVO search) {
+	public List<ResultVO> searhResultList(SearchVO search) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	
-//	@Override
-//	public List<ResultVO> searhResultList(SearchVO search) {
-//		// TODO Auto-generated method stub
-//		return mapper.getResult();
-//	}
-//	@Override
-//	public List<ResultVO> searhDetailList(SearchVO search) {
-//		// TODO Auto-generated method stub
-//		return mapper.getDetail();
-//	}
+
 	
 	
 

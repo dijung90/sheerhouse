@@ -49,7 +49,6 @@ public class searchResultController {
 		model.addAttribute("home_seq", home_seq);
 		model.addAttribute("title", title);
 		model.addAttribute("DetailInfo", resultMapper.getDetail(result));
-		System.out.println("resultList" + resultMapper.getDetail(result));
 		return "search/searchResultDetail";
 	}
 }

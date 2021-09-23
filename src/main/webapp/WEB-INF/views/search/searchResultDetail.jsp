@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/searchResultDetail.css" />
 </head>
  <body>
+ <div>
     <div>
         <div class="navContainer">
           <div class="logoContainer">
@@ -67,7 +68,7 @@
                 src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-1.jpg" alt="accomodationPhoto1"
                 style="width: 100%"
               />
-              <div class="text">sheer house</div>
+              <div class="text">${detail.title }</div>
             </div>
 
             <div class="mySlides fade">
@@ -76,7 +77,7 @@
                  src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-2.jpg" alt="accomodationPhoto2"
                 style="width: 100%"
               />
-              <div class="text">sheer house</div>
+              <div class="text">${detail.title }</div>
             </div>
 
             <div class="mySlides fade">
@@ -85,13 +86,13 @@
                  src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-3.jpg" alt="accomodationPhoto3"
                 style="width: 100%"
               />
-              <div class="text">sheer house</div>
+              <div class="text">${detail.title }</div>
+              </c:forEach>
             </div>
-  		 </c:forEach>
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
-            <a class="next" onclick="moveSlides(1)">&#10095;</a>
-          </div>
+	            <!-- Next and previous buttons -->
+	            <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+	            <a class="next" onclick="moveSlides(1)">&#10095;</a>
+          	</div>
           <br />
 
           <!-- The dots/circles -->
@@ -100,63 +101,119 @@
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
           </div>
-        </div>
-        <c:forEach var="detail" items="${DetailInfo}" >
-        <div class="descriptionsContainer">
-          <section class="descriptionContainer">
-            <div class="descriptionHeader">
-              <div class="title"><span>${detail.title }</span></div>
-              <div class="hostInfo"><span>${detail.host_info }</span></div>
-            </div>
-            <div class="divider-long"></div>
-            <div class="descriptionContent">
-            <div>
-                <span>${detail.type }</span>
-            </div>
-            <div class="divider-long"></div>
-              <div>
-                <span>${detail.info }</span>
-              </div>
-              <div class="divider-long"></div>
-              <div>
-                <span>${detail.rule }</span>
-              </div>
-            </div>
-          </section>
-          <section class="descrptionContainer2">
-            <div class="reservationContainer">
-                <form action="">
-                    <div class="reservationContent1">
-                        <div>
-                            <span>체크인</span>
-                            <input type="text" value="체크인">
-                        </div>
-                        <div>
-                            <span>체크아웃</span>
-                            <input type="text" value="체크아웃">
-                        </div>
-                    </div>
-                    <div class="reservationContent2">
-                        <span>인원</span>
-                        <input type="text" value="인원">
-                    </div>
-                    <input class="reservationBtn" type="button" value="예약하기">
-                </form>
+        
+        <!--   하단 컨테이너 -->
+        <div class="sectionsContainer">
+        
+        	<section class="leftSectionContainer">
+        		<div>
+        		 	<c:forEach var="detail" items="${DetailInfo}" >
+		        			<div class="descriptionContainer">
+				  				<div class="descriptionHeader">
+				              		<div class="title"><span>${detail.title }</span></div>
+				              		<div class="hostInfo"><span>${detail.host_info }</span></div>
+				            	</div>
+				            	<div class="divider-long"></div>
+				            <div class="descriptionContent">
+					            <div>
+					                <span>${detail.type }</span>
+					            </div>
+					            <div class="divider-long"></div>
+					              <div>
+					                <span>${detail.info }</span>
+					              </div>
+					              <div class="divider-long"></div>
+					              <div>
+					                <span>${detail.rule }</span>
+				              </div>
+				            </div>
+		     
+  						</div>
+  					</c:forEach>	
+  					<div class="reviewsContainer"> 
+              			<div class="reviews">
+		                  <span>{username}</span>
+		                  <span>{별점 or 만족도}</span>        
+		                  <span>{staying dates}</span>       
+		                  <p>{reviewContent}</p>               
+              			</div>
+            		</div>
+        		</div>
+        	</section>
+        	<section class="rightSectionContainer">
+        			<div class="reservationContainer">
+                		<form action="">
+                				<!-- 체크인, 체크아웃 달력  -->
+	                    		<div class="reservationContent1">
+	                        		<div>
+			                            <span>체크인</span>
+			                            <input class="checkin" name="checkin" type="date" value="체크인">
+	                        		</div>
+	                        		<div>
+	                          		  <span>체크아웃</span>
+	                            		<input class="checkout" name="checkout" type="date" value="체크아웃">
+	                       			 </div>
+	                    		</div>
+	                    		<!-- 인원, 가격  -->
+                   				<div class="reservationContent2">
+                   						<!-- index 페이지의 js function 과 동일  -->
+				                        <span>인원</span>
+				                        <input name="searchMaxPeo" class="peopleNumInfo" onclick=search() type="button" value="인원" />	
+				                        <input class="reservationBtn" type="submit value="예약하기">
+						                <div class="peopleBtnContainer">
+							                <div>
+							                  <span class="peopleBtnHeader"> 성인 </span>
+							                  <input
+							                  class="addBtns"
+							                  type="button"
+							                  onclick="peopleIncre()"
+							                  value="+"
+							                />
+							                  <input
+							                  type="text"
+							                  value="0"
+							                  name="searchMaxPeople"
+							                  class="peopleBtnNumInput"
+							                />
+							                  <input
+							                  class="addBtns"
+							                  type="button"
+							                  onclick="peopleDecre()"
+							                  value="-"
+							                />
+						                </div>
+		                    		</div>
+				                    <c:forEach var="detail" items="${DetailInfo}" >
+						   					<div class="divider-long"></div>
+						   						<!-- 인원수, 달력 날짜 계산해서 계산 기능 추가해야함.  -->
+						             	 		<div class="reservationPrices">
+						                			<div>
+						                				<div class="pricePerNight">
+								                			<span>${detail.price } /</span>
+								                			<span class="manyNights">N 박</span>
+						                				</div>
+						                				<div class="totalPrice">
+						                					<input value="" type="text" name="totalprice"/>
+						                				</div>
+						                			</div>
+						              			</div>
+						              	</c:forEach>
+		                    		
+		                    		<input class="reservationBtn" type="submit" value="예약하기">
+                				</div>
+                				</form>
 
-   
-              <div class="reservationPrices">
-                <span>${detail.price } / 1박</span>
-              </div>
-            </div>
-          </section>
-   
+
+            		</div>
+        	</section>
         </div>
-        </c:forEach>
-      </div>
-   
-    </div>
+       </div>
   </body>
   <script>
+  
+  const checkinDate = document.querySelector(".checkin");
+  const checkoutDate = document.querySelector(".checkout");
+  const manyNights = document.querySelector(".manyNights");
     var slideIndex = 0; //slide index
 
     // HTML 로드가 끝난 후 동작
@@ -207,5 +264,62 @@
       slides[n].style.display = "block";
       dots[n].className += " active";
     }
+    
+    function search() {
+    	  const peopleBtnContainer = document.querySelector(".peopleBtnContainer");
+    	  peopleBtnContainer.style.display = "block";
+    	}
+    
+    function peopleIncre() {
+    	  const peopleNumInput = document.querySelector(".peopleBtnNumInput");
+    	  const peoInput = document.querySelector(".peopleBtnNumInput");
+    	  const peopleNumInfo = document.querySelector(".peopleNumInfo");
+    	  let currentValue = parseInt(peopleNumInput.value);
+    	  peoInput.value = currentValue + 1;
+    	  peopleNumInfo.value = currentValue + 1;
+    	  console.log(currentValue + 1);
+    	}
+
+    	function peopleDecre() {
+    	  const peopleNumInput = document.querySelector(".peopleBtnNumInput");
+    	  const peoInput = document.querySelector(".peopleBtnNumInput");
+    	  const peopleNumInfo = document.querySelector(".peopleNumInfo");
+    	  let currentValue = parseInt(peopleNumInput.value);
+    	  if (currentValue <= 0) {
+    	    peoInput.value = 0;
+    	  } else {
+    	    peoInput.value = currentValue - 1;
+    	    peopleNumInfo.value = currentValue - 1;
+    	  }
+    	  console.log(currentValue - 1);
+    	}
+
+    	const datePick = () => {
+    		strCheckin = checkinDate.value;
+    		strCheckout = checkoutDate.value;
+    		
+    		var arr1 = strCheckin.split('-');
+    		var arr2 = strCheckout.split('-');
+    		
+    		
+    		var checkin = new Date(arr1[0], arr1[1], arr1[2]);
+    		var checkout = new Date(arr2[0], arr2[1], arr2[2]);
+    		
+    		var diff = checkout - checkin;
+    		var currentDay = 24 * 60 * 60 * 1000;
+    		
+    		let result = parseInt(diff/currentDay) 
+    		if(isNaN(result)){
+    			console.log("non");
+    		}else {
+    			console.log("ok");
+    			manyNights.innerText = result + "박"
+    		}
+    	}
+    checkinDate.addEventListener("change", datePick);
+    checkoutDate.addEventListener("change", datePick);
+    
+    
+    
   </script>
 </html>
