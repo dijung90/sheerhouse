@@ -10,7 +10,7 @@ public class UserVO {
 	private String phone;
 	private String role;
 	private String gender;
-	private int birthday;
+	private Timestamp birthday;
 	private boolean smsConfirm;
 	private boolean emailConfirm;
 	private String address;
@@ -68,11 +68,11 @@ public class UserVO {
 		this.gender = gender;
 	}
 
-	public int getBirthday() {
+	public Timestamp getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(int birthday) {
+	public void setBirthday(Timestamp birthday) {
 		this.birthday = birthday;
 	}
 

@@ -6,6 +6,6 @@
  	<mappers>
  		<mapper resource="mybatis/mapper/user/user-loginmapper.xml"/>
  		<mapper resource="mybatis/mapper/admin/admin-mapper.xml"/>
- 		<mapper resource="mybatis/mapper/host/host-mapper.xml"/>
+ 		<mapper resource="mybatis/mapper/host/host-registMapper.xml"/>
  	</mappers>
  </configuration>

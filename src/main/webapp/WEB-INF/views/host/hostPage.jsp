@@ -23,7 +23,7 @@
       </div>
       <div class="divider"></div>
       <div class="myhostGreeting">
-        <h3>안녕하세요 host {userName}님</h3>
+        <h3>안녕하세요 host ${host.name}님</h3>
       </div>
       <div class="myhostSelect">
         <ul class="myhostlists">
@@ -132,13 +132,13 @@
             <div>
             <form action="" method="GET" class="myHostInfoForm">
               <label for="name">이름</label>
-              <input type="text" id="name" value="{host.Name}" />
+              <input type="text" id="name" value="${host.name}" />
               <label for="email">연락 이메일</label>
-              <input type="text" id="email" value="{host.Email}" />
+              <input type="text" id="email" value="${host.email}" />
               <label for="phone">연락 전화번호</label>
-              <input type="text" id="phone" value="{host.Phone}" />
+              <input type="text" id="phone" value="${host.phone}" />
               <label for="introduction">소개</label>
-              <textarea type="text" id="introduction"></textarea> 
+              <textarea type="text" id="introduction" >${host.host_info}</textarea> 
               <input class="submitBtn" type="submit" value="수정 / 반영하기" />
             </form>
           </div>

@@ -20,4 +20,10 @@ public class HostController {
 	public String register() {
 		return "host/hostregister";
 	}
+	@GetMapping("/hostPage.host")
+	public String hostPage() {
+		return "host/hostPage";
+	}
+	
+	
 }

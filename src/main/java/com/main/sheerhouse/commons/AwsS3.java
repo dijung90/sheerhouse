@@ -2,6 +2,8 @@ package com.main.sheerhouse.commons;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
@@ -13,14 +15,16 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class AwsS3 {
 
 	private AmazonS3 s3Client;
-	final private String accessKey = "AKIATCBW36MXRLF3QQE3";
-	final private String secretKey = "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";
+	final private String accessKey = "AKIATCBW36MXSJ3HWPH5";
+	final private String secretKey = "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";
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
 	private String bucket = "sheerhouse";
 	
@@ -43,12 +47,12 @@ public class AwsS3 {
 		this.s3Client = AmazonS3ClientBuilder.standard().withCredentials(
 				new AWSStaticCredentialsProvider(credentials)).withRegion(clientRegion).build();
 	}
-	//¾÷·Îµå ---------------------------------
+	//ï¿½ï¿½ï¿½Îµï¿½ ---------------------------------
 	public void upload(File file, String key) {
 		uploadToS3(new PutObjectRequest(this.bucket, key, file));
 	}
 	
-	//MultipartFile ¾÷·Îµå½Ã »ç¿ë
+	//MultipartFile ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void upload(InputStream is, String key, String contentType, long contentLength) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType(contentType);
@@ -70,12 +74,12 @@ public class AwsS3 {
 		}
 	}
 	
-	// º¹»ç, »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½
 	public void copy(String orgKey, String copyKey) {
 		try {
-			//º¹»ç °´Ã¼ »ý¼º
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			CopyObjectRequest copyObjectRequest = new CopyObjectRequest(this.bucket, orgKey, this.bucket, copyKey);
-			//º¹»ç
+			//ï¿½ï¿½ï¿½ï¿½
 			this.s3Client.copyObject(copyObjectRequest);
 			System.out.println(String.format("Finish copying [%s] to [%s]", orgKey,copyKey));
 		}catch (AmazonServiceException e) {
@@ -87,9 +91,9 @@ public class AwsS3 {
 	
 	public void delete(String key) {
 		try {
-			//»èÁ¦ °´Ã¼ »ý¼º
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(this.bucket, key);
-			//»èÁ¦
+			//ï¿½ï¿½ï¿½ï¿½
 			this.s3Client.deleteObject(deleteObjectRequest);
 			System.out.println(String.format("[%s] deletion complete", key));
 		}catch (AmazonServiceException e) {
@@ -100,7 +104,16 @@ public class AwsS3 {
 	
 	}
 	
-	
+	public List<String> getUrl(String key) {
+		List<String> list = new ArrayList<String>();
+		String rootPath = "https://sheerhouse.s3.ap-northeast-2.amazonaws.com/";
+		ObjectListing objects = s3Client.listObjects("sheerhouse", key);
+		for (S3ObjectSummary os : objects.getObjectSummaries()) {
+			list.add(rootPath + os.getKey());
+		}
+		
+		return list;
+	}
 	
 	
 }

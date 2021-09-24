@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
@@ -143,7 +142,7 @@ public class UserLoginController {
 		
 	}
 	@RequestMapping("/searchEmail.do")
-	@ResponseBody
+		
 	public String searchEmail(UserVO user) {
 		boolean emailCheck = service.emailCheck(user.getEmail());
 		String result = String.valueOf(emailCheck);

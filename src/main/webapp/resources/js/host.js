@@ -7,9 +7,9 @@ function proTypeArrow() {
 
 function proLocationRightArrow() {
   const propertyLocationSection = document.querySelector(".property-location");
-  const propertyMaxPeo = document.querySelector(".property-maxPeo");
+  const propertyImagesSection = document.querySelector(".property-images");
   propertyLocationSection.style.display = "none";
-  propertyMaxPeo.style.display = "block";
+  propertyImagesSection.style.display = "block";
 }
 
 function proLocationLeftArrow() {
@@ -17,6 +17,20 @@ function proLocationLeftArrow() {
   const propertyTypeSection = document.querySelector(".property-type");
   propertyLocationSection.style.display = "none";
   propertyTypeSection.style.display = "block";
+}
+
+function proImagesRightArrow() {
+  const propertyImagesSection = document.querySelector(".property-images");
+  const propertyMaxPeo = document.querySelector(".property-maxPeo");
+  propertyImagesSection.style.display = "none";
+  propertyMaxPeo.style.display = "block";
+}
+
+function proImagesLeftArrow() {
+  const propertyLocationSection = document.querySelector(".property-location");
+  const propertyImagesSection = document.querySelector(".property-images");
+  propertyImagesSection.style.display = "none";
+  propertyLocationSection.style.display = "block";
 }
 
 function proMaxPeoRightArrow() {
@@ -27,10 +41,10 @@ function proMaxPeoRightArrow() {
 }
 
 function proMaxPeoLeftArrow() {
-  const propertyLocationSection = document.querySelector(".property-location");
+  const propertyImagesSection = document.querySelector(".property-images");
   const propertyMaxPeo = document.querySelector(".property-maxPeo");
   propertyMaxPeo.style.display = "none";
-  propertyLocationSection.style.display = "block";
+  propertyImagesSection.style.display = "block";
 }
 
 function proPriceRightArrow() {
@@ -101,6 +115,8 @@ function colorClear() {
   propertyUnique.style.backgroundColor = "#ffffff";
   propertyHotel.style.backgroundColor = "#ffffff";
 }
+
+
 function propertySelect(event) {
   //   const properties = document.querySelector(".propertyInput-container").input;
   //   let property = properties.getAttribute("name");
@@ -111,14 +127,15 @@ function propertySelect(event) {
   const propertyBB = document.getElementById("propertyBB");
   const propertyUnique = document.getElementById("propertyUnique");
   const propertyHotel = document.getElementById("propertyHotel");
-
   const hostForm = document.querySelector(".hostForm");
+
   //   console.log(event.target.name);
   let etName = event.target.className;
+
   console.log(etName);
   switch (etName) {
     case "propertyApartment":
-      hostForm.reset();
+	  hostForm.reset();
       colorClear();
       propertySpecialHouse.style.backgroundColor = "#eeeeee";
       propertyHouse.style.backgroundColor = "#eeeeee";
@@ -171,6 +188,7 @@ function propertySelect(event) {
   }
   return etName;
 }
+
 /**
  * 
  */
