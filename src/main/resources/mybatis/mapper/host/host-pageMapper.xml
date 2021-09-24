@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.sheerhouse.host.mapper.HostPageMapper">
+	<update id="hostUpdate">
+		update host set email=#{email}, name=#{name}, phone=#{phone}, host_info=#{host_info}, updatedate=CURRENT_TIMESTAMP 
+		where email=#{email}
+	</update>
+	<select id="selectHome" resultType="com.main.sheerhouse.host.domain.HomeVO">
+		select * from home where host_seq=(select host_seq from host where email=#{email})
+	</select>
+</mapper>

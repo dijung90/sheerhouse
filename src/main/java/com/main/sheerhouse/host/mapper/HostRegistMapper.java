@@ -12,8 +12,6 @@ public interface HostRegistMapper {
 	
 	public void userRoleSet(UserVO user);
 	
-	public void selectHome(UserVO user);
-	
 	public void hostRegist(UserVO user);
 	
 	public HostVO hostSelect(String email);

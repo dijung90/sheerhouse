@@ -16,5 +16,4 @@ public interface HostRegistService {
 	
 	public boolean hostCheck(String email);
 	
-	public void selectHome(HostVO host);
 }

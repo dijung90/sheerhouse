@@ -40,12 +40,6 @@ public class HostRegistServiceImpl implements HostRegistService{
 	}
 
 	@Override
-	public void selectHome(HostVO host) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void hostRegist(UserVO user) {
 		mapper.hostRegist(user);
 		System.out.println("호스트 등록");

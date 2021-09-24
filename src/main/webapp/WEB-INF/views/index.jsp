@@ -16,7 +16,7 @@
    		<meta name="google-signin-client_id" content="704009539267-6g73vgvh8j2u16gfps9r01t0srqldprf.apps.googleusercontent.com">
     	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
     	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="/resources/js/main.js"></script>
+		
     	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
     	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
 	
@@ -230,6 +230,7 @@
     </div>
     </div>
       </div>
+      <script type="text/javascript" src="/resources/js/main.js"></script>
 <script>
       function onSignIn(googleUser) {
     	 

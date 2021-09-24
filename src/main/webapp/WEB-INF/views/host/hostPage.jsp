@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>호스트 전용 페이지 입니다.</title>
 <link rel="stylesheet" href="resources/css/hostpage.css" />
+<script type="text/javascript">
+function imgSetting(url){
+	var imgs = url.slice(1,-1);
+	var img = imgs.split(",");
+	console.log(img);
+	return img[0];
+}
+
+</script>
 </head>
 <body>
     <div>
@@ -75,17 +85,22 @@
             <div class="addmore">
                 <button onclick="addmoreAccomodation()">숙소 등록 하기</button>
             </div>
-            <ol class="hostingLists">   
+            <ol class="hostingLists"> 
+            <c:forEach var="home" items="${homeList}">  
               <li class="hostingList">
                 <div>
                     <div class="accomodationImage">
-                      <img src="resources/Images/place/place2.jpg" alt="hostingphoto" />
+                      <img src="" id="${home.title}" alt="hostingphoto" />
+                      <script>
+          
+                      document.getElementById("${home.title}").src=imgSetting("${home.url}")</script>
+                    	
                     </div>
                     <div class="accomodationTexts">
                         <a href="#">
                             <div class="accomodationContent">
-                            <h2>{acccomodation.title} </h2>
-                            <span>{accomodation.shortDescription}</span>
+                            <h2>${home.title}</h2>
+                            <span>${home.info }</span>
                             </div>
                         </a>
                         <div class="hostingInfoBtn">
@@ -94,7 +109,7 @@
                     </div>
                 </div>
                 </li>
-          
+          	</c:forEach>
             </ol>
         
         </section>
@@ -130,15 +145,15 @@
         <section id="hostinfoDetail" class="hostinfoDetail tabContent"data-myhostpage-type="hostInfo">
           <h3>게스트와 소통할 수 있는 정보를 입력, 수정할 수 있어요!</h3>
             <div>
-            <form action="" method="GET" class="myHostInfoForm">
+            <form action="hostUpdate.host" method="post" class="myHostInfoForm">
               <label for="name">이름</label>
-              <input type="text" id="name" value="${host.name}" />
+              <input type="text" id="name" name="name" value="${host.name}" />
               <label for="email">연락 이메일</label>
-              <input type="text" id="email" value="${host.email}" />
+              <input type="text" id="email" name="email" value="${host.email}" />
               <label for="phone">연락 전화번호</label>
-              <input type="text" id="phone" value="${host.phone}" />
+              <input type="text" id="phone" name="phone" value="${host.phone}" />
               <label for="introduction">소개</label>
-              <textarea type="text" id="introduction" >${host.host_info}</textarea> 
+              <textarea type="text" id="introduction" name="host_info">${host.host_info}</textarea> 
               <input class="submitBtn" type="submit" value="수정 / 반영하기" />
             </form>
           </div>
@@ -159,4 +174,5 @@
 
 </body>
 <script src="resources/js/hostpage.js" ></script>
+
 </html>
