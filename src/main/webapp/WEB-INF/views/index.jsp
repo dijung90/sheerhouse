@@ -25,13 +25,14 @@
     <div>
       <div class="navContainer">
         <div class="logoContainer">
-          <a href="/"><h2>쉬어家</h2>
+          <a href="/index.do"><h2>쉬어家</h2>
           <span>sheerhouse</span></a>
+          <div class="bar"></div>
         </div>
         <nav class="menuContainer">
           <ul class="menus">
          		 <c:if  test="${user.email eq null}" >
-		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인/회원가입</li>
+		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
 				</c:if>
 				<c:if test="${user.role eq 'user'}">
 		            <li><a href="mypage.do">마이페이지</a></li>
@@ -45,22 +46,52 @@
         </nav>
       </div>
       <div class="bannerContainer">
+      	<div class="bannerCity">
+            <h1>SEOUL</h1>
+          </div>
         <div class="bannerImage">
-          <img src="/resources/Images/banner/banner.jpg" alt="banner" />
+          <img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/MainBanners/bannerKorea3.jpg" alt="banner" />
         </div>
-        <form class="searchContainer" action="searchResult.do?location={searchLocation}">
+        <div class="tabMenu">
+        	<span class="accomodationSearch borderBottom" onclick=showTabContent1()>숙소</span>
+        	<span class="activitySearch" onclick=showTabContent2()>액티비티</span>
+        </div>
+        
+        <!--Activity Search Container  -->
+        <div class="Activity">
+	        <form class="searchContainer-activity" action="/searchActivity.do" method="get">
+	        	<div class="searchWhere">
+	            	<h3>Where</h3>
+	            	<input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
+	          </div>
+	          <div class="searchIn">
+	            	<h3>날짜를 입력해주세요</h3>
+	            	<input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
+	          </div>    
+	          <div class="search">
+	         	 <button type="submit">
+	              <img src="/resources/Images/icons/search-white.png" alt="search" />
+	              <span>검색</span>
+	            </button>  
+	           </div>
+	        </form>
+        </div>
+        
+        <!-- Accomodation Search Container -->
+        <div class="Accomodation">
+        <form class="searchContainer" action="/searchResult.do" method="get">
           <div class="searchWhere">
             <h3>Where</h3>
             <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
           </div>
           <div class="searchIn">
             <h3>Check in</h3>
-            <input name="searchCheckin" onclick="getInDate()" id="CheckinDate" type="date" aria-required="true"/>
+            <input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
             <!-- <label for="CheckinDate">체크인 날짜</label> -->
           </div>
           <div class="searchOut">
             <h3>Check out</h3>
-            <input name="searchCheckout" onclick="getOutDate()" id="CheckoutDate" type="date" aria-required="true" />
+            <input name="searchCheckout"  class="CheckoutDate" id="CheckoutDate" type="date" aria-required="true" />
             <!-- <label for="CheckoutDate">체크아웃 날짜</label>// -->
           </div>
           <div class="searchPeo">
@@ -78,7 +109,7 @@
 	                  <input
 	                  type="text"
 	                  value="0"
-	                  name="peopleBtnNum"
+	                  name="searchMaxPeople"
 	                  class="peopleBtnNumInput"
 	                />
 	                  <input
@@ -93,11 +124,18 @@
           <div class="search">
             <button type="submit">
               <img src="/resources/Images/icons/search-white.png" alt="search" />
+              <span>검색</span>
             </button>
            </div>
           </form>
         </div>
+
       </div>	
+        </div>
+        <div class="subHeader">
+        	<h2>어디든 떠나고 싶을 때, 도와드릴게요!</h2>
+        </div>
+      </div>
 
       <section class="recommendPlaceContainer">
         <h3>이번 여행 여긴 어떤가요?</h3>
@@ -184,53 +222,137 @@
       	
 	<div class="login-modal" >
       	<div class="login-modalContent">
-        <div class="login-exitBtn" onclick="loginExitbtnClicked()">
-        	<img src="/resources/Images/icons/close.png" alt="cancel" />
-        </div>
-        <h3 class="loginHeader">로그인</h3>
-        
-        
-        <div class="divider"></div>
-        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
-            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
-            <span id="emailMsg" class="spanMsg"></span>
-            <span onclick="emailsend();" class="authMsg" id="emailSend">인증번호 받기</span>
-            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
-            <span id="emailTextMsg" class="spanMsg"></span>
-            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
-            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
-            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
-            <span id="passwordMsg" class="spanMsg"></span>
-            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 / 회원가입 하기"/>
-            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 변경</span>
-        </form>
-          <div class="divider bottom-margin"></div>
-          
-          <div class="alterLoginContainer">
-
-          <div class="login googleLogin" id="googleClick">
-           <a href="#" >
-               <div class="g-signin2"  data-onsuccess="onSignIn"></div>
-            </a>
-          </div>
-
- 
-         <div class="login kakaoLogin" onclick="kakaoLogin();">
-            <a href="javascript:void(0)">
-              <div class="altercontent">
-            		  <div class="alterLoginIcon">
-              			<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
-              			</div>
-              <span>카카오톡으로 로그인하기</span>
-              </div>
-          	</a>
-        </div>
-
-         </div>
+		        <div class="login-exitBtn" onclick="loginExitbtnClicked()">
+		        	<img src="/resources/Images/icons/close.png" alt="cancel" />
+		        </div>
+		        <h3 class="loginHeader">로그인</h3>
+		        
+		        
+		        <div class="divider"></div>
+		        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
+		            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
+		            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
+		            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
+		            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
+		            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
+		            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
+		            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
+		            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
+		        </form>
+		          <div class="divider bottom-margin"></div>
+		          
+		          <div class="alterLoginContainer">
+		          
+				          	<div class="login facebookLogin" onclick="fnFbCustomLogin();" >
+				             	 <a href="javascript:void(0)" >
+				               		 <div class="loginAltercontent">
+				                    	<div class="alterJoinIcon">
+				                    		<img src="/resources/Images/icons/facebook.png" alt="facebook login"/>
+				                    	</div>
+				                   		 <span>페이스북으로 로그인하기</span>
+				                	</div>
+				            	  </a>
+				          	</div>
+				          	
+				          	<div class="login googleLogin" id="googleClick">
+					           <a href="#" >
+					               <div class="g-signin2 googleSource"  data-onsuccess="onSignIn"></div>
+<!-- 					               <div class="goodleLogin"  data-onsuccess="onSignIn">
+					               		<img src="/resources/Images/icons/google.png" alt="facebook login"/>
+					               </div> -->
+					               <span>구글로 로그인하기</span>
+					            </a>
+				          	</div>
+				
+				 
+					         <div class="login kakaoLogin" onclick="kakaoLogin();">
+					            <a href="javascript:void(0)">
+						              <div class="altercontent">
+						            		 <div class="alterLoginIcon">
+						              				<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
+						              		 </div>
+						             			 	<span>카카오톡으로 로그인하기</span>
+						              </div>
+					          	</a>
+					        </div>
+		         </div>
+    	</div>
     </div>
-    </div>
-      </div>
-      <script type="text/javascript" src="/resources/js/main.js"></script>
+      </div> <!-- 시작 태그 missing  -->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<script type="text/javascript" src="/resources/js/main.js"></script>
+ 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
+
+<script>
+
+//tabmenu 
+
+const accomodationSearch = document.querySelector(".accomodationSearch");
+const activitySearch = document.querySelector(".activitySearch");
+const searchPlaceForm = document.querySelector(".searchContainer");
+const searchActivityForm = document.querySelector(".searchContainer-activity");
+
+function showTabContent1(){
+	activitySearch.classList.remove('borderBottom');
+	accomodationSearch.classList.add('borderBottom');
+	searchActivityForm.style.zIndex  = "1";
+	searchPlaceForm.style.zIndex= "2";
+}
+
+function showTabContent2(){
+	accomodationSearch.classList.remove('borderBottom');
+	activitySearch.classList.add('borderBottom');
+	searchPlaceForm.style.zIndex= "1";
+	searchActivityForm.style.zIndex  = "2";
+}
+
+
+//기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
+function statusChangeCallback(res){
+	statusChangeCallback(response);
+}
+
+function fnFbCustomLogin(){
+	FB.login(function(response) {
+		if (response.status === 'connected') {
+			FB.api('/me', 'post', {fields: 'name,email'}, function(r) {
+				var useremail = r.email;
+				var username = r.name;
+				$.ajax({
+					url: 'facebookUserInfo.do',
+					type: 'POST',
+					async: false,
+					data : {
+						email: useremail,
+						name: username
+					},
+					success: function(result){
+						location.href="index.do";
+					}
+				});
+			});
+			
+		}else{
+			colsole.log("페이스북 로그인 실패");
+		} 
+	}, {scope: 'public_profile,email'});
+}
+
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '1300945983708086', // 내 앱 ID를 입력한다.
+		cookie     : true,
+		xfbml      : true,
+		version    : 'v10.0'
+	});
+	FB.AppEvents.logPageView();   
+};
+</script>
+
+>>>>>>> feature/pages
 <script>
       function onSignIn(googleUser) {
     	 
