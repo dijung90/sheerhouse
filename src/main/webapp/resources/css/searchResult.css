@@ -130,7 +130,41 @@ body {
 }
 .resultAccomodation {
   display: flex;
+  justify-content: space-evenly;
 }
+.wishlistHeartIcon{
+  padding-top: 130px;
+}
+.wishlist{
+    color: #cccccc;
+}
+@font-face {
+  font-family: 'entypo';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-90/entypo.woff') format('woff');
+}
+
+.entypo-heart:before{
+  content:"\2665";
+}
+
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 2.1em;
+}
+  
+.resultAccomodationText {
+  margin-top: 10px;
+  width: 280px;
+}
+.resultAccomodationText input.prices{
+  width: 110px;
+  font-size: 20px;
+}
+.mapText{
+	text-align: center;
+}
+
+
 .locationBtn span{
   font-size: 12px;
 }
@@ -159,11 +193,4 @@ body {
   width: 130px;
   text-align: center;
   margin-top: 5px;
-}
-.resultAccomodationText {
-  margin-top: 10px;
-}
-
-.mapText{
-	text-align: center;
 }

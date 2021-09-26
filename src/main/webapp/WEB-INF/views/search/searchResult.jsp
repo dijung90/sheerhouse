@@ -74,8 +74,12 @@
                   <input class="prices" type="text" value="${search.price }"/>원 <span> /1박</span>
                   <input class="locations" type="hidden" value="${search.address }"/>
                 </div>
+                <div class="wishlistHeartIcon">
+                	<span class="entypo-heart wishlist"></span> 
+                </div>
               </div>
             </div>
+            <div class="divider-resultAccomodation"></div>
           </section>
           </c:forEach>
         </div>
@@ -83,6 +87,7 @@
       </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c4e2675e9fcb8f1c39453c9511374e2b&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c4e2675e9fcb8f1c39453c9511374e2b&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 		const prices = document.querySelectorAll(".prices");
 		const locations = document.querySelectorAll(".locations"); // location 주소 array 형태로 불러옴

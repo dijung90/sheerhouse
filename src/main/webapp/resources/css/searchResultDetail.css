@@ -118,6 +118,24 @@ body {
   margin-top: 50px;
   font-size: 30px;
 }
+
+
+.wishlist{
+    color: #9D9D9D;
+}
+@font-face {
+  font-family: 'entypo';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-90/entypo.woff') format('woff');
+}
+
+.entypo-heart:before{
+  content:"\2665";
+}
+
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 2.1em;
+}
 .slideshow-container .mySlides img {
   height: 500px;
   width: 800px;
@@ -225,13 +243,29 @@ body {
 }
 
 .descriptionHeader .title {
-  font-size: 32px;
-  margin: 20px 0 20px 0;
+  font-size: 20px;
+  margin: 45px 0 40px 0;
+  color: #232323;
+  display: flex;
+  justify-content: space-between;
 }
+
 .descriptionHeader .hostInfo {
   font-size: 16px;
   min-height: 50px;
   align-items: center;
+}
+
+.descriptionHeader .hostInfo h3{
+  margin-bottom: 10px;
+}
+
+.descriptionHeader .hostInfo dl{
+  margin-bottom: 10px;
+}
+
+.descriptionHeader .hostInfo dt{
+  margin-bottom: 3px;
 }
 .leftSectionContainer{
   margin-right: 28px;
@@ -239,7 +273,6 @@ body {
 }
 .leftSectionContainer div{
   width: 650px;
-  
 }
 .sectionsContainer{
   display: flex;
@@ -256,6 +289,7 @@ body {
   width: 35%;
   margin-left: 25px;
   border-radius: 0.5rem;
+  height: 370px;
   max-height: 500px;
   position: relative;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -292,52 +326,56 @@ body {
   padding-left: 5px;
   border: none;
 }
-
-.peopleBtnContainer {
-  display: none;
-  width: 280px;
-  height: 60px;
-  border: 0.1px solid #696969;
-  margin-top: 20px;
-  border-radius: 2rem;
-  position: absolute;
-  top: 140px;
-  left: 35px;
-  margin: 10px auto;
-  box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 5px;
+.displayNone{
+	display: none;
 }
+.peopleBtnContainer {
+  width: 95%;
+  background-color: #ffffff;
+  height: 62px;
+  border-radius: 1rem;
+  position: absolute;
+  top: 135px;
+  left: 8px;
+  margin: 10px auto;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 20px;
+}
+
 .peopleBtnContainer div {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 11px;
 }
 .peopleBtnContainer div .peopleBtnHeader {
-  width: 80px;
+  width: 60px;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   padding-bottom: 2px;
 }
 .peopleBtnContainer input {
-  width: 40px;
+  width: 30px;
   text-align: center;
   height: 30px;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 18px;
   padding-right: 10px;
 }
 
 .peopleBtnContainer .addBtns {
-  width: 45px;
-  height: 40px;
+  width: 65px;
+  height: 45px;
   background-color: #e55757;
   border-radius: 9999px;
-  margin: 10px;
+  margin: 7px 10px 10px 10px;
   color: #eeeeee;
   font-size: 20px;
-  padding-right: 10px;
-  padding-bottom: 5px;
+  padding-right: 1px;
+  padding-bottom: 3px;
 }
+
+/*  reservationContent2 = people 인원 설정하는 구간 */
+
+
 .reservationContent2 {
   border: 1px solid #cccccc;
   height: 55px;
@@ -345,7 +383,12 @@ body {
   border-bottom-left-radius: 0.7rem;
   border-bottom-right-radius: 0.7rem;
 }
-
+.peopleNumInfo{
+  background-color: transparent;
+  padding-left: 10px;
+  width: 100%;
+  text-align: left;
+}
 .reservationContent2 span {
   width: 100%;
   font-size: 12px;
@@ -354,13 +397,39 @@ body {
   padding-top: 5px;
 }
 
-.reservationContent2 input {
+.reservationPrices{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: 20px auto;
+}
+
+.reservationPrices div{
+	width: 100%;
+}
+
+.reservationPrices div h2{
+  text-align: center;
+  font-size: 16px;
+  margin-top: -10px;
+}
+
+.reservationContent2 input:first-child {
   background-color: transparent;
   padding-left: 10px;
   padding-top: 5px;
   font-size: 16px;
   border: none;
   height: 30px
+}
+
+.warnMsg{
+  display: none;
+  text-align: center;
+  font-size: 13px;
+  padding-top: 1px;
+  color: #e55757;
+  font-weight: 700;
 }
 
 .reservationBtn {
@@ -370,7 +439,7 @@ body {
   background-color: #e55757;
   border-radius: 0.7rem;
   font-size: 18px;
-  /* color: #eeeeee; */
+  color: #eeeeee;
   font-weight: 600;
 }
 .divider-long {
@@ -379,17 +448,32 @@ body {
   border-bottom: 0.3px solid #dddddd;
   margin: 10px 0 10px 0;
 }
-.reviewsContainer {
-  width: 900px;
-  margin: 60px auto;
+
+
+
+.reviewHeader{
+  display: flex;
+  margin-bottom: 80px;
 }
+
+.reviewHeader h2{
+  font-size: 28px;
+  color: #232323;
+}
+.reviewHeader span{
+  margin-top: 13px;
+  margin-left: 12px;
+  font-size: 14px;
+}
+
 .reviewsContainer {
   width: 700px;
-  margin: 60px auto;
-}
-.reservationPrices{
   margin: 20px auto;
-  width: 300px
+}
+.reviewContent{
+  width: 600px;
+  margin-top: 20px;
+  font-size: 18px;
 }
 .reviews span{
   display: inline-block;
@@ -398,24 +482,49 @@ body {
 }
 
 
-.reservationPrices div{
-	display: flex;
-	justify-content: space-between
+.reviewRegDate{
+  margin-top: 30px;
+  display: flex;
+  font-size: 12px;
+}
+
+.reviewRegDate span{
+  margin-left: 3px;
+  margin-top: -2px;
 }
 
 .pricePerNight{
   width: 140px;
 }
 
-.pricePerNight span{
-  font-size: 14px;
+.totalPriceContainer{
+  display: none;
 }
-.pricePerNight span:last-child{
-  padding-top: 3px;
+.totalPriceContainer div{
+  display: flex;
+}
+.totalPriceContainer div .pricePerNight{
+  text-align: right;
+  font-size: 16px;
+  padding-top: 8px;
+}
+.totalPriceContainer div .manyNights{
+  font-size: 16px;
 }
 .totalPrice {
   width: 180px;
 }
-.totalPrice input{
+.totalPriceInput{
+  width: 100%;
+  text-align: center;
   font-size: 16px;
+}
+
+
+
+
+
+/* ///// add classes////////// */
+.margin-top-small{
+	margin-top: 30px;
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.SearchVO;
 import com.main.sheerhouse.user.mapper.UserSearchResultMapper;
@@ -26,9 +27,15 @@ public class UserSearchServiceImpl implements UserSearchService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
+
+	@Override
+	public List<CommentVO> getCommentList(ResultVO result) {
+		// TODO Auto-generated method stub
+		return mapper.getComment(result);
+	}
+
+	
 	
 	
 

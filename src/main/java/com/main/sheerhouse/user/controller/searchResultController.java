@@ -42,13 +42,16 @@ public class searchResultController {
 	}
 	
 	@RequestMapping("/searchResultDetail.do")
-	public String resultDatail(Model model, ResultVO result, @RequestParam("home_seq") String home_seq , @RequestParam("title") String title) {
+	public String resultDatail(Model model, ResultVO result, SearchVO search, @RequestParam("home_seq") String home_seq , @RequestParam("title") String title) {
 		System.out.println(home_seq);
 		System.out.println(title);
 		
 		model.addAttribute("home_seq", home_seq);
 		model.addAttribute("title", title);
 		model.addAttribute("DetailInfo", resultMapper.getDetail(result));
+		
+		model.addAttribute("CommentInfo", resultMapper.getComment(result));
+		System.out.println("CommentInfo" + resultMapper.getComment(result));
 		return "search/searchResultDetail";
 	}
 }
