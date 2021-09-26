@@ -45,17 +45,17 @@ body {
 }
 
 .navContainer .logoContainer span {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 5px;
   color: #ac0c0c;
 }
 
 .bar {
-  width: 50px;
-  height: 3px;
-  background-color: #ebebeb;
-  margin-left: 100px;
-  margin-top: 10px;
+    width: 50px;
+    height: 4px;
+    background-color: #ebebeb;
+    margin-left: 80px;
+    margin-top: 10px;
 }
 
 .navContainer .menuContainer {
@@ -136,13 +136,58 @@ body {
   margin-right: 20px;
   font-size: 18px;
   padding-bottom: 3px;
+  cursor: pointer;
 }
 
 .tabMenu span.activitySearch{
   color: #ffff;
   font-size: 18px;
   padding-bottom: 3px;
+  cursor: pointer;
 }
+.searchContainer-activity {
+  width: 980px;
+  height: 70px;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 20%;
+  top: 48%;
+  border-radius: 9999px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1;
+}
+
+
+.searchContainer-activity .search button {
+  border: none;
+  width: 5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background-color: #e55757;
+  margin-top: 7px;
+  margin-right: 10px;
+  text-align: center;
+  align-items: center;
+}
+
+.searchContainer-activity .search span{
+  color: #eeeeee;
+  font-weight:500;
+  font-size: 17px;
+}
+.searchContainer-activity .search img {
+  width: 1.2rem;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.searchContainer-activity h3{
+  font-size: 15px;
+  padding: 0.7rem 0 0.3rem 0;
+}
+
 
 .searchContainer {
   width: 980px;
@@ -155,6 +200,7 @@ body {
   top: 48%;
   border-radius: 9999px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 2;
 }
 
 .searchContainer div h3 {
@@ -199,18 +245,32 @@ body {
 }
 .searchContainer .search button {
   border: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+  width: 5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
   background-color: #e55757;
-  margin-top: 10px;
+  margin-top: 7px;
   margin-right: 10px;
+  text-align: center;
+  align-items: center;
 }
 
-.searchContainer div button img {
-  width: 1.7rem;
-  text-align: center;
+.searchContainer .search span{
+  color: #eeeeee;
+  font-weight:500;
+  font-size: 17px;
 }
+.searchContainer .search img {
+  width: 1.2rem;
+  text-align: center;
+  margin-top: 2px;
+}
+
+
+
+
+
+
 .searchWhere {
   width: 220px;
   padding-left: 30px;
@@ -300,6 +360,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
   margin-top: 4.3rem;
   margin-bottom: 3rem;
   font-size: 2.3rem;
+  color: #e55757;
 }
 .recommendPlaceContainer div {
   display: flex;
@@ -319,6 +380,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
   margin-top: 3.4rem;
   margin-bottom: 3rem;
   font-size: 2.3rem;
+  color: #e55757;
 }
 
 .recommendActivityContainer div {
@@ -658,7 +720,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
 
 .hostbanner .bannerText {
   position: absolute;
-  right: 150px;
+  right: 30px;
   color: #eeeeee;
 }
 .hostbanner .bannerText h2 {
@@ -676,3 +738,7 @@ input[type=date]::-webkit-datetime-edit-year-field {
   border-radius: 10px;
 }
 
+
+.borderBottom{
+	border-bottom: 3px solid #ffffff;
+}

@@ -51,9 +51,32 @@
           <img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/MainBanners/bannerKorea3.jpg" alt="banner" />
         </div>
         <div class="tabMenu">
-        	<span class="accomodationSearch">숙소</span>
-        	<span class="activitySearch">액티비티</span>
+        	<span class="accomodationSearch borderBottom" onclick=showTabContent1()>숙소</span>
+        	<span class="activitySearch" onclick=showTabContent2()>액티비티</span>
         </div>
+        
+        <!--Activity Search Container  -->
+        <div class="Activity">
+	        <form class="searchContainer-activity" action="/searchActivity.do" method="get">
+	        	<div class="searchWhere">
+	            	<h3>Where</h3>
+	            	<input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
+	          </div>
+	          <div class="searchIn">
+	            	<h3>날짜를 입력해주세요</h3>
+	            	<input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
+	          </div>    
+	          <div class="search">
+	         	 <button type="submit">
+	              <img src="/resources/Images/icons/search-white.png" alt="search" />
+	              <span>검색</span>
+	            </button>  
+	           </div>
+	        </form>
+        </div>
+        
+        <!-- Accomodation Search Container -->
+        <div class="Accomodation">
         <form class="searchContainer" action="/searchResult.do" method="get">
           <div class="searchWhere">
             <h3>Where</h3>
@@ -99,9 +122,11 @@
           <div class="search">
             <button type="submit">
               <img src="/resources/Images/icons/search-white.png" alt="search" />
+              <span>검색</span>
             </button>
            </div>
           </form>
+        </div>
         </div>
         <div class="subHeader">
         	<h2>어디든 떠나고 싶을 때, 도와드릴게요!</h2>
@@ -250,7 +275,31 @@
   	<script type="text/javascript" src="/resources/js/main.js"></script>
  	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
+
+
 <script>
+
+//tabmenu 
+
+const accomodationSearch = document.querySelector(".accomodationSearch");
+const activitySearch = document.querySelector(".activitySearch");
+const searchPlaceForm = document.querySelector(".searchContainer");
+const searchActivityForm = document.querySelector(".searchContainer-activity");
+
+function showTabContent1(){
+	activitySearch.classList.remove('borderBottom');
+	accomodationSearch.classList.add('borderBottom');
+	searchActivityForm.style.zIndex  = "1";
+	searchPlaceForm.style.zIndex= "2";
+}
+
+function showTabContent2(){
+	accomodationSearch.classList.remove('borderBottom');
+	activitySearch.classList.add('borderBottom');
+	searchPlaceForm.style.zIndex= "1";
+	searchActivityForm.style.zIndex  = "2";
+}
+
 
 //기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
 function statusChangeCallback(res){

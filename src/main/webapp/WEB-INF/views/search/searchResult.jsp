@@ -11,7 +11,7 @@
 <body>
       <div class="navContainer">
         <div class="logoContainer">
-          <a href="/"><h2>쉬어家</h2>
+          <a href="/index.do"><h2>쉬어家</h2>
             <span>sheerhouse</span></a>
         </div>
         <div>
