@@ -136,7 +136,7 @@ body {
   padding-top: 130px;
 }
 .wishlist{
-    color: #cccccc;
+    color: #9D9D9D;
 }
 @font-face {
   font-family: 'entypo';
@@ -159,6 +159,13 @@ body {
 .resultAccomodationText input.prices{
   width: 110px;
   font-size: 20px;
+}
+
+.divider-resultAccomodation{
+  width: 500px;
+  height: 1px;
+  background-color: #9d9d9d8f;
+  margin: 25px auto;
 }
 .mapText{
 	text-align: center;

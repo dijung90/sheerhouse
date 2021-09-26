@@ -231,7 +231,7 @@
 		                    		<input class="reservationBtn" type="submit" value="예약하기">
 		                    		<p class="warnMsg">  </p>
                 				</div>
-                				</form>
+                				</form>	
             		</div>
         	</section>
         </div>

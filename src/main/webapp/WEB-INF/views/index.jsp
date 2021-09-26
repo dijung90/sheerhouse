@@ -23,13 +23,14 @@
     <div>
       <div class="navContainer">
         <div class="logoContainer">
-          <a href="/"><h2>쉬어家</h2>
+          <a href="/index.do"><h2>쉬어家</h2>
           <span>sheerhouse</span></a>
+          <div class="bar"></div>
         </div>
         <nav class="menuContainer">
           <ul class="menus">
          		 <c:if  test="${user.email eq null}" >
-		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인/회원가입</li>
+		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
 				</c:if>
 				<c:if test="${user.role eq 'user'}">
 		            <li><a href="mypage.do">마이페이지</a></li>
@@ -43,8 +44,15 @@
         </nav>
       </div>
       <div class="bannerContainer">
+      	<div class="bannerCity">
+            <h1>SEOUL</h1>
+          </div>
         <div class="bannerImage">
-          <img src="/resources/Images/banner/banner.jpg" alt="banner" />
+          <img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/MainBanners/bannerKorea3.jpg" alt="banner" />
+        </div>
+        <div class="tabMenu">
+        	<span class="accomodationSearch">숙소</span>
+        	<span class="activitySearch">액티비티</span>
         </div>
         <form class="searchContainer" action="/searchResult.do" method="get">
           <div class="searchWhere">
@@ -180,60 +188,63 @@
       	
 	<div class="login-modal" >
       	<div class="login-modalContent">
-        <div class="login-exitBtn" onclick="loginExitbtnClicked()">
-        	<img src="/resources/Images/icons/close.png" alt="cancel" />
-        </div>
-        <h3 class="loginHeader">로그인</h3>
-        
-        
-        <div class="divider"></div>
-        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
-            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
-            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
-            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
-            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
-            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
-            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
-            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
-            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
-        </form>
-          <div class="divider bottom-margin"></div>
-          
-          <div class="alterLoginContainer">
-          
-          	  <div class="login facebookLogin" onclick="fnFbCustomLogin();" >
-             	 <a href="javascript:void(0)" >
-               		 <div class="loginAltercontent">
-                    	<div class="alterJoinIcon">
-                    		<img src="/resources/Images/icons/facebook.png" alt="facebook login"/>
-                    	</div>
-                   		 <span>페이스북으로 로그인하기</span>
-                	</div>
-            	  </a>
-          	</div>
-          	
-          <div class="login googleLogin" id="googleClick">
-           <a href="#" >
-               <div class="g-signin2"  data-onsuccess="onSignIn"></div>
-            </a>
-          </div>
-
- 
-         <div class="login kakaoLogin" onclick="kakaoLogin();">
-            <a href="javascript:void(0)">
-              <div class="altercontent">
-            		  <div class="alterLoginIcon">
-              			<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
-              			</div>
-              <span>카카오톡으로 로그인하기</span>
-              </div>
-          	</a>
-        </div>
-
-         </div>
+		        <div class="login-exitBtn" onclick="loginExitbtnClicked()">
+		        	<img src="/resources/Images/icons/close.png" alt="cancel" />
+		        </div>
+		        <h3 class="loginHeader">로그인</h3>
+		        
+		        
+		        <div class="divider"></div>
+		        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
+		            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
+		            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
+		            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
+		            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
+		            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
+		            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
+		            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
+		            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
+		        </form>
+		          <div class="divider bottom-margin"></div>
+		          
+		          <div class="alterLoginContainer">
+		          
+				          	<div class="login facebookLogin" onclick="fnFbCustomLogin();" >
+				             	 <a href="javascript:void(0)" >
+				               		 <div class="loginAltercontent">
+				                    	<div class="alterJoinIcon">
+				                    		<img src="/resources/Images/icons/facebook.png" alt="facebook login"/>
+				                    	</div>
+				                   		 <span>페이스북으로 로그인하기</span>
+				                	</div>
+				            	  </a>
+				          	</div>
+				          	
+				          	<div class="login googleLogin" id="googleClick">
+					           <a href="#" >
+					               <div class="g-signin2 googleSource"  data-onsuccess="onSignIn"></div>
+<!-- 					               <div class="goodleLogin"  data-onsuccess="onSignIn">
+					               		<img src="/resources/Images/icons/google.png" alt="facebook login"/>
+					               </div> -->
+					               <span>구글로 로그인하기</span>
+					            </a>
+				          	</div>
+				
+				 
+					         <div class="login kakaoLogin" onclick="kakaoLogin();">
+					            <a href="javascript:void(0)">
+						              <div class="altercontent">
+						            		 <div class="alterLoginIcon">
+						              				<img src="/resources/Images/icons/kakao-talk.png"  alt="kakaotalk login"/>
+						              		 </div>
+						             			 	<span>카카오톡으로 로그인하기</span>
+						              </div>
+					          	</a>
+					        </div>
+		         </div>
+    	</div>
     </div>
-    </div>
-      </div>
+      </div> <!-- 시작 태그 missing  -->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
   	<script type="text/javascript" src="/resources/js/main.js"></script>
