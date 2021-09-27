@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,10 +55,10 @@
                       <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
                     </div>
                     <div class="accomodationTexts">
-                        <a href="#">
+                        <a href="/mypage.do">
                             <div class="accomodationContent">
-                            <h2>{acccomodation.title} </h2>
-                            <span>{accomodation.shortDescription}</span>
+                            <h2>${user.email} </h2>
+                            <span>${user.phone }</span>
                             </div>
                         </a>
                         <div class="bookingInfoBtn">
@@ -70,29 +71,18 @@
             </ol>
         </section>
         <!-- wishlist section -->
+        <c:forEach var="wish" items="${wish}" >
         <section id="wishListDetail" class="wishListDetail tabContent" data-mypage-type="wishList">
           <div>
             <ul class="wishLists">
               <li>
-                <a href="#">
+                <a href="/mypage.do">
                   <div>
                     <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
                   </div>
                   <div class="wishListContent">
-                    <h2>{acccomodation.title}</h2>
-                    <span>{accomodation.shortDescription}</span>
-                    <div class="wishIcon"><span>❤</span></div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div>
-                    <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" />
-                  </div>
-                  <div class="wishListContent">
-                    <h2>{acccomodation.title}</h2>
-                    <span>{accomodation.shortDescription}</span>
+                    <h2 href="/mypage.do">${wish.home_seq}</h2>
+                    <span>${wish.email}</span>
                     <div class="wishIcon"><span>❤</span></div>
                   </div>
                 </a>
@@ -100,20 +90,21 @@
             </ul>
           </div>
         </section>
+        </c:forEach>
         <section id="historyDetail" class="historyDetail tabContent" data-mypage-type="history"></section>
         <section id="infoDetail" class="infoDetail tabContent" data-mypage-type="privateInfo">
           <div>
-            <form action="" method="GET" class="myInfoForm">
+             <form action="updateUser.do" method="post" class="myInfoForm" name="myInfoForm">
               <label for="name">이름</label>
-              <input type="text" id="name" value="{userName}" />
-              <label type="password" for="password">현재 비밀번호</label>
-              <input type="password" id="password" value="{userEmail}" />
-              <label for="email">이메일</label>
-              <input type="text" id="email" value="{userEmail}" />
+              <input type="text" name="name" id="myname" value="${user.name}" />
+              <label for="password">현재 비밀번호</label>
+              <input type="password" name="password" id="mypassword" />
+              <label for="emailla">이메일</label>
+              <input type="text" name="email" id="myemail" value="${user.email}"  readonly/>
               <label for="phone">전화번호</label>
-              <input type="text" id="phone" value="{userPhone}" />
-              <label for="birthInfo">생년월일</label>
-              <input type="date" id="birthInfo" value="{userBirth}" />
+              <input type="text" name="phone" id="myphone" value="${user.phone}" />
+              <label for="birthday">생년월일</label>
+              <input type="date" id="birthday" name="birthday" value="${user.birthday}" />
 
               <input class="submitBtn" type="submit" value="수정 / 반영하기" />
             </form>

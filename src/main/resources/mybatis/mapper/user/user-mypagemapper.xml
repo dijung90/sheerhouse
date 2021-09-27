@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.sheerhouse.user.mapper.UserMypageMapper">
+	<update id="userUpdate">
+		update user set name=#{name}, phone=#{phone}, birthday=#{birthday},updatedate=CURRENT_TIMESTAMP where email = #{email}
+	</update>
+	<select id="selectAll" resultType="com.main.sheerhouse.user.domain.UserVO">
+		select * from user where email=#{email}
+	</select>
+	
+	<select id="passCheck" resultType="com.main.sheerhouse.user.domain.UserVO">
+		select * from user where password=#{password}
+	</select>
+	
+	<select id="wishListShow" resultType="com.main.sheerhouse.user.domain.WishlistVO">
+		select * from user where email=#{email}
+	</select>
+	
+	<select id="wishlist" resultType="com.main.sheerhouse.user.domain.WishlistVO">
+		select * from wishlist where email=#{email}
+	</select>
+	
+	<select id="wishListShowdesc" resultType="com.main.sheerhouse.user.domain.UserVO">
+		select * from user where email=#{email} order by name desc
+	</select>
+	
+</mapper>

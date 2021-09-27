@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
+import com.main.sheerhouse.user.domain.WishlistVO;
+import com.main.sheerhouse.user.mapper.UserMypageMapper;
 import com.main.sheerhouse.user.service.UserLoginService;
+import com.main.sheerhouse.user.service.UserMypage;
 
 //로그인, 회원가입 페이지
 @Controller
@@ -31,6 +35,9 @@ public class UserLoginController {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
+	@Autowired
+	private UserMypageMapper mypage;
 	
 	//메인페이지
 	@GetMapping("/index.do")
@@ -117,7 +124,7 @@ public class UserLoginController {
 	}
 	
 	@PostMapping("/emailUserInfo.do")
-	public String emailLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
+	public String emailLoginAndRegist(Model model,WishlistVO wish, UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
 		boolean emailCheck = service.emailCheck(user.getEmail());
 		user.setPassword(Sha256.encrypt(user.getPassword()));
 		
@@ -139,6 +146,10 @@ public class UserLoginController {
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
+		model.addAttribute("wish", mypage.wishlist(wish));
+		System.out.println("wish" + mypage.wishlist(wish));
+		session.setAttribute("wish", model);
+		System.out.println(session.getAttribute("wish"));
 		System.out.println(user.getRole());
 		return "redirect:/index.do";
 		
