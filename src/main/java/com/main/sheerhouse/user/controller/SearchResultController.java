@@ -1,11 +1,6 @@
 package com.main.sheerhouse.user.controller;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,30 +10,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.SearchVO;
 import com.main.sheerhouse.user.mapper.UserSearchResultMapper;
+import com.main.sheerhouse.user.service.UserSearchService;
 
 //searchResult CONTROLLER
 @Controller
-public class searchResultController {
+public class SearchResultController {
 	
 	@Autowired
 	private UserSearchResultMapper resultMapper;
 	
+	@Autowired
+	private UserSearchService service;
+	
 	@RequestMapping("/searchResult.do")
 	public String searchResult(Model model, ResultVO result, SearchVO search, @RequestParam("searchLocation") String location, @RequestParam("searchCheckin") String checkin, 
 			@RequestParam("searchCheckout") String checkout, @RequestParam("searchMaxPeople") String people) {
-		//SearchVO search = new SearchVO();
+		
 		System.out.println(location);
 		System.out.println(checkin);
 		System.out.println(checkout);
 		System.out.println(people);
-
+		
+		
+		
 		model.addAttribute("location", location);
 		model.addAttribute("checkin", checkin);
 		model.addAttribute("checkin", checkin);
 		model.addAttribute("checkout", checkout);
 		model.addAttribute("people", people);
-		model.addAttribute("resultList", resultMapper.getResult(search));
-		System.out.println("resultList" + resultMapper.getResult(search));
+		model.addAttribute("resultList", service.searchResultList(location));
+		System.out.println("resultList" + service.searchResultList(location));
 		return "search/searchResult";
 	}
 	
@@ -49,10 +50,10 @@ public class searchResultController {
 		
 		model.addAttribute("home_seq", home_seq);
 		model.addAttribute("title", title);
-		model.addAttribute("DetailInfo", resultMapper.getDetail(result));
+		model.addAttribute("DetailInfo", resultMapper.getDetail(home_seq));
 		
-		model.addAttribute("CommentInfo", resultMapper.getComment(result));
-		System.out.println("CommentInfo" + resultMapper.getComment(result));
+		model.addAttribute("CommentInfo", resultMapper.getComment(home_seq));
+		System.out.println("CommentInfo" + resultMapper.getComment(home_seq));
 		return "search/searchResultDetail";
 	}
 }

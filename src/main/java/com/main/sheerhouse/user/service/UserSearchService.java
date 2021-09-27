@@ -8,9 +8,8 @@ import com.main.sheerhouse.user.domain.SearchVO;
 
 public interface UserSearchService {
 	
-	//List<ResultVO> searhResultList(SearchVO search);
-	List<ResultVO> searhResultList(SearchVO search);
-	List<ResultVO> searhDetailList(SearchVO search);
+	List<ResultVO> searchResultList(String location);
+	List<ResultVO> searchDetailList(String home_seq);
 	
-	List<CommentVO> getCommentList(ResultVO result);
+	List<CommentVO> getCommentList(String home_seq);
 }

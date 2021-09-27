@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>메인페이지입니다.</title>
-		
+		<link rel="stylesheet" href="/resources/css/mainstyle.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="/resources/css/mainstyle.css" />
+		
   		<meta name="google-signin-scope" content="profile email">
    		<meta name="google-signin-client_id" content="704009539267-6g73vgvh8j2u16gfps9r01t0srqldprf.apps.googleusercontent.com">
     	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
@@ -21,7 +21,9 @@
     	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
 	
 </head>
+
   <body class="main">
+  
     <div>
       <div class="navContainer">
         <div class="logoContainer">

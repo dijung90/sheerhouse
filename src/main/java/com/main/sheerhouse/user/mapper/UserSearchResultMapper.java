@@ -4,13 +4,12 @@ import java.util.List;
 
 import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.ResultVO;
-import com.main.sheerhouse.user.domain.SearchVO;
 
 public interface UserSearchResultMapper {
 
-	public List<ResultVO> getResult(SearchVO search);
+	public List<ResultVO> getResult(String location);
 	
-	public List<ResultVO> getDetail(ResultVO result);
+	public List<ResultVO> getDetail(String home_seq);
 	
-	public List<CommentVO> getComment(ResultVO result);
+	public List<CommentVO> getComment(String home_seq);
 }
