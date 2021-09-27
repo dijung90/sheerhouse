@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/resources/css/searchResult.css" />
 </head>
 <body>
-<%@ include file="/WEB-INF/views/Header.jsp"%>
+<%@ include file="/WEB-INF/views/search/Header.jsp"%>
       <div class="accomodationResults-container">
         <div class="accomodationResult">
           <section class="accomodationResult-container">

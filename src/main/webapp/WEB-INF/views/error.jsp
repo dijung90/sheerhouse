@@ -7,7 +7,7 @@
 <title>메인페이지입니다.</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/Header.jsp"%>
+<%@ include file="/WEB-INF/views/search/Header.jsp"%>
 			<div class="error">
 				<h2>페이지 호출 오류</h2>
 				<div>
