@@ -10,49 +10,7 @@
 <link rel="stylesheet" href="/resources/css/searchResult.css" />
 </head>
 <body>
-      <div class="navContainer">
-        <div class="logoContainer">
-          <a href="/index.do"><h2>쉬어家</h2>
-            <span>sheerhouse</span></a>
-        </div>
-        <div>
-          <div class="searchbar-small">
-            <button class="locationBtn">
-              <div>
-          		<span>위치</span>
-                <input type="text" value="${location }" />
-              </div>
-            </button>
-
-            <button class="dateBtn">
-              <div>
-              	<span>날짜</span>
-              	<input type="text" value="${checkin } - ${checkout }" />
-              </div>
-            </button>
-
-            <button class="peopleBtn">
-              <div>
-              	<span>인원</span>
-              	<input type="text" value="${people }" />
-              </div>
-            </button>
-          </div>
-        </div>
-        <nav class="menuContainer">
-          <ul class="menus">
-            <c:if test="${email == null}">
-            </c:if>
-             <c:if test="${email != null}">
-              <li class="loginBtn" onclick="loginnbtnClicked()">로그인</li>
-              <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li>
-              <li><c:out value=" ${email}" /> 반갑습니다.</li>
-              <li><a href="mypage.jsp">마이페이지</a></li>
-              <li><a href="host.jsp">호스트 등록하기</a></li>
-            </c:if>
-          </ul>
-        </nav>
-      </div>
+<%@ include file="/WEB-INF/views/Header.jsp"%>
       <div class="accomodationResults-container">
         <div class="accomodationResult">
           <section class="accomodationResult-container">
@@ -189,36 +147,8 @@
 
 </script>
 
-/* 아래와 같이도 할 수 있습니다 */
-/*
-for (var i = 0; i < positions.length; i ++) {
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    map: map, // 마커를 표시할 지도
-    position: positions[i].latlng // 마커의 위치
-});
-
-// 마커에 표시할 인포윈도우를 생성합니다 
-var infowindow = new kakao.maps.InfoWindow({
-    content: positions[i].content // 인포윈도우에 표시할 내용
-});
-
-// 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-// 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-(function(marker, infowindow) {
-    // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-    kakao.maps.event.addListener(marker, 'mouseover', function() {
-        infowindow.open(map, marker);
-    });
-
-    // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-    kakao.maps.event.addListener(marker, 'mouseout', function() {
-        infowindow.close();
-    });
-})(marker, infowindow);
-}
-*/
-</script>
+</body>
+</html>
 
 </body>
 </html>

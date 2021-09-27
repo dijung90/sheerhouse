@@ -10,41 +10,7 @@
 <link rel="stylesheet" href="/resources/css/searchResultDetail.css" />
 </head>
  <body>
- <div>
-    <div>
-        <div class="navContainer">
-          <div class="logoContainer">
-            <a href="/index.do"
-              ><h2>쉬어家</h2>
-              <span>sheerhouse</span></a
-            >
-          </div>
-          <div class="searchContainer">
-            <input type="text" value="location" />
-            <div class="divider-short"></div>
-            <input type="text" value="dates" />
-            <div class="divider-short"></div>
-            <input type="text" value="인원" />
-          </div>
-          <nav class="menuContainer">
-            <ul class="menus">
-              <c:if test="${user.email eq null}">
-                <li class="loginBtn" onclick="loginnbtnClicked()">
-                  로그인/회원가입
-                </li>
-              </c:if>
-              <c:if test="${user.role eq 'user'}">
-                <li><a href="mypage.do">마이페이지</a></li>
-                <li><a href="hostRegulation.host">호스트 등록하기</a></li>
-              </c:if>
-              <c:if test="${user.role eq 'host'}">
-                <li><a href="mypage.do">마이페이지</a></li>
-                <li><a href="host.host">호스트 페이지로 가기</a></li>
-              </c:if>
-            </ul>
-          </nav>
-          </div>
-          </div>
+ <%@ include file="/WEB-INF/views/Header.jsp"%>
     <div class="detailContainer">
       
           <!-- <div class="accomodationImagesContainer">
