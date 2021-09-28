@@ -92,9 +92,7 @@ function imgSetting(url){
                     <div class="accomodationImage">
                       <img src="" id="${home.title}" alt="hostingphoto" />
                       <script>
-          
                       document.getElementById("${home.title}").src=imgSetting("${home.url}")</script>
-                    	
                     </div>
                     <div class="accomodationTexts">
                         <a href="#">
@@ -164,7 +162,7 @@ function imgSetting(url){
         <div class="modal1">
           <div class="modal1-container">
             <div class="modal1-img">
-              <img src="Images/icons/close.png" alt="X" onclick="exitModal1()">
+              <img src="/resorces/Images/icons/close.png" alt="X" onclick="exitModal1()">
             </div>
             <span>호스트 등록 화면으로 이동하시겠습니까?</span>
             <button class="moveToRegiBtn" onclick="movetoReg()">이동하기</button>

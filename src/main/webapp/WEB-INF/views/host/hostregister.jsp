@@ -20,6 +20,12 @@
 		color: #999;
 		font-family: 10px;
 	}
+	
+	.spanMsg{
+		font-size: 12px;
+		color: red;
+		align-content: center;
+	}
 </style>
 <title>호스트등록하기</title>
 </head>
@@ -37,7 +43,7 @@
           <section class="property property-type">
             <div class="propertyInput-container">
               <h2>숙소타입</h2>
-              	
+              	<span class="spanMsg" id="titleSpan"></span>
                 <button
                   onclick="propertySelect(event);typeSet('아파트');"
                   name="propertyType"
@@ -127,6 +133,7 @@
                   readonly="readonly"
     			  id="locationText"
                 />
+              
                 <!-- 
                 <input
                   name="propertyLocation"
@@ -138,6 +145,8 @@
                  
                 <span id="locationMsg" class="spanMsg" style="color:red;font-size: 11px;"></span>-->
                 <input class="locationInputBtn" type="button" value="주소찾기" onClick="searchAddress();"/>
+                <span class="spanMsg" id="locationSpan" style="margin-top: 10px;"></span>
+                
               	<div id="addressLayer"></div>
               </div>
               <div id="map" class="locationInfo"  ></div>
@@ -158,16 +167,19 @@
            	<div>
            		<h2>숙소 사진 등록</h2>
            		<span style="align-content: center; color:navy; font-size: 12px;margin-bottom: 20px;">사진 등록은 최대 3장까지 가능합니다.</span>
+              	<input type="hidden" id="imgCheck" value="0">
               	<div id="imagePreview">
               		<input type="file" name="file" id="btnAtt" multiple="multiple" accept="img/*" style="display: none;"/>
               		<input type="button" value="사진등록" onclick=document.all.btnAtt.click();>
+              		<span class="spanMsg" id="imgSpan" style="margin-top: 10px;"></span>
+              		
               		<div id="att_zone" data-placeholder="등록버튼 및 드래그로 추가 가능합니다."></div>
               	</div>
               <div class="arrow-container">
                 <div class="left-arrow" onclick="proImagesLeftArrow()">
                   <img src="/resources/Images/icons/right-arrow.png" alt="left-arrow" />
                 </div>
-                <div class="right-arrow" onclick="proImagesRightArrow()">
+                <div class="right-arrow" onclick="imgSet();proImagesRightArrow();">
                   <img
                     src="/resources/Images/icons/right-arrow.png"
                     alt="right-arrow"
@@ -181,6 +193,7 @@
             <div>
               <div class="maxPeoNum">
                 <h2>최대 수용인원</h2>
+                <span class="spanMsg" id="headSpan" style="margin-top: 10px;"></span>
                 <div>
                   <input
                     class="addBtn"
@@ -193,6 +206,7 @@
                     value="0"
                     name="headcount"
                     class="maxPeopleInput"
+                    id="headCount"
                   />
                   <input
                     class="minusBtn"
@@ -218,10 +232,12 @@
           <section class="property property-price">
             <div>
               <h2>요금</h2>
+              <span class="spanMsg" id="priceSpan" style="margin-bottom: 10px;" ></span>
               <input
                 name="price"
                 type="text"
                 placeholder="요금을 입력해주세요"
+                id="price";
               />
               <div class="arrow-container">
                 <div class="left-arrow" onclick="proPriceLeftArrow()">
@@ -239,6 +255,7 @@
           <section class="property property-name">
             <div>
               <h2>숙소이름</h2>
+              <span class="spanMsg" id="titleSpaan" style="margin-bottom: 10px;"></span>
               <input id="title"
                 name="title"
                 type="text"
@@ -265,7 +282,8 @@
                 숙소위치의 장점, 장애인 시설, 화재시설등의 편의시설을 강조하면
                 더 좋아요!
               </span>
-              <textarea name="info"></textarea>
+              <span class="spanMsg" id="infoSpan" style="margin-top: 10px;"></span>
+              <textarea name="info" id="info"></textarea>
               <div class="arrow-container">
                 <div class="left-arrow" onclick="proDescLeftArrow()">
                   <img src="/resources/Images/icons/right-arrow.png" alt="left-arrow" />
@@ -274,7 +292,7 @@
             </div>
             <input 
               class="hostSubmit"
-              type="submit"
+              type="button"
               value="모두 작성했습니다."
               onclick="submitBtn();"
             />
@@ -308,6 +326,8 @@ var marker = new kakao.maps.Marker({
     map: map
 });
 function relayout(){
+	  
+	
 	if($("#location").css("display") == "none"){
 		setTimeout(function(){ map.relayout(); }, 0);
 	}
@@ -322,6 +342,7 @@ function searchAddress(){
 			var addr = data.address;
 			
 			document.getElementById("locationText").value = addr;
+			
 			geocoder.addressSearch(data.address, function(result, status) {
 			//document.getElementById("locationMsg").innerHTML="상세주소까지 다 입력하셨나요? 게스트에게 정확한 주소를 알려줘야 합니다."
 			//document.getElementById("detailLocationText").setAttribute("type","text");
@@ -465,12 +486,28 @@ var imgForm = new FormData();
 		      div.appendChild(btn)
 		      return div
 		    }
+		}('att_zone', 'btnAtt')
+		
+		function imgSet(){
+			if(fileCnt !=0){
+				document.getElementById("imgCheck").setAttribute("value", "1");
+			}else{
+				document.getElementById("imgCheck").setAttribute("value", "0");
+			}
+		}
 
-		  }('att_zone', 'btnAtt')
-	  function submitBtn(){
+	  function submitBtn(e){
+		  	
 			  var title = document.getElementById("title").value;
-
 			
+			  var info = document.getElementById("info").value;
+			  console.log(info);
+			  if(info === ""){
+				console.log("진입");
+				document.getElementById("infoSpan").innerHTML="숙소설명은 필수 입력사항입니다.";
+				return;
+			  }
+			  
 			  $.ajax({
 				 url: "/fileSend.host?title="+title ,
 				 enctype: 'multipart/form-data',
@@ -480,8 +517,10 @@ var imgForm = new FormData();
 			  	 processData: false,
 			  	 contentType: false
 			  });
+			  document.getElementById("infoSpan").innerHTML="";
 			  document.getElementById("registForm").submit();
-		  }
+		 
+	  }
 </script>
   </body>
 </html>

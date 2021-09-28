@@ -61,7 +61,7 @@
         
         <!--Activity Search Container  -->
         <div class="Activity">
-	        <form class="searchContainer-activity" action="/searchActivity.do" method="get">
+	        <form class="searchContainer-activity" action="searchActivity.do" method="get">
 	        	<div class="searchWhere">
 	            	<h3>Where</h3>
 	            	<input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
@@ -81,7 +81,7 @@
         
         <!-- Accomodation Search Container -->
         <div class="Accomodation">
-        <form class="searchContainer" action="/searchResult.do" method="get">
+        <form class="searchContainer" action="searchResult.do" method="get">
           <div class="searchWhere">
             <h3>Where</h3>
             <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
@@ -354,7 +354,6 @@ window.fbAsyncInit = function() {
 };
 </script>
 
->>>>>>> feature/pages
 <script>
       function onSignIn(googleUser) {
     	 

@@ -4,6 +4,7 @@ package com.main.sheerhouse.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,7 @@ public class SearchResultController {
 	@Autowired
 	private UserSearchService service;
 	
-	@RequestMapping("/searchResult.do")
+	@GetMapping("/searchResult.do")
 	public String searchResult(Model model, ResultVO result, SearchVO search, @RequestParam("searchLocation") String location, @RequestParam("searchCheckin") String checkin, 
 			@RequestParam("searchCheckout") String checkout, @RequestParam("searchMaxPeople") String people) {
 		
