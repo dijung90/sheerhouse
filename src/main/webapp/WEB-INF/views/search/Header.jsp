@@ -1,205 +1,72 @@
-<%@page import="com.main.sheerhouse.user.domain.UserVO"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인페이지입니다.</title>
-		<link rel="stylesheet" href="/resources/css/mainstyle.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Insert title here</title>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-		
+		<link rel="stylesheet" href="/resources/css/header.css" />
   		<meta name="google-signin-scope" content="profile email">
    		<meta name="google-signin-client_id" content="704009539267-6g73vgvh8j2u16gfps9r01t0srqldprf.apps.googleusercontent.com">
     	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
     	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-    	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
-    	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
-	
-</head>
+		<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
+		<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
 
-  <body class="main">
-  
-    <div>
+</head>
+<body>
       <div class="navContainer">
         <div class="logoContainer">
           <a href="/index.do"><h2>쉬어家</h2>
-          <span>sheerhouse</span></a>
-          <div class="bar"></div>
+            <span>sheerhouse</span></a>
+        </div>
+        <div>
+          <div class="searchbar-small">
+            <button class="locationBtn">
+              <div>
+          		<span>위치</span>
+                <input name="searchLocation" type="text" placeholder="${location}" />
+              </div>
+            </button>
+
+            <button class="dateBtn">
+              <div>
+              	<span>날짜</span>
+              	<input type="text" value="${checkin } - ${checkout }" />
+              </div>
+            </button>
+
+            <button class="peopleBtn">
+              <div>
+              	<span>인원</span>
+              	<input type="text" value="${people }" />
+              </div>
+            </button>
+          </div>
         </div>
         <nav class="menuContainer">
           <ul class="menus">
-         		 <c:if  test="${user.email eq null}" >
-		            <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
-				</c:if>
-				<c:if test="${user.role eq 'user'}">
-		            <li><a href="mypage.do">마이페이지</a></li>
-					<li><a href="hostRegulation.host">호스트 등록하기</a></li>
-				</c:if>						
-				<c:if test="${user.role eq 'host'}">
-					<li><a href="mypage.do">마이페이지</a></li>
-					<li><a href="homes.host">호스트 페이지로 가기</a></li>
-				</c:if>
+            <c:if test="${user.email == null}">
+              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
+<!--               <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li> -->
+              <!-- <li><a href="#">호스트 등록하기</a></li> -->
+            </c:if>
+             <c:if test="${user.email != null}">
+             	<c:if test="${user.name != null}">
+              <li><c:out value=" ${user.name}" />님 반갑습니다.</li>
+              </c:if>
+              <c:if test="${user.name == null}">
+              <li><c:out value=" ${user.email}" />님 반갑습니다.</li>
+              </c:if>
+              <li><a href="mypage.do">마이페이지</a></li>
+              <li><a href="host.do">호스트 등록하기</a></li>
+            </c:if>
           </ul>
         </nav>
       </div>
-      <div class="bannerContainer">
-      	<div class="bannerCity">
-            <h1>SEOUL</h1>
-          </div>
-        <div class="bannerImage">
-          <img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/MainBanners/bannerKorea3.jpg" alt="banner" />
-        </div>
-        <div class="tabMenu">
-        	<span class="accomodationSearch borderBottom" onclick=showTabContent1()>숙소</span>
-        	<span class="activitySearch" onclick=showTabContent2()>액티비티</span>
-        </div>
-        
-        <!--Activity Search Container  -->
-        <div class="Activity">
-	        <form class="searchContainer-activity" action="searchActivity.do" method="get">
-	        	<div class="searchWhere">
-	            	<h3>Where</h3>
-	            	<input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
-	          </div>
-	          <div class="searchIn">
-	            	<h3>날짜를 입력해주세요</h3>
-	            	<input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
-	          </div>    
-	          <div class="search">
-	         	 <button type="submit">
-	              <img src="/resources/Images/icons/search-white.png" alt="search" />
-	              <span>검색</span>
-	            </button>  
-	           </div>
-	        </form>
-        </div>
-        
-        <!-- Accomodation Search Container -->
-        <div class="Accomodation">
-        <form class="searchContainer" action="searchResult.do" method="get">
-          <div class="searchWhere">
-            <h3>Where</h3>
-            <input name="searchLocation" type="text" placeholder="어디로 떠나시나요?" />
-          </div>
-          <div class="searchIn">
-            <h3>Check in</h3>
-            <input name="searchCheckin" class="CheckinDate" id="CheckinDate" type="date" aria-required="true"/>
-            <!-- <label for="CheckinDate">체크인 날짜</label> -->
-          </div>
-          <div class="searchOut">
-            <h3>Check out</h3>
-            <input name="searchCheckout"  class="CheckoutDate" id="CheckoutDate" type="date" aria-required="true" />
-            <!-- <label for="CheckoutDate">체크아웃 날짜</label>// -->
-          </div>
-          <div class="searchPeo">
-            <h3>People</h3>
-             <input name="searchMaxPeo" class="peopleNumInfo" onclick=search() type="button" value="인원" />	
-                <div class="peopleBtnContainer">
-	                <div>
-	                  <span class="peopleBtnHeader"> 성인 </span>
-	                  <input
-	                  class="addBtns"
-	                  type="button"
-	                  onclick="peopleIncre()"
-	                  value="+"
-	                />
-	                  <input
-	                  type="text"
-	                  value="0"
-	                  name="searchMaxPeople"
-	                  class="peopleBtnNumInput"
-	                />
-	                  <input
-	                  class="addBtns"
-	                  type="button"
-	                  onclick="peopleDecre()"
-	                  value="-"
-	                />
-	                </div>
-              </div>
-          </div>
-          <div class="search">
-            <button type="submit">
-              <img src="/resources/Images/icons/search-white.png" alt="search" />
-              <span>검색</span>
-            </button>
-           </div>
-          </form>
-        </div>
-
-      </div>	
-        </div>
-        <div class="subHeader">
-        	<h2>어디든 떠나고 싶을 때, 도와드릴게요!</h2>
-        </div>
-      </div>
-
-      <section class="recommendPlaceContainer">
-        <h3>이번 여행 여긴 어떤가요?</h3>
-        <div>
-          <div class="recommendImage image1">
-            <a href="#"><img src="/resources/Images/place/place5.jpg" alt="place" /></a>
-          </div>
-          <div class="recommendImage image2">
-            <a href="#"><img src="/resources/Images/place/place4.jpg" alt="place" /></a>
-          </div>
-          <div class="recommendImage image3">
-            <a href="#"><img src="/resources/Images/place/place3.jpg" alt="place" /></a>
-          </div>
-          <div class="recommendImage image4">
-            <a href="#"><img src="/resources/Images/place/place6.jpg" alt="place" /></a>
-          </div>
-        </div>
-      </section>
-      <section class="recommendActivityContainer">
-        <h3>이런 액티비티도 있어요</h3>
-        <div>
-          <div class="recommendActivity activity1">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity1.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity2">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity2.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity3">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity3.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity4">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity4.jpg" alt="place"
-            /></a>
-          </div>
-        </div>
-      </section>
-
-		  <section class="hostbanner">
-          <div class="hostbannerContainer">
-            <div>
-              <img src="/resources/Images/host/host3.jpg" />
-          </div>
-        </div>
-          <div class="bannerText">
-              <h2>즐거움을 나누는 호스팅, </h2>
-              <h3>쉬어家와 함께하세요! </h3>
-                  <a  class="hostRegisterBtn" href="hostRegulation.host">호스트 등록하기</a>
-          </div>
-         
-        </section>
-      <section class="footer"></section>
-		</div>
-		
-		
-		<div class="join-modal">
+      <div class="join-modal">
 				<div class="join-modalContent">
 					<div onclick="joinExitbtnClicked()" class="join-exitBtn"><img src="/resources/Images/icons/close.png" alt="cancel" /></div>
 					<h3 class="joinHeader">비밀번호 변경</h3>
@@ -353,7 +220,6 @@ window.fbAsyncInit = function() {
 	FB.AppEvents.logPageView();   
 };
 </script>
-
 <script>
       function onSignIn(googleUser) {
     	 

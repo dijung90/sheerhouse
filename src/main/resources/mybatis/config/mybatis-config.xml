@@ -6,9 +6,9 @@
  	<mappers>
  		<mapper resource="mybatis/mapper/user/user-loginmapper.xml"/>
  		<mapper resource="mybatis/mapper/user/user-searchmapper.xml"/>
- 		<mapper resource="mybatis/mapper/user/user-mypagemapper.xml"/>
  		<mapper resource="mybatis/mapper/admin/admin-mapper.xml"/>
- 		<mapper resource="mybatis/mapper/host/host-mapper.xml"/>
- 		
+ 		<mapper resource="mybatis/mapper/host/host-registMapper.xml"/>
+ 		<mapper resource="mybatis/mapper/host/host-pageMapper.xml"/>
+
  	</mappers>
  </configuration>

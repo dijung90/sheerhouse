@@ -133,7 +133,6 @@ body {
   display: flex;
 }
 
-
 .locationInputBtn {
   width: 50px;
   height: 30px;
@@ -158,6 +157,7 @@ body {
   background-color: #eeeeee;
   border-radius: 0.375rem;
 }
+
 .maxPeoNum div {
   margin-left: 6px;
   margin-bottom: 80px;
@@ -241,6 +241,7 @@ body {
 }
 
 .property-location,
+.property-images,
 .property-maxPeo,
 .property-price,
 .property-name,

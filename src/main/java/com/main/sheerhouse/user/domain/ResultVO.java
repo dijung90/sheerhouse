@@ -6,22 +6,36 @@ public class ResultVO {
 	private int home_seq;
 	private int host_seq;
 	private String title;
-	private int price;
-	private String info;
-	private String rule;
-	private String host_info;
 	private String type;
 	private String status;
 	private String address;
 	private String unused_date;
+	private String peck_season;
+	private String off_season;
+	private int peak_price_per;
+	private int off_price_per;
+	private int weekend_price;
+	private int price;
+	private int headcount;
+	private String info;
+	private String rule;
 	private String url;
+	private String host_info;
+	private Date update_date;
+	private int min_date_count;
+	private int max_date_count;
+	private int long_price_per;
 	private Date regdate;
+	
 	@Override
 	public String toString() {
-		return "ResultVO [home_seq=" + home_seq + ", host_seq=" + host_seq + ", title=" + title + ", price=" + price
-				+ ", info=" + info + ", rule=" + rule + ", host_info=" + host_info + ", type=" + type + ", status="
-				+ status + ", address=" + address + ", unused_date=" + unused_date + ", url=" + url + ", regdate="
-				+ regdate + "]";
+		return "ResultVO [home_seq=" + home_seq + ", host_seq=" + host_seq + ", title=" + title + ", type=" + type
+				+ ", status=" + status + ", address=" + address + ", unused_date=" + unused_date + ", peck_season="
+				+ peck_season + ", off_season=" + off_season + ", peak_price_per=" + peak_price_per + ", off_price_per="
+				+ off_price_per + ", weekend_price=" + weekend_price + ", price=" + price + ", headcount=" + headcount
+				+ ", info=" + info + ", rule=" + rule + ", url=" + url + ", host_info=" + host_info + ", update_date="
+				+ update_date + ", min_date_count=" + min_date_count + ", max_date_count=" + max_date_count
+				+ ", long_price_per=" + long_price_per + ", regdate=" + regdate + "]";
 	}
 	public int getHome_seq() {
 		return home_seq;
@@ -40,30 +54,6 @@ public class ResultVO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
-	public String getRule() {
-		return rule;
-	}
-	public void setRule(String rule) {
-		this.rule = rule;
-	}
-	public String getHost_info() {
-		return host_info;
-	}
-	public void setHost_info(String host_info) {
-		this.host_info = host_info;
 	}
 	public String getType() {
 		return type;
@@ -89,11 +79,95 @@ public class ResultVO {
 	public void setUnused_date(String unused_date) {
 		this.unused_date = unused_date;
 	}
+	public String getPeck_season() {
+		return peck_season;
+	}
+	public void setPeck_season(String peck_season) {
+		this.peck_season = peck_season;
+	}
+	public String getOff_season() {
+		return off_season;
+	}
+	public void setOff_season(String off_season) {
+		this.off_season = off_season;
+	}
+	public int getPeak_price_per() {
+		return peak_price_per;
+	}
+	public void setPeak_price_per(int peak_price_per) {
+		this.peak_price_per = peak_price_per;
+	}
+	public int getOff_price_per() {
+		return off_price_per;
+	}
+	public void setOff_price_per(int off_price_per) {
+		this.off_price_per = off_price_per;
+	}
+	public int getWeekend_price() {
+		return weekend_price;
+	}
+	public void setWeekend_price(int weekend_price) {
+		this.weekend_price = weekend_price;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(int headcount) {
+		this.headcount = headcount;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	public String getRule() {
+		return rule;
+	}
+	public void setRule(String rule) {
+		this.rule = rule;
+	}
 	public String getUrl() {
 		return url;
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getHost_info() {
+		return host_info;
+	}
+	public void setHost_info(String host_info) {
+		this.host_info = host_info;
+	}
+	public Date getUpdate_date() {
+		return update_date;
+	}
+	public void setUpdate_date(Date update_date) {
+		this.update_date = update_date;
+	}
+	public int getMin_date_count() {
+		return min_date_count;
+	}
+	public void setMin_date_count(int min_date_count) {
+		this.min_date_count = min_date_count;
+	}
+	public int getMax_date_count() {
+		return max_date_count;
+	}
+	public void setMax_date_count(int max_date_count) {
+		this.max_date_count = max_date_count;
+	}
+	public int getLong_price_per() {
+		return long_price_per;
+	}
+	public void setLong_price_per(int long_price_per) {
+		this.long_price_per = long_price_per;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -101,4 +175,8 @@ public class ResultVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	
 }
+
+
+

@@ -1,4 +1,4 @@
-const joinnbtn = document.querySelector(".joinBtn");
+/*const joinnbtn = document.querySelector(".joinBtn");*/
 const loginbtn = document.querySelector(".loginBtn");
 const joinExitBtn = document.querySelector(".join-exitBtn");
 const joinModal = document.querySelector(".join-modal");
@@ -7,6 +7,8 @@ const loginModal = document.querySelector(".login-modal");
 const checkInDate = document.querySelector(".CheckinDate");
 const checkOutDate = document.querySelector(".CheckoutDate");
 const movoToJoin = document.querySelector(".movoToJoin");
+
+
 // joinModal
 
 function joginBtnClicked() {
@@ -53,7 +55,7 @@ checkInDate.addEventListener("change", () => {
 	checkOutDate.setAttribute("min", checkindate);
 });
 
-joinnbtn.addEventListener("click", joginBtnClicked);
+/*joinnbtn.addEventListener("click", joginBtnClicked);*/
 joinExitBtn.addEventListener("click", joinExitbtnClicked);
 window.addEventListener("click", joinoutsideClick);
 

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
@@ -97,7 +96,7 @@ public class UserLoginController {
 		return "index";
 	}
 	
-	@GetMapping("/sendEmail.do")
+	@PostMapping("/sendEmail.do")
 	public String emailSend(String email, String code) {
 		final MimeMessagePreparator pre = new MimeMessagePreparator() {
 			
@@ -139,12 +138,11 @@ public class UserLoginController {
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
-		System.out.println(user.getRole());
 		return "redirect:/index.do";
 		
 	}
 	@RequestMapping("/searchEmail.do")
-	@ResponseBody
+		
 	public String searchEmail(UserVO user) {
 		boolean emailCheck = service.emailCheck(user.getEmail());
 		String result = String.valueOf(emailCheck);
@@ -153,11 +151,11 @@ public class UserLoginController {
 	
 	@PostMapping("/passwordUpdate.do")
 	public String passwordUpdate(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
-		System.out.println(user.toString());
 		user.setPassword(Sha256.encrypt(user.getPassword()));
 		boolean result = service.passwordUpdate(user);
 		
 		if(result) {
+			user = service.selectUserInfo(user);
 			session = request.getSession();
 			session.setAttribute("user", user);
 			return "redirect:/index.do";
