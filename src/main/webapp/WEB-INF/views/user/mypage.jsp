@@ -105,15 +105,15 @@
           <div>
             <form action="" method="GET" class="myInfoForm">
               <label for="name">이름</label>
-              <input type="text" id="name" value="{userName}" />
+              <input type="text" id="name" value="${user.name}" />
               <label type="password" for="password">현재 비밀번호</label>
-              <input type="password" id="password" value="{userEmail}" />
+              <input type="password" id="password" value="${user.password}" />
               <label for="email">이메일</label>
-              <input type="text" id="email" value="{userEmail}" />
+              <input type="text" id="email" value="${user.email}" />
               <label for="phone">전화번호</label>
-              <input type="text" id="phone" value="{userPhone}" />
+              <input type="text" id="phone" value="${user.phone}" />
               <label for="birthInfo">생년월일</label>
-              <input type="date" id="birthInfo" value="{userBirth}" />
+              <input type="date" id="birthInfo" value="${user.birthday}" />
 
               <input class="submitBtn" type="submit" value="수정 / 반영하기" />
             </form>

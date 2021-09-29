@@ -16,6 +16,7 @@ $("#email").on("change keyup paste", function(){
 })
 
 	function emailsend(){
+		console.log("인증 진입");
 		var useremail = document.getElementById("email").value;
 		var emailexp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		if(useremail.match(emailexp) == null){

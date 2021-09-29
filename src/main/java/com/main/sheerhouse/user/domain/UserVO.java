@@ -17,8 +17,29 @@ public class UserVO {
 	private String userInfo;
 	private Timestamp regdate;
 	private Timestamp updatedate; 
+	private int status;
 	
 	public UserVO() {}
+
+	public UserVO(String email, String name, String password, String phone, String role, String gender,
+			Timestamp birthday, boolean smsConfirm, boolean emailConfirm, String address, String userInfo,
+			Timestamp regdate, Timestamp updatedate, int status) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.phone = phone;
+		this.role = role;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.smsConfirm = smsConfirm;
+		this.emailConfirm = emailConfirm;
+		this.address = address;
+		this.userInfo = userInfo;
+		this.regdate = regdate;
+		this.updatedate = updatedate;
+		this.status = status;
+	}
 
 	public String getEmail() {
 		return email;
@@ -124,12 +145,21 @@ public class UserVO {
 		this.updatedate = updatedate;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "UserVO [email=" + email + ", name=" + name + ", password=" + password + ", phone=" + phone + ", role="
 				+ role + ", gender=" + gender + ", birthday=" + birthday + ", smsConfirm=" + smsConfirm
 				+ ", emailConfirm=" + emailConfirm + ", address=" + address + ", userInfo=" + userInfo + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
+				+ regdate + ", updatedate=" + updatedate + ", status=" + status + "]";
 	}
+	
 	
 }
