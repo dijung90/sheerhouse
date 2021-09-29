@@ -36,6 +36,7 @@ $("#email").on("change keyup paste", function(){
 				document.getElementById("emailSend").innerHTML="";
 			}else{
 				document.getElementById("emailTextMsg").innerHTML = "";
+				
 				document.getElementById("emailMsg").innerHTML="인증번호를 전송하였습니다.";	
 				var password = document.getElementById("password");
 				password.setAttribute("type", "hidden");
@@ -71,6 +72,7 @@ $("#email").on("change keyup paste", function(){
 					if(time < 0){
 						clearInterval(x);
 						document.getElementById("emailTextMsg").innerHTML = "인증시간이 초과되었습니다. 다시 시도해주세요";
+						document.getElementById("emailMsg").innerHTML="";
 						document.getElementById("emailtext").innerHTML ="";
 						emailcheck.setAttribute("type","hidden");
 						emailcheck.setAttribute("value","");
