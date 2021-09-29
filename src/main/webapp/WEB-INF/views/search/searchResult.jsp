@@ -202,7 +202,7 @@
 
 
 </script>
-
+<%@ include file="/WEB-INF/views/Footer.jsp"%>
 </body>
 </html>
 
