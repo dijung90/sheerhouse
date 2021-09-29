@@ -147,8 +147,8 @@ body {
 }
 
 /* Next & previous buttons */
-.prev,
-.next {
+.slideprev,
+.slidenext {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -164,14 +164,14 @@ body {
 }
 
 /* Position the "next button" to the right */
-.next {
+.slidenext {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
+.slideprev:hover,
+.slidenext:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -179,9 +179,9 @@ body {
 .text {
   color: #f2f2f2;
   font-size: 15px;
-  padding: 8px 12px;
+  padding: 0px 12px;
   position: absolute;
-  bottom: 8px;
+  bottom: 60px;
   width: 100%;
   text-align: center;
 }
@@ -276,6 +276,8 @@ body {
 }
 .sectionsContainer{
   display: flex;
+  width: 1000px;
+  margin: auto;
 }
 .descriptionContent div{
   min-height: 30px;
@@ -303,9 +305,26 @@ body {
   margin-top: 10px;
 }
 .reservationContent1 div {
-  border: 1px solid #cccccc;
-  height: 55px;
-  width: 50%;
+  height: 65px;
+}
+.input-group input {
+    padding: 10px 15px !important;
+    border: 0.5px solid lightgrey !important;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #fff !important;
+    color: #e55757 !important;
+    font-size: 18px !important;
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+.input-group .input1{
+  height: 50px;
+}
+
+.input-group .input2{
+  height: 50px;
 }
 .reservationContent1 div:first-child {
   border-top-left-radius: 0.7rem;
@@ -379,9 +398,10 @@ body {
 .reservationContent2 {
   border: 1px solid #cccccc;
   height: 55px;
+  border-radius: 6px;
   width: 100%;
-  border-bottom-left-radius: 0.7rem;
-  border-bottom-right-radius: 0.7rem;
+  /* border-bottom-left-radius: 0.7rem; */
+  /* border-bottom-right-radius: 0.7rem; */
 }
 .peopleNumInfo{
   background-color: transparent;
@@ -393,8 +413,8 @@ body {
   width: 100%;
   font-size: 12px;
   display: inline-block;
-  padding-left: 5px;
-  padding-top: 5px;
+  padding-left: 10px;
+  padding-top: 7px;
 }
 
 .reservationPrices{
@@ -527,4 +547,111 @@ body {
 /* ///// add classes////////// */
 .margin-top-small{
 	margin-top: 30px;
+}
+
+
+
+/* boot strap date picker */
+
+.datepicker {
+    background-color: #fff;
+    border-radius: 10px !important;
+    margin-top: 7px;
+    padding: 15px 20px !important;
+    align-content: center !important
+  
+}
+
+.datepicker-dropdown {
+    top: 0;
+    left: calc(65% - 38px) !important
+}
+
+.datepicker-dropdown.datepicker-orient-left:before {
+    left: calc(50% - 6px) !important
+}
+
+.datepicker-dropdown.datepicker-orient-left:after {
+    left: calc(50% - 5px) !important
+}
+
+.datepicker table tr td.today,
+span.focused {
+    border-radius: 50% !important;
+    background-image: linear-gradient(#FFF3E0, #FFE0B2)
+}
+
+.datepicker table tr td.today.range {
+    background-image: linear-gradient(#eeeeee, #eeeeee) !important;
+    border-radius: 0 !important
+}
+
+thead tr:nth-child(3) th {
+    font-weight: bold !important;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.old,
+.day,
+.new {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 0px !important;
+    border: 1px solid lightgrey !important
+}
+
+.day.old,
+.day.new {
+    background-color: #F5F5F5 !important;
+    color: #E0E0E0 !important
+}
+
+.day.old:hover,
+.day.new:hover {
+    border-radius: 0px !important
+}
+
+.old-day:hover,
+.day:hover,
+.new-day:hover,
+.month:hover,
+.year:hover,
+.decade:hover,
+.century:hover {
+    border-radius: 50% !important;
+    background-color: #eee
+}
+
+.active {
+    border-radius: 50% !important;
+    background-image: linear-gradient(#90CAF9, #64B5F6) !important;
+    color: #fff !important
+}
+
+.range-start,
+.range-end {
+    border-radius: 50% !important;
+    background-image: linear-gradient(#e55757, #e55757) !important
+}
+
+.range {
+    color: #e55757 !important;
+}
+
+.prev,
+.next,
+.datepicker-switch {
+    border-radius: 0 !important;
+    padding: 10px 10px 10px 10px !important;
+    font-size: 18px;
+    opacity: 0.7;
+    color: #e55757;
+}
+
+.prev:hover,
+.next:hover,
+.datepicker-switch:hover {
+    background-color: inherit !important;
+    opacity: 1
 }

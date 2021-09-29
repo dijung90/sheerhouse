@@ -55,12 +55,12 @@ checkInDate.addEventListener("change", () => {
 	checkOutDate.setAttribute("min", checkindate);
 });
 
-/*joinnbtn.addEventListener("click", joginBtnClicked);*/
+joinnbtn.addEventListener("click", joginBtnClicked);
 joinExitBtn.addEventListener("click", joinExitbtnClicked);
 window.addEventListener("click", joinoutsideClick);
 
-/*checkInDate.setAttribute("min", today);
-checkInDate.addEventListener("change", getCheckinDate);*/
+checkInDate.setAttribute("min", today);
+checkInDate.addEventListener("change", getCheckinDate);
 
 loginbtn.addEventListener("click", loginnbtnClicked);
 loginExitBtn.addEventListener("click", loginExitbtnClicked);

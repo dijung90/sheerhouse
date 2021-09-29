@@ -134,9 +134,9 @@ body {
 .wishlistHeartIcon{
   padding-top: 130px;
 }
-.wishlist{
+/* .wishlist{
     color: #9D9D9D;
-}
+} */
 @font-face {
   font-family: 'entypo';
   src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-90/entypo.woff') format('woff');
@@ -199,4 +199,8 @@ body {
   width: 130px;
   text-align: center;
   margin-top: 5px;
+}
+
+.addColor{
+	color: d65f5f;
 }
