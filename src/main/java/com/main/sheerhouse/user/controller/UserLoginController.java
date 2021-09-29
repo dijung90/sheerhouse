@@ -166,4 +166,10 @@ public class UserLoginController {
 		out.flush();
 		return "index";
 	}
+	
+	@GetMapping("/logout.do")
+	public void logout(HttpSession session,HttpServletResponse response) throws Exception {
+		session.invalidate();
+		service.logout(response);
+	}
 }	

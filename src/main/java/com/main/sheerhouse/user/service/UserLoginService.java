@@ -1,5 +1,7 @@
 package com.main.sheerhouse.user.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.main.sheerhouse.user.domain.UserVO;
 
 public interface UserLoginService {
@@ -10,4 +12,5 @@ public interface UserLoginService {
 	public boolean passwordUpdate(UserVO user);
 	
 	public UserVO selectUserInfo(UserVO user);
+	public void logout(HttpServletResponse response) throws Exception;
 }

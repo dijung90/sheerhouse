@@ -1,5 +1,9 @@
 package com.main.sheerhouse.user.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +56,14 @@ public class UserLoginServiceImpl implements UserLoginService{
 		return user;
 	}
 	
-	
+	@Override
+	public void logout(HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>alert('로그아웃 되었습니다.');location.href='index.do'</script>");
+		out.close();
+		
+	}
 	
 	
 }
