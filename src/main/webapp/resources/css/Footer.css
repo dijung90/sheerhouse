@@ -20,7 +20,7 @@ html {
 }
 
 .footer__logo {
-  font-family: 'Pacifico', cursive;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   text-transform: lowercase;
   font-size: 38px;

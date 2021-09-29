@@ -15,10 +15,8 @@ a {
 
 body {
   font-family: "Roboto", sans-serif;
-}
-
-.backgroundDarker {
-  background-color: rgba(30, 30, 30, 0.64);
+  width: 100%;
+  height: 130vh;
 }
 
 .navContainer {
@@ -30,7 +28,8 @@ body {
 }
 
 .navContainer .logoContainer {
-  width: 20%;
+  width: 15%;
+  margin-top : 25px;
   text-align: center;
   padding: 1rem;
 }
@@ -48,6 +47,7 @@ body {
   width: 550px;
   height: 60px;
   margin-top: 40px;
+  margin-right:0px;
   border-radius: 99999px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 }
@@ -73,16 +73,18 @@ body {
   width: 150px;
 }
 .menuContainer {
-  width: 20%;
+  width: 35%;
   text-align: center;
-  padding: 1rem;
   padding-top: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .menuContainer .menus{
 	margin-top: 17px;
 }
-.menuContainer .menus li {
-  display: flex;	
+.menuContainer .menus li {	
+  float:left;
+  margin-right : 35px;
 }
 
 
@@ -92,72 +94,6 @@ textarea,
 select {
   outline: none;
 }
-/* input[type=date]::-webkit-datetime-edit-text {
-       -webkit-appearance: "none"; 
-       display: none; 
-    } 
-    
- input[type=date]::-webkit-datetime-edit-month-field{ 
-        -webkit-appearance: none; 
-        display: none; 
-    
-    } 
-input[type=date]::-webkit-datetime-edit-day-field {
-         -webkit-appearance: none; 
-         display: none; 
-    } 
-input[type=date]::-webkit-datetime-edit-year-field {
-     -webkit-appearance: none; 
-     display: none; 
-     }  */
-
-.recommendPlaceContainer {
-  width: 100%;
-  height: 70vh;
-   margin-top: 130px;
-}
-
-.recommendPlaceContainer h3 {
-  margin-left: 7rem;
-  margin-top: 4.3rem;
-  margin-bottom: 3rem;
-  font-size: 2.3rem;
-  color: #e55757;
-}
-.recommendPlaceContainer div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 1.5rem 0 1.5rem;
-}
-.recommendPlaceContainer div img {
-  width: 38vh;
-  height: 48vh;
-  border-radius: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.recommendActivityContainer h3 {
-  margin-left: 7rem;
-  margin-top: 3.4rem;
-  margin-bottom: 3rem;
-  font-size: 2.3rem;
-  color: #e55757;
-}
-
-.recommendActivityContainer div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 1.5rem 0 1.5rem;
-}
-.recommendActivityContainer div img {
-  width: 38vh;
-  height: 48vh;
-  border-radius: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
 /* joinmodal */
 
 .join-modal {
@@ -449,57 +385,5 @@ input[type=date]::-webkit-datetime-edit-year-field {
   width: 1.5rem;
   padding: 0.1rem;
 }
- .footer {
-  width: 100%;
-  height: 40vh;
-  background-color: #eeeeee;
-  margin-top: 5rem;
-}
-
-.hostbanner {
-  margin: 70px auto;
-  width: 80%;
-  height: 467px;
-  background-color: #000000;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.hostbannerContainer img {
-  width: 700px;
-  margin-right: 80px;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.hostbanner .bannerText {
-  position: absolute;
-  right: 30px;
-  color: #eeeeee;
-}
-.hostbanner .bannerText h2 {
-  font-size: 32px;
-}
-.hostbanner .bannerText h3 {
-  margin-bottom: 30px;
-  font-size: 28px;
-}
-.hostRegisterBtn {
-  padding: 16px 24px 16px 24px;
-  background-color: #d65f5f;
-  color: #eeeeee;
-  font-size: 18px;
-  border-radius: 10px;
-}
 
 
-.borderBottom{
-	border-bottom: 3px solid #ffffff;
-}
- 

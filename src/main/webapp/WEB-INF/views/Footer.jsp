@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="/resources/css/Footer.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -12,7 +13,7 @@
   <div class="footer__addr">
     <h1 class="footer__logo">쉬어家</h1>
         
-    <h2>Contact</h2>
+    <h2>sheerhouse</h2>
   </div>
   
   <ul class="footer__nav">
