@@ -373,19 +373,14 @@
                             href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
-                    <script>
-                    	function selChange(){
-                    		var sel = document.getElementById('cntPerPage').value;
-                    		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
-                    	}
-                    </script>
+                  
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">회원 정보</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form method = "get" action = "userResultTable.mdo">
+                            <form method = "get" action = "userTable.mdo">
                                 			<input type = "text" name = "result" placeholder="email 검색" />
                                				<input type = "submit" value="검색" />
                             </form>
@@ -394,7 +389,7 @@
                                 	<thead>
                                         <tr>
                                         	<th></th>
-                                        	<th>no.</th>
+                                        	 <th>no.</th>
                                             <th>email</th>
                                             <th>이름</th>
                                             <th>연락처</th>
@@ -406,7 +401,6 @@
                                     
                                     <c:forEach var="user" items= "${userList}" varStatus="status">
                                     <tbody>
-                                    	
                                     	<th><input type="checkbox" value="flase"></th>
                                     	<th>${status.count }</th>
                                     	<th>${user.email }</th>
@@ -415,41 +409,38 @@
                                     	<th>${user.role }</th>
                                     	<th>${user.regdate }</th>
                                     	<th>
-                                    	<c:if test = "${user.status eq 1 }">
-                                    		<c:out value = "정상" />
-                                    	</c:if>
-                                    	<c:if test = "${user.status eq 2 }">
-                                    		<c:out value = "탈퇴" />
-                                    	</c:if>
-                                    	<c:if test = "${user.status eq 3 }">
-                                    		<c:out value = "정지" />
-                                    	</c:if>
+	                                    	<c:if test = "${user.status eq 1 }">
+	                                    		<c:out value = "정상" />
+	                                    	</c:if>
+	                                    	<c:if test = "${user.status eq 2 }">
+	                                    		<c:out value = "탈퇴" />
+	                                    	</c:if>
+	                                    	<c:if test = "${user.status eq 3 }">
+	                                    		<c:out value = "정지" />
+	                                    	</c:if>
                                     	</th>
-                                    	
-                                    
                                     </tbody>
                                     </c:forEach>
                                 </table>
-                                
-                               <div style="display: block; text-align:center;">
-                               	<c:if test="${paging.startPage != 1 }">
-                               		<a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-                               	</c:if>
-                               	<c:forEach begin ="${paging.startPage }" end="${paging.endPage }" var="p">
-                               		<c:choose>
-                               			<c:when test="${p == paging.nowPage }">
-                               				<b>${p }</b>
-                               			</c:when>
-                               			<c:when test="${p != paging.nowPage }">
-                               				<a href="/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-                               			</c:when>
-                               		</c:choose>
-                               	</c:forEach>
-                               	<c:if test="${paging.endPage != paging.lastPage}">
-									<a href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-								</c:if>
-                            </div>
-                        </div>
+                                <div style="display: block; text-align: center;">		
+									<c:if test="${paging.startPage != 1 }">
+										<a href="/userTable.mdo?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+									</c:if>
+									<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+										<c:choose>
+											<c:when test="${p == paging.nowPage }">
+												<b>${p}</b>
+											</c:when>
+										<c:when test="${p != paging.nowPage }">
+											<a href="/userTable.mdo?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+										</c:when>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${paging.endPage != paging.lastPage}">
+										<a href="/userTable.mdo?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+									</c:if>
+								</div>               
+                         </div>
                     </div>
 
                 </div>
