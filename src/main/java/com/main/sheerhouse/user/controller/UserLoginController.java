@@ -138,7 +138,39 @@ public class UserLoginController {
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
+		System.out.println(user);
 		return "redirect:/index.do";
+		
+	}
+	
+	// 헤더 로그인
+	@PostMapping("/userLoginHeader.do")
+	public String HeaderLogin(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
+		boolean emailCheck = service.emailCheck(user.getEmail());
+		user.setPassword(Sha256.encrypt(user.getPassword()));
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if(!emailCheck) { //중복 이메일이 없으면 회원가입 성공
+			user.setEmailConfirm(true);
+			service.insertUser(user);
+		}
+		
+		boolean passwordCheck= service.passwordCheck(user);
+		if(!passwordCheck) {
+			
+			out.print("<script>alert('로그인에 실패하였습니다.');location.href = document.referrer;</script>");
+			out.flush();
+			return "";
+		}
+		
+		user = service.selectUserInfo(user);
+		//세션에 회원정보 저장
+		session = request.getSession();
+		session.setAttribute("user", user);
+		System.out.println(user);
+		out.print("<script>alert('로그인에 성공하였습니다.');location.href = document.referrer;</script>");
+		out.flush();
+		return "";
 		
 	}
 	@RequestMapping("/searchEmail.do")
@@ -168,8 +200,15 @@ public class UserLoginController {
 	}
 	
 	@GetMapping("/logout.do")
-	public void logout(HttpSession session,HttpServletResponse response) throws Exception {
+	public void logout(HttpSession session,HttpServletResponse response, HttpServletRequest request) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		String path = (String)request.getHeader("referer");
+		PrintWriter out = response.getWriter();
+		out.print("<script>alert('로그아웃 되었습니다.');location.href = document.referrer;</script>");
+		out.close();
 		session.invalidate();
-		service.logout(response);
+	
 	}
+	
+	
 }	

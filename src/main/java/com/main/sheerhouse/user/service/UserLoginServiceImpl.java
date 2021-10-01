@@ -58,11 +58,7 @@ public class UserLoginServiceImpl implements UserLoginService{
 	
 	@Override
 	public void logout(HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print("<script>alert('로그아웃 되었습니다.');location.href='index.do'</script>");
-		out.close();
-		
+			
 	}
 	
 	

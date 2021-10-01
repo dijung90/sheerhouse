@@ -100,7 +100,7 @@
 		        
 		        
 		        <div class="divider"></div>
-		        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
+		        <form class="loginForm" action="userLoginHeader.do" name="loginForm" method="post">
 		            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
 		            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
 		            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
