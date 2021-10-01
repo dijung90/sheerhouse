@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.AWSCredentials;
@@ -23,8 +25,10 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 public class AwsS3 {
 
 	private AmazonS3 s3Client;
-	final private String accessKey = "AKIATCBW36MXSJ3HWPH5";
-	final private String secretKey = "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";
+	@Value("{s3.accessKey}")
+	private String accessKey;
+	@Value("${s3.secretKey}")
+	private String secretKey;
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
 	private String bucket = "sheerhouse";
 	
