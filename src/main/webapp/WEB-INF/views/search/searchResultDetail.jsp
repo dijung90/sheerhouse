@@ -8,9 +8,49 @@
 <meta charset="UTF-8">
 <title>상세페이지</title>
 <link rel="stylesheet" href="/resources/css/searchResultDetail.css" />
+<style>
+.payForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pay-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+.divider {
+  width: 50%;
+  border-bottom: 1px solid #d65f5f;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.pay-modalContent {
+  margin: 130px auto;
+  width: 450px;
+  height: 400px;
+  background-color: #eeeeee;
+  border-radius: 0.6rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+}
+.payHeader {
+  text-align: center;
+  color: #6f1313;
+  font-size: 20px;
+</style>
+
 </head>
  <body>
-<%@ include file="/WEB-INF/views/search/Header.jsp"%>jsp"%>
+<%@ include file="/WEB-INF/views/search/Header.jsp"%>
     <div class="detailContainer">
       
           <!-- <div class="accomodationImagesContainer">
@@ -138,11 +178,11 @@
 	                    		<div class="reservationContent1">
 	                        		<div>
 			                            <span>체크인</span>
-			                            <input class="checkin" name="checkin" type="date" value="체크인">
+			                            <input class="checkin" id="checkin" name="checkin" type="date" value="체크인">
 	                        		</div>
 	                        		<div>
 	                          		  <span>체크아웃</span>
-	                            		<input class="checkout" name="checkout" type="date" value="체크아웃">
+	                            		<input class="checkout" id="checkout" name="checkout" type="date" value="체크아웃">
 	                       			 </div>
 	                    		</div>
 	                    		<!-- 인원, 가격  -->
@@ -164,6 +204,7 @@
 							                  value="0"
 							                  name="searchMaxPeople"
 							                  class="peopleBtnNumInput"
+							                  id="headcount"
 							                />
 							                  <input
 							                  class="addBtns"
@@ -187,22 +228,161 @@
 								                				<span class="manyNights">N 박</span>
 						                					</div>
 							                				<div class="totalPrice">
-							                					<input class="totalPriceInput" value="" type="text" name="totalprice"/>
+							                					<input class="totalPriceInput" value="" type="text" name="totalprice" id="totalprice"/>
 							                				</div>
 														</div>
 						                			</div>
 						              			</div>
 						              	</c:forEach>
 		                    		
-		                    		<input class="reservationBtn" type="submit" value="예약하기">
+		                    		<input class="reservationBtn" type="button" value="예약하기" onclick="resBtnClick()">
 		                    		<p class="warnMsg">  </p>
                 				</div>
                 				</form>	
-            		</div>
+                				
         	</section>
+
         </div>
+
        </div>
+                       	<div class="pay-modal" >
+                					<div class="pay-modalContent">
+                					<h3 class="payHeader">예약 정보 확인</h3>
+                					<div class="divider"></div>
+                					<form class="payForm" action="payment.do" method="post" name="payForm">
+										<span>숙소 이름 : <input type="text" name="title" id="title" value="${title }" readonly/></span>
+										<span>호스트 이메일 : <input type="text" name="host" id="host" value="${hostEmail }" readonly/></span>
+										<span>예약 날짜 : <input type="text" id="date" name="date" readonly></span>
+										<span>인원수 : <input type="text" id="cnt" name="cnt" readonly></span>
+										<span>결제금액:<input type="text" id="price" name="price" readonly></span>
+										<input type="hidden" value="${user.email}" id="userEmail"/>
+										<input type="button" id="confirm" value="결제하기" onclick="importPay()"/>
+										<input type="button" id="cancel" value="취소하기" onclick="cancelBtn()"/>
+										<input type="button" id="refund" value="환불하기" onclick="importRefund()"/>
+										
+									</form>
+									
+                					</div>
+            					</div>
   </body>
+  <!--  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script><!-- jQuery CDN --->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+  <script type="text/javascript">
+  
+  function importPay(){
+	  var userEmail = document.getElementById("userEmail").value;
+	  var hostEmail = document.getElementById("host").value;
+	  var price = document.getElementById("price").value;
+	  price = price.slice(3,-3);
+	  var title = document.getElementById("title").value;
+	  var headcount = document.getElementById("headcount").value;
+	  headcount.slice(0,-1);
+	  var apply_num;
+	  var res_date = document.getElementById("checkin").value + "," + document.getElementById("checkout").value;
+	 console.log(hostEmail);
+  	IMP.init('imp96676683');
+  	IMP.request_pay({
+	  pg:'html5_inicis',
+	  pay_method: 'card',
+  	  merchant_uid: new Date().getTime(),
+  	  amount: price,
+  	  name: title,
+  	  buyer_email: userEmail
+  	}, function(rsp){
+  		console.log(rsp);
+  		if(rsp.success){
+ 			$.ajax({
+ 				url: 'verifyPayment.do',
+ 				method: 'POST',
+ 				data_type: 'json',
+ 				data: {
+ 				 "imp_uid" : rsp.imp_uid,
+ 				 "merchant_uid" : rsp.merchant_uid,
+ 				 "amount": rsp.paid_amount
+ 				}
+ 			}).done(function(data){
+ 				if(data == false){
+ 					alert("결제 검증 실패. 다시 시도해주세요.");
+ 					apply_num = rsp.apply_num;
+ 					console.log("결제 승인번호 "+apply_num);
+ 					history.back();
+ 					return;
+ 				}else {
+ 					  
+ 					alert("결제가 완료되었습니다.");
+ 					$.ajax({
+ 						url: 'insertHomePayInfo.do', 
+ 			  			 type: 'POST',
+ 			  			 data: { 
+ 			  				"apply_num": rsp.apply_num,
+ 			  			     "total_price": rsp.paid_amount,
+ 			  				 "pay_status": rsp.status,
+ 			  				 "email": rsp.buyer_email, 
+ 			  				 "pay_date": rsp.paid_at,
+ 			  				 "title": rsp.name,
+ 			  				 "res_date": res_date,
+ 			  				 "headcount": headcount,
+ 			  				 "hostEmail": hostEmail
+ 			  			 }
+ 					});
+ 				}
+ 			})//end ajax	
+ 			}else {
+ 				alert(rsp.error_msg);
+ 				history.back();
+ 			}//end if
+  		}//end function(rsp)
+  		
+  	);//end request_pay  	
+  	}//end importPay()
+
+  function importRefund(){
+  		console.log("환불 승인번호: " + apply_num);
+  	
+  	
+  	}
+  	
+  	
+  </script>
+  
+  <script type="text/javascript">
+  var paymodal = document.querySelector(".pay-modal");
+  function resBtnClick(){
+	  
+	  var check = document.getElementById("checkin").value + " ~ " + document.getElementById("checkout").value;
+	  
+	  var checkIn = document.getElementById("checkin").value.split("-");
+	  var checkOut = document.getElementById("checkout").value.split("-");
+
+	  var start = new Date(checkIn[0],checkIn[1],checkIn[2]);
+	  var end = new Date(checkOut[0],checkOut[1],checkOut[2]);
+	  
+      var betweenTime = Math.abs(end.getTime() - start.getTime());
+      var dateCnt = Math.floor(betweenTime / (1000 * 60 * 60 * 24));
+	  
+      check = check + " /" + dateCnt + "일";
+      document.getElementById("date").setAttribute("value", check);
+      
+      var headcount = document.getElementById("headcount").value +"명";
+      document.getElementById("cnt").setAttribute("value", headcount);
+      
+      var price = document.getElementById("totalprice").value;
+      document.getElementById("price").setAttribute("value", price);
+      
+      
+     
+	  paymodal.style.display = "block";
+  }
+	  
+  function cancelBtn(){
+	  paymodal.style.display = "none";	  
+  }
+ 
+  </script>
   <script>
   
   const checkinDate = document.querySelector(".checkin");

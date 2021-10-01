@@ -32,8 +32,6 @@ public class SearchResultController {
 		System.out.println(checkout);
 		System.out.println(people);
 		
-		
-		
 		model.addAttribute("location", location);
 		model.addAttribute("checkin", checkin);
 		model.addAttribute("checkin", checkin);
@@ -51,10 +49,12 @@ public class SearchResultController {
 		
 		model.addAttribute("home_seq", home_seq);
 		model.addAttribute("title", title);
+		model.addAttribute("hostEmail", service.searchHostEmail(home_seq));
 		model.addAttribute("DetailInfo", resultMapper.getDetail(home_seq));
-		
 		model.addAttribute("CommentInfo", resultMapper.getComment(home_seq));
+		System.out.println(resultMapper.getDetail(home_seq));
 		System.out.println("CommentInfo" + resultMapper.getComment(home_seq));
+		
 		return "search/searchResultDetail";
 	}
 }

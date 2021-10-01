@@ -10,6 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getDetail" resultType="com.main.sheerhouse.user.domain.ResultVO">
 		select * from home where home_seq=#{home_seq} 	
 	</select>
+	<select id="searchHostEmail" resultType="String">
+		select email from host where host_seq=(select host_seq from home where home_seq=#{home_seq})
+	</select>
 	<select id="getComment" resultType="com.main.sheerhouse.user.domain.CommentVO">
 		select * from comment where home_seq=#{home_seq}
 	</select>
