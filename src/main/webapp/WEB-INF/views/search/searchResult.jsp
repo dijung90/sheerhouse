@@ -11,12 +11,18 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
+     
+<%-- 	<c:set var="email" value="jenny" /> --%>
+	
       <div class="accomodationResults-container">
         <div class="accomodationResult">
           <section class="accomodationResult-container">
             <h2 class="searchresultHeader">${location } 지역의 숙소 결과입니다.</h2>
             <span class="searchHeader-sub">코로나 관련 정보를 확인하세요</span>
           </section>
+          
+          <!--  숙소 list for문 시작  -->
+          
           <c:forEach var="search" items="${resultList}" >
           <section>
             <div class="resultAccomodation-container">
@@ -30,14 +36,17 @@
                   <input class="prices" type="text" value="${search.price }"/>원 <span> /1박</span>
                   <input class="locations" type="hidden" value="${search.address }"/>
                 </div>
-                <div class="wishlistHeartIcon">
-                	<span class="entypo-heart wishlist"></span> 
+                <div class="wishlistHeartIcon" id="wishlistHeartIcon">
+                	<span class="entypo-heart wishlist ${search.home_seq}" id="${search.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
                 </div>
               </div>
             </div>
             <div class="divider-resultAccomodation"></div>
           </section>
           </c:forEach>
+          
+          <!--  숙소 list for문 끝  -->
+          
         </div>
         <div id="map" style="width:100%;height:900px;"></div>
       </div>
@@ -143,10 +152,57 @@
 						}
 					
 			}
+			
+			
+/* wish list add function */
+					
+					
+				const wishlists = document.querySelectorAll(".wishlist");
+				wishlists.forEach(wishlist => {
+					wishlist.addEventListener('change', function() {
+					 	var con = wishlist.getAttribute("active");
+					 	console.log("hihi" + con);
+					  });
+					})
 		
+				$(document).on("click", ".wishlist", function(){
+					let email = $("#email_val").val();
+					let html = '';
+				    var homeseq = $(this).attr("id");
+				    var home_seq = parseInt(homeseq, 0);	
+				    console.log(home_seq);
+				    console.log(email);
+				    
+					if(email == null){
+						alert("로그인이 필요합니다.");
+						return false;
+					}
+					 
+					
+					$.ajax({
+						url : "search/wishlist.do",
+						type : "Get",
+						data: {home_seq : home_seq, email : email},
+						dataType: "text",
+						success : function(result){
+							if(result == "selected"){
+								console.log("added");
+								$('.'+ home_seq).addBack().css({"color": "#e55763"});
+								}else{
+									console.log("error");
+									$('.'+ home_seq).addBack().css({"color": "#9d9d9d"});
+
+							}
+							
+						} 
+					
+				})
+				
+			})
+
 
 </script>
-
+<%@ include file="/WEB-INF/views/Footer.jsp"%>
 </body>
 </html>
 

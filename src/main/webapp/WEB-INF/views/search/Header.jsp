@@ -11,9 +11,9 @@
   		<meta name="google-signin-scope" content="profile email">
    		<meta name="google-signin-client_id" content="704009539267-6g73vgvh8j2u16gfps9r01t0srqldprf.apps.googleusercontent.com">
     	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-    	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 		<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
-		<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
+    	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
 
 </head>
 <body>
@@ -53,15 +53,17 @@
 <!--               <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li> -->
               <!-- <li><a href="#">호스트 등록하기</a></li> -->
             </c:if>
-             <c:if test="${user.email != null}">
+            <c:if test="${user.email != null}">
              	<c:if test="${user.name != null}">
               <li><c:out value=" ${user.name}" />님 반갑습니다.</li>
+              <li><a href="logout.do">로그아웃</a></li>
               </c:if>
               <c:if test="${user.name == null}">
               <li><c:out value=" ${user.email}" />님 반갑습니다.</li>
+              <li><a href="logout.do">로그아웃</a></li>
               </c:if>
               <li><a href="mypage.do">마이페이지</a></li>
-              <li><a href="host.do">호스트 등록하기</a></li>
+              <li><a href="host.host">호스트 등록하기</a></li>
             </c:if>
           </ul>
         </nav>
@@ -98,7 +100,7 @@
 		        
 		        
 		        <div class="divider"></div>
-		        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
+		        <form class="loginForm" action="userLoginHeader.do" name="loginForm" method="post">
 		            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
 		            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
 		            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />

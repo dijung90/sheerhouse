@@ -30,6 +30,7 @@
       }
 
   </script>
+  <%@ include file="/WEB-INF/views/Footer.jsp"%>
 </body>
 <script> 
 function expireSession() { window.location = "index.do"; } 

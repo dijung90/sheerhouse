@@ -1,5 +1,9 @@
 package com.main.sheerhouse.user.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +56,10 @@ public class UserLoginServiceImpl implements UserLoginService{
 		return user;
 	}
 	
-	
+	@Override
+	public void logout(HttpServletResponse response) throws Exception {
+			
+	}
 	
 	
 }
