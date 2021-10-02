@@ -19,11 +19,11 @@ public class TestAwsS3 {
 	public void test() {
 		TestAwsS3 s3 = new TestAwsS3();
 		
-		File file = new File("C:\\mainProject\\upload.jpg");
-		String key = "img/upload.jpg";
-		String copyKey = "img/copy-upload.jpg";
+		File file = new File("C:\\Users\\admin\\Pictures\\DB01.jpg");
+		String key = "upload.jpg";
+		String copyKey = "copy-upload.jpg";
 		
-		//s3.upload(file,key);
+		s3.upload(file,key);
 		//s3.copy(key, copyKey);
 		//s3.delete("test.jpg");
 	}

@@ -30,6 +30,7 @@ public class HomeVO {
 	private int max_date_count;
 	private int long_price_per;
 	private int cnt;
+	
 	public Long getHome_seq() {
 		return home_seq;
 	}

@@ -2,7 +2,6 @@ package com.main.sheerhouse.admin.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 
 import com.main.sheerhouse.admin.util.PagingVO;
 import com.main.sheerhouse.user.domain.UserVO;

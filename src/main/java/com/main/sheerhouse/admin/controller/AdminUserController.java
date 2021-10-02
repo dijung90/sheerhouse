@@ -64,7 +64,8 @@ public class AdminUserController {
 		
 		return "admin/tables/userTable";
 	}
-	
+
+/*	
 	@GetMapping("/userResultTable.mdo")
 	public String userResultTable(Model model, String result) {
 		List<UserVO> userList = new ArrayList<UserVO>();
@@ -72,5 +73,5 @@ public class AdminUserController {
 		model.addAttribute("userList", userList);
 		return "admin/tables/userTable";
 	}
-	
+*/
 }

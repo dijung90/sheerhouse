@@ -11,6 +11,4 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	
-	
 }

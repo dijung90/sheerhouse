@@ -106,7 +106,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>숙소 목록</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -121,12 +121,12 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Charts -->
+            
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
+                <a class="nav-link" href="homeTable.mdo">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>숙소 정보</span>
                 </a>
             </li>
 
@@ -134,7 +134,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="userTable.mdo">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+                    <span>회원정보 테이블</span>
+                </a>
+            </li>
+            
+             <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>순익 계산 차트</span>
                 </a>
             </li>
 			
