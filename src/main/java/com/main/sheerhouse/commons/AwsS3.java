@@ -5,13 +5,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -25,11 +23,6 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 public class AwsS3 {
 
 	private AmazonS3 s3Client;
-	
-	@Value("{s3.accessKey}")
-	private String accessKey;
-	@Value("${s3.secretKey}")
-	private String secretKey;
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
 	private String bucket = "sheerhouse";
 	
@@ -48,7 +41,7 @@ public class AwsS3 {
 	}
 	
 	private void createS3Client() {
-		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		AWSCredentials credentials = new ClasspathPropertiesFileCredentialsProvider("mybatis/config/database.properties").getCredentials();
 		this.s3Client = AmazonS3ClientBuilder.standard().withCredentials(
 				new AWSStaticCredentialsProvider(credentials)).withRegion(clientRegion).build();
 	}
@@ -119,6 +112,5 @@ public class AwsS3 {
 		
 		return list;
 	}
-	
-	
+
 }
