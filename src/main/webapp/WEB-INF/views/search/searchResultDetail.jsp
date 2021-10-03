@@ -22,7 +22,7 @@
             <h2>${title}</h2>
           </div>  
           
-       		<div class="slideshow-container">
+       	<div class="slideshow-container">
           <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
 	            <div class="mySlides faded">
@@ -41,6 +41,7 @@
 	                style="width: 100%"
 	              />
 	              <div class="text">${detail.title }</div>
+	                <input type="hidden" value="${user.email}" id="email_val" />
 	            </div>
 	
 	            <div class="mySlides fade">

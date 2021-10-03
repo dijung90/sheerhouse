@@ -41,6 +41,7 @@ public class SearchResultController {
 		model.addAttribute("people", people);
 		model.addAttribute("resultList", service.searchResultList(location));
 		System.out.println("resultList" + service.searchResultList(location));
+		
 		return "search/searchResult";
 	}
 	
@@ -52,7 +53,7 @@ public class SearchResultController {
 		model.addAttribute("home_seq", home_seq);
 		model.addAttribute("title", title);
 		model.addAttribute("DetailInfo", resultMapper.getDetail(home_seq));
-		
+		System.out.println(resultMapper.getDetail(home_seq));
 		model.addAttribute("CommentInfo", resultMapper.getComment(home_seq));
 		System.out.println("CommentInfo" + resultMapper.getComment(home_seq));
 		return "search/searchResultDetail";

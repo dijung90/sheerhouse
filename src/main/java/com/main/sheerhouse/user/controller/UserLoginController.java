@@ -36,10 +36,9 @@ public class UserLoginController {
 	public void index() {}
 
 	//마이페이지
-	@GetMapping("/mypage.do")
-	public String mypage() {
-		return "user/mypage";
-	}
+	/*
+	 * @GetMapping("/mypage.do") public String mypage() { return "user/mypage"; }
+	 */
 	
 	@PostMapping("/kakaoUserInfo.do")
 	public String naverLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session) {
