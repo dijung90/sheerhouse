@@ -10,6 +10,5 @@ public interface UserSearchService {
 	
 	List<ResultVO> searchResultList(String location);
 	List<ResultVO> searchDetailList(String home_seq);
-	
 	List<CommentVO> getCommentList(String home_seq);
 }

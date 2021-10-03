@@ -308,9 +308,6 @@
 		//////////////////////
 		
 		
-		
-		
-		
 				$(document).on("click", ".dateValue", function(){
 					
 					

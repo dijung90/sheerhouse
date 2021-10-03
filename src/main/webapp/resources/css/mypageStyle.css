@@ -9,6 +9,7 @@ ul {
 }
 a {
   text-decoration: none;
+  color: #232323;
 }
 
 body {
@@ -17,6 +18,10 @@ body {
   height: 130vh;
 }
 
+.mypageContainer{
+  width: 90%;
+  margin: auto;
+}
 .navContainer {
   width: 100%;
   height: 17%;
@@ -42,9 +47,9 @@ body {
 .mypageHeader {
   font-size: 32px;
   color: #2b2b2b;
-  margin-left: 100px;
+  margin-left: 120px;
   letter-spacing: 2px;
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 .divider {
@@ -54,8 +59,9 @@ body {
 }
 
 .mypageGreeting {
-  margin-left: 100px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: 130px;
+  margin-bottom: 20px;
 }
 
 .mypagelists {
@@ -66,10 +72,13 @@ body {
 .mypagelists li {
   padding: 10px;
   font-size: 20px;
-  margin-right: 50px;
+  margin-right: 10px;
   cursor: pointer;
-  margin-bottom: 50px;
+  padding-bottom: 30px;
+  margin-bottom: 60px;
   height: 30px;
+  width: 200px;
+  text-align: center;
 }
 
 .mypagelists li:hover {
@@ -83,32 +92,71 @@ body {
 .detailContainer {
   width: 940px;
 }
+.bookingList{
+  margin-left: 50px;
+  margin-left: 40px;
+  display: flex;
+  margin-bottom: 25px;
+} 
 .bookingList div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 10px;
+
+}
+
+.bookingList div:first-child{
+  margin-left: 40px;
 }
 .bookingList div a {
   text-decoration: none;
   color: #2b2b2b;
 }
+
+
+.bookingLists .divider{
+  width: 750px;
+  margin: 20px 0px 20px 160px;
+}
 .accomodationTexts {
   width: 500px;
 }
 .accomodationContent h2 {
-  width: 500px;
+  width: 400px;
   text-align: left;
 }
-.bookingInfoBtn button {
+
+.accomodationContent > span {
+  margin: 7px 0px 2px 2px;
+  width: 380px;
+  display: block;
+  text-align: left;
+}
+.bookingInfo button {
   width: 160px;
   height: 38px;
   background-color: #d65f5f;
   color: #eeeeee;
   font-size: 14px;
   margin-top: 22px;
-  margin-left: 10px;
+  margin-left: 40px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.reservationDateInfo{
+  margin-left: 0px;
+}
+.reservationState{
+  font-size: 17px;
+  background-color: #2d9979;
+  text-align: center;
+  height: 35px;
+  width: 100px;
+  color: #ffffff;
+  margin-top: 80px;
+  border-radius: 5px;
 }
 /* .detailContainer li {
   position: absolute;
@@ -139,11 +187,20 @@ body {
   margin-left: 100px;
   display: none;
 }
+.wishLists .divider{
+  width: 550px;
+  margin: 20px auto;
+}
 .wishLists,
 li {
   list-style: none;
   margin-bottom: 10px;
 }
+.wishLists li{
+  width: 750px;
+  margin-left: 40px;
+  display: flex;
+ }
 .wishLists li a {
   display: flex;
 }
@@ -155,16 +212,41 @@ li {
   margin-left: 30px;
   border-radius: 5px;
 }
+.wishListContent a{
+  color: #232323;
+}
 
+.wishListContent span{
+  margin: 7px 0px 2px 2px;
+  width: 480px;
+  display: block;
+}
 .wishListContent h2 {
-  margin: 35px 0 5px 0;
+  margin: 5px 0 5px 0;
+  color: #d65f5f;
 }
 
 .wishIcon {
-  margin-top: 20px;
-  margin-left: 520px;
   width: 20px;
+  margin-top: 60px;
+  margin-left: 120px;
 }
+
+
+@font-face {
+  font-family: 'entypo';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-90/entypo.woff') format('woff');
+}
+
+.entypo-heart:before{
+  content:"\2665";
+}
+
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 2.1em;
+}
+
 
 .infoDetail {
   display: none;
@@ -209,3 +291,76 @@ li {
   height: 45px;
   margin-top: 60px;
 }
+
+.reservationDetailInfoContainer{
+  width: 90%;
+  position: absolute;
+  background-color: #ffffff;
+  top: -280px;
+  left: 200px;
+  min-height: 600px;
+  border-radius: 20px;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.reservationDetailInfoContainer > div{
+  width: 90%;
+  padding: 10px;
+    margin: auto;
+}
+.reservationDetailInfoContainer > div h2{
+  margin-bottom: 20px;
+}
+
+.reservationDetailInfoContainer > div div{
+  margin-bottom: 20px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.reservationDetailInfoContainer > div div p{
+    font-size: 18 px;
+    margin-bottom: 5px;
+}
+.reservationInfoExit{
+  margin-right: 880px;
+  padding-top: 10px;
+  font-size: 24px;
+}
+.sendEmailContainer{
+  width: 95%;
+  margin: auto;
+}
+
+.sendEmailContainer h2{
+  text-align: center;
+}
+
+.sendEmailContainer input{
+  width: 600px;
+  height: 40px;
+  margin-left: 50px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: 1px solid #eeeeee;
+}
+
+.sendEmailContainer textarea{
+  width: 610px;
+  height: 200px;
+  margin-left: 50px;
+   border: 1px solid #eeeeee;
+}
+
+.sendEmailContainer button{
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 200px;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #eeeeee;
+  background-color :#d65f5f;
+}
+
+
