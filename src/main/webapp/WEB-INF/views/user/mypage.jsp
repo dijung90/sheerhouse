@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 </head>
 <body>
+
  <div class="mypageContainer">
       <div class="navContainer">
         <div class="logoContainer">
@@ -49,6 +53,13 @@
         <section id="bookingDetail" class="bookingDetail tabContent" data-mypage-type="booking">
             <ol class="bookingLists">
             <c:forEach var="reservationlist" items="${reservationlist}">
+            
+            	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate"/>
+           		<c:set var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}"></c:set> 
+           		<input type="text" value="${starDate}" />
+            	<fmt:formatDate value="" pattern="yyyy-MM-dd" var="Staying"/> 
+            	
+            	
               <li class="bookingList">
                 <div>	
                     <div class="accomodationImage">

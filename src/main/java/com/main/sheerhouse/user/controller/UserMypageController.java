@@ -26,12 +26,16 @@ import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.domain.WishListVO;
 import com.main.sheerhouse.user.service.UserLoginService;
 import com.main.sheerhouse.user.service.UserMypageService;
+import com.main.sheerhouse.user.service.UserSearchService;
 
 @Controller
 public class UserMypageController {
 
 	@Autowired
 	private UserMypageService service;
+	
+	@Autowired
+	private UserSearchService userService;
 
 	@RequestMapping(value="/updateUser.do",method =  RequestMethod.POST)
 	public String updatemypage(WishListVO wish, HttpServletRequest req,UserVO user,HttpSession session,HttpServletResponse res) throws Exception{
@@ -70,10 +74,12 @@ public class UserMypageController {
 	
 	
 	@RequestMapping("/mypageBookingInfo.do")
-	public String showBookingDetail(Model model, ResultVO result,  @RequestParam("apply_num") int apply_num){
-		model.addAttribute("bookingDetail",service.reservationDetail(apply_num));
+	public String showBookingDetail(Model model, ResultVO result, @RequestParam("home_seq") String home_seq ,@RequestParam("apply_num") int apply_num){
 		
+		model.addAttribute("bookingDetail",service.reservationDetail(apply_num));
+		model.addAttribute("hostEmail", userService.searchHostEmail(home_seq));
 		System.out.println("show detail reservation " +service.reservationDetail(apply_num));
+		System.out.println(userService.searchHostEmail(home_seq));
 		return "user/mypageBookingDetail";
 	}
 	

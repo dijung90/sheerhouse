@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,29 @@
 </head>
 <body>
 	<nav>
-		
+		<div>
+			<a href="index.do"><img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/Logo/logo%20ver1.png"  alt="banner"/></a>
+		</div>
+		<div>
+			<ul class="menus">
+	            <c:if test="${user.email == null}">
+	              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
+	            </c:if>
+	            
+            	<c:if test="${user.email != null}">
+              		<li><c:out value=" ${user.name}" />님 반갑습니다.</li>
+              		<li><a href="logout.do">로그아웃</a></li>
+              		<li><a href="mypage.do">마이페이지</a></li>
+              </c:if>
+
+          </ul>
+		</div>
 	</nav>
+	<header>
+		<h2>
+			${bookingDetail.email }님의 예약정보입니다.
+		</h2>
+	</header>
 	<div class="reservationDetailInfoContainer">
 			 						<input class="imgUrls" type="hidden" value="${bookingDetail.url }" />
 			 						<div class="slideshow-container">
@@ -39,15 +61,18 @@
 						                			<p>호스트 : ${bookingDetail.host_info}</p>
 						                			<p class="addressInfo">주소 : ${bookingDetail.address}</p>
 						                	</div>
+						                	<div class="divider"></div>
 						                	<div>
 						                		<span>숙소의 규칙을 확인해주세요</span>
 						                		<p>${bookingDetail.rule}</p>
 						                	</div>
-						                	<div class=sendEmailContainer>
+						                	<div class="divider"></div>
+						                	<div class=sendEmailContainer id="emailForm">
 						                		<h2>호스트에게 연락하기</h2>
-						                		<input type="text" value="${bookingDetail.email }" />
-						                		<textarea></textarea>	
-						                		<button>전송</button>		
+						                		<input class="userEmail" name="from_name" type="text" value="${bookingDetail.email }" />
+						                		<input class="hostEmail" name="to_name" type="hidden" value="${hostEmail}"/>
+						                		<textarea class="emailMsg" name="message"></textarea>	
+						                		<button id="sendBtn" class="sendBtn">전송</button>		
 						                	</div>
 						         
 						                
@@ -57,9 +82,14 @@
              </div>
 </body>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-  <script> 
-  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script type="text/javascript">
+  emailjs.init('user_8L5c4LFE9HWH4sCJlabRv')
+</script>
+<script> 
+	const hostEmail = document.querySelector(".hostEmail");
+	const userEmail = document.querySelector(".userEmail");
+	const emailMsg = document.querySelector(".emailMsg");
   const urls = document.querySelector(".imgUrls");
   /* 	console.log(urls.value); */
   	var url = urls.value;
@@ -112,12 +142,45 @@
     slides[slideIndex-1].style.display = "block";
 
   }
+  $(document).on("click", ".sendBtn", function(){
+	  console.log(emailMsg.value);
+	     emailjs.send("service_0935jim","template_crq0xtz",{
+	    	   from_name: userEmail.value,
+	    	   message: emailMsg.value,
+	    	   host_email: hostEmail.value,
+	    	   }).then(function(response){
+	    		   console.log('SUCCESS!', response.status, response.text);
+	    		   alert('Sent!');
+	    	   }, function(error){
+	    	 console.log('FAILED...', error);
+	    	 alert(JSON.stringify(err));
+	     });
+  	});
+
+
+/*   const btn = document.getElementById('sendBtn');
+
+  document.getElementById('emailForm')
+   .addEventListener('submit', function(event) {
+     event.preventDefault();
+
+     btn.value = 'Sending...';
+
+     const serviceID = 'service_6ozvn88';
+     const templateID = 'template_crq0xtz';
+
+     emailjs.send("service_0935jim","template_crq0xtz",{
+  	   from_name: userEmail.value,
+  	   message: emailMsg.value,
+  	   host_email: hostEmail.value,
+  	   });
+  }); */
   
+   
 
-  (function(){
-      emailjs.init("YOUR_USER_ID");
-   })();
+   
 
+		 
 
   
   </script>

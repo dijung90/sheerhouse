@@ -95,8 +95,8 @@
 	             </div>
 	             
 	              </c:forEach>
-=======
-             <div class="slideshow-container">
+
+           <div class="slideshow-container">
           <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
                <div class="mySlides faded">
@@ -128,7 +128,7 @@
                 </div>
                 
                  </c:forEach>
->>>>>>> ecc8dbdafc4c88efe2a6b9df5d32facd586e592a
+
            
             <div class="arrows">
                <!-- Next and previous buttons -->
