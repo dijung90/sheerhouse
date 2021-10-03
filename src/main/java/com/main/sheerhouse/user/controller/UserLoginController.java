@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
@@ -57,7 +58,7 @@ public class UserLoginController {
 	}
 
 	
-
+	
 	@PostMapping("/facebookUserInfo.do")
 	public String facebookLoginAndRegist(UserVO user,HttpServletRequest request, HttpSession session) {
 		if(user.getEmail() == null ) return "index"; 
@@ -137,11 +138,45 @@ public class UserLoginController {
 		//세션에 회원정보 저장
 		session = request.getSession();
 		session.setAttribute("user", user);
+		System.out.println(user);
 		return "redirect:/index.do";
 		
 	}
-	@RequestMapping("/searchEmail.do")
+	
+	
+	// 헤더 로그인
+	@ResponseBody
+	@PostMapping("/userLoginHeader.do")
+	public String HeaderLogin(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
+		boolean emailCheck = service.emailCheck(user.getEmail());
+		user.setPassword(Sha256.encrypt(user.getPassword()));
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if(!emailCheck) { //중복 이메일이 없으면 회원가입 성공
+			user.setEmailConfirm(true);
+			service.insertUser(user);
+		}
 		
+		boolean passwordCheck= service.passwordCheck(user);
+		if(!passwordCheck) {
+			
+			out.print("<script>alert('로그인에 실패하였습니다.');location.href = document.referrer;</script>");
+			out.flush();
+			return "";
+		}
+		
+		user = service.selectUserInfo(user);
+		//세션에 회원정보 저장
+		session = request.getSession();
+		session.setAttribute("user", user);
+		System.out.println(user);
+		out.print("<script>alert('로그인에 성공하였습니다.');location.href = document.referrer;</script>");
+		out.flush();
+		return "";
+		
+	}
+
+	@RequestMapping("/searchEmail.do")
 	public String searchEmail(UserVO user) {
 		boolean emailCheck = service.emailCheck(user.getEmail());
 		String result = String.valueOf(emailCheck);
@@ -165,4 +200,17 @@ public class UserLoginController {
 		out.flush();
 		return "index";
 	}
+	
+	@GetMapping("/logout.do")
+	public void logout(HttpSession session,HttpServletResponse response, HttpServletRequest request) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		String path = (String)request.getHeader("referer");
+		PrintWriter out = response.getWriter();
+		out.print("<script>alert('로그아웃 되었습니다.');location.href = document.referrer;</script>");
+		out.close();
+		session.invalidate();
+	
+	}
+	
+	
 }	

@@ -12,6 +12,46 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
 <link rel="stylesheet" href="/resources/css/searchResultDetail.css" />
+<style>
+.payForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pay-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+.divider {
+  width: 50%;
+  border-bottom: 1px solid #d65f5f;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.pay-modalContent {
+  margin: 130px auto;
+  width: 450px;
+  height: 400px;
+  background-color: #eeeeee;
+  border-radius: 0.6rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+}
+.payHeader {
+  text-align: center;
+  color: #6f1313;
+  font-size: 20px;
+</style>
+
 </head>
  <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
@@ -22,6 +62,7 @@
             <h2>${title}</h2>
           </div>  
           
+<<<<<<< HEAD
        	<div class="slideshow-container">
           <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
@@ -54,58 +95,94 @@
 	             </div>
 	             
 	              </c:forEach>
+=======
+             <div class="slideshow-container">
+          <c:forEach var="detail" items="${DetailInfo}" >
+          <!-- Full-width images with number and caption text -->
+               <div class="mySlides faded">
+                 <div class="numbertext">1 / 3</div>
+                 <img
+                   src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-1.jpg" alt="accomodationPhoto1"
+                   style="width: 100%"
+                 />
+                 <div class="text">${detail.title }</div>
+               </div>
+   
+               <div class="mySlides faded">
+                 <div class="numbertext">2 / 3</div>
+                 <img
+                    src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-2.jpg" alt="accomodationPhoto2"
+                   style="width: 100%"
+                 />
+                 <div class="text">${detail.title }</div>
+                   <input type="hidden" value="${user.email}" id="email_val" />
+               </div>
+   
+               <div class="mySlides fade">
+                 <div class="numbertext">3 / 3</div>
+                    <img
+                       src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-3.jpg" alt="accomodationPhoto3"
+                      style="width: 100%"
+                    />
+                    <div class="text">${detail.title }</div>
+                </div>
+                
+                 </c:forEach>
+>>>>>>> ecc8dbdafc4c88efe2a6b9df5d32facd586e592a
            
             <div class="arrows">
-	            <!-- Next and previous buttons -->
-	            <a class="slideprev" onclick="moveSlides(-1)">&#10094;</a>
-	            <a class="slidenext" onclick="moveSlides(1)">&#10095;</a>
-          	</div>
-        	  <br />
-			
-		          <!-- The dots/circles -->
-		          <div style="text-align: center">
-		            <span class="dot" onclick="currentSlide(0)"></span>
-		            <span class="dot" onclick="currentSlide(1)"></span>
-		            <span class="dot" onclick="currentSlide(2)"></span>
-		          </div>
+               <!-- Next and previous buttons -->
+               <a class="slideprev" onclick="moveSlides(-1)">&#10094;</a>
+               <a class="slidenext" onclick="moveSlides(1)">&#10095;</a>
+             </div>
+             <br />
+         
+                <!-- The dots/circles -->
+                <div style="text-align: center">
+                  <span class="dot" onclick="currentSlide(0)"></span>
+                  <span class="dot" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
           </div>
-       		</div>
-       		
-	
+             </div>
+             
+   
         <!--   하단 컨테이너 -->
-	        <div class="sectionsContainer">
-	        
-	        	<section class="leftSectionContainer">
-	        		<div>
-	        		 	<c:forEach var="detail" items="${DetailInfo}" >
-			        			<div class="descriptionContainer">
-					  				<div class="descriptionHeader">
-					              		<div class="title">
-					              			<h2>${detail.title }</h2>
-					              			<section class="wishlistHeartIcon">
-					                			<span class="entypo-heart wishlist ${detail.home_seq}" id="${detail.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
-					              			</section>
-										</div>
-					              		<div class="divider-long"></div>
-					              		<div class="hostInfo">
-					              		<h3>숙소 기본 정보</h3>
-					              			<dl>
-					              				<dt>호스트 ${detail.host_info } 님</dt>
-					              				<dd>호스트 소개글 HERE</dd> <!-- //호스트 소개내용을 추가해주세요  -->
-	 				              			</dl>
-	 				              			<p> 숙소 최대 수용 인원 : <span class="maxPeopleNum">${detail.headcount }</span></p>
-	 				              			<input class="unusedDate" type="hidden" value="${detail.unused_date}"/>
-					              		</div>			              		
-					            	</div>
-					            	<div class="divider-long"></div>
-					            <div class="descriptionContent">
-						              <div>
-						                <span>${detail.info }</span>
-						              </div>
-						              <div class="divider-long"></div>
-						              <div>
-						                <span>${detail.rule }</span>
-					              </div>
+           <div class="sectionsContainer">
+           
+              <section class="leftSectionContainer">
+                 <div>
+                     <c:forEach var="detail" items="${DetailInfo}" >
+                          <div class="descriptionContainer">
+                             <div class="descriptionHeader">
+                                   <div class="title">
+                                      <h2>${detail.title }</h2>
+                                      <section class="wishlistHeartIcon">
+                                        <span class="entypo-heart wishlist ${detail.home_seq}" id="${detail.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
+                                      </section>
+                              </div>
+                                   <div class="divider-long"></div>
+                                   <div class="hostInfo">
+                                   <h3>숙소 기본 정보</h3>
+                                      <dl>
+                                         <dt>호스트 ${detail.host_info } 님</dt>
+                                         <dd>호스트 소개글 HERE</dd> <!-- //호스트 소개내용을 추가해주세요  -->
+                                       </dl>
+                                       <p> 숙소 최대 수용 인원 : <span class="maxPeopleNum">${detail.headcount }</span></p>
+                                       <input class="unusedDate" type="hidden" value="${detail.unused_date}"/>
+                                   </div>                             
+                              </div>
+                              <div class="divider-long"></div>
+                           <div class="descriptionContent">
+                                <div>
+                                  <span>${detail.info }</span>
+                                </div>
+                                <div class="divider-long"></div>
+                                <div>
+                                  <span>${detail.rule }</span>
+                             </div>
+
+
 					            </div>
 			     
 	  						</div>
@@ -211,10 +288,148 @@
 	        	</section>
 	        </div>
 	    </div>
+	          	<div class="pay-modal" >
+                					<div class="pay-modalContent">
+                					<h3 class="payHeader">예약 정보 확인</h3>
+                					<div class="divider"></div>
+                					<form class="payForm" action="payment.do" method="post" name="payForm">
+										<span>숙소 이름 : <input type="text" name="title" id="title" value="${title }" readonly/></span>
+										<span>호스트 이메일 : <input type="text" name="host" id="host" value="${hostEmail }" readonly/></span>
+										<span>예약 날짜 : <input type="text" id="date" name="date" readonly></span>
+										<span>인원수 : <input type="text" id="cnt" name="cnt" readonly></span>
+										<span>결제금액:<input type="text" id="price" name="price" readonly></span>
+										<input type="hidden" value="${user.email}" id="userEmail"/>
+										<input type="button" id="confirm" value="결제하기" onclick="importPay()"/>
+										<input type="button" id="cancel" value="취소하기" onclick="cancelBtn()"/>
+										<input type="button" id="refund" value="환불하기" onclick="importRefund()"/>
+										
+									</form>
+									
+                					</div>
+            				</div>
   </body>
+    <!--  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>-->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script><!-- jQuery CDN --->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+  <script type="text/javascript">
+  
+  function importPay(){
+	  var userEmail = document.getElementById("userEmail").value;
+	  var hostEmail = document.getElementById("host").value;
+	  var price = document.getElementById("price").value;
+	  price = price.slice(3,-3);
+	  var title = document.getElementById("title").value;
+	  var headcount = document.getElementById("headcount").value;
+	  headcount.slice(0,-1);
+	  var apply_num;
+	  var res_date = document.getElementById("checkin").value + "," + document.getElementById("checkout").value;
+	 console.log(hostEmail);
+  	IMP.init('imp96676683');
+  	IMP.request_pay({
+	  pg:'html5_inicis',
+	  pay_method: 'card',
+  	  merchant_uid: new Date().getTime(),
+  	  amount: price,
+  	  name: title,
+  	  buyer_email: userEmail
+  	}, function(rsp){
+  		console.log(rsp);
+  		if(rsp.success){
+ 			$.ajax({
+ 				url: 'verifyPayment.do',
+ 				method: 'POST',
+ 				data_type: 'json',
+ 				data: {
+ 				 "imp_uid" : rsp.imp_uid,
+ 				 "merchant_uid" : rsp.merchant_uid,
+ 				 "amount": rsp.paid_amount
+ 				}
+ 			}).done(function(data){
+ 				if(data == false){
+ 					alert("결제 검증 실패. 다시 시도해주세요.");
+ 					apply_num = rsp.apply_num;
+ 					console.log("결제 승인번호 "+apply_num);
+ 					history.back();
+ 					return;
+ 				}else {
+ 					  
+ 					alert("결제가 완료되었습니다.");
+ 					$.ajax({
+ 						url: 'insertHomePayInfo.do', 
+ 			  			 type: 'POST',
+ 			  			 data: { 
+ 			  				"apply_num": rsp.apply_num,
+ 			  			     "total_price": rsp.paid_amount,
+ 			  				 "pay_status": rsp.status,
+ 			  				 "email": rsp.buyer_email, 
+ 			  				 "pay_date": rsp.paid_at,
+ 			  				 "title": rsp.name,
+ 			  				 "res_date": res_date,
+ 			  				 "headcount": headcount,
+ 			  				 "hostEmail": hostEmail
+ 			  			 }
+ 					});
+ 				}
+ 			})//end ajax	
+ 			}else {
+ 				alert(rsp.error_msg);
+ 				history.back();
+ 			}//end if
+  		}//end function(rsp)
+  		
+  	);//end request_pay  	
+  	}//end importPay()
+
+  function importRefund(){
+  		console.log("환불 승인번호: " + apply_num);
+  	
+  	
+  	}
+  	
+  	
+  </script>
+  
+  <script type="text/javascript">
+  var paymodal = document.querySelector(".pay-modal");
+  function resBtnClick(){
+	  
+	  var check = document.getElementById("checkin").value + " ~ " + document.getElementById("checkout").value;
+	  
+	  var checkIn = document.getElementById("checkin").value.split("-");
+	  var checkOut = document.getElementById("checkout").value.split("-");
+
+	  var start = new Date(checkIn[0],checkIn[1],checkIn[2]);
+	  var end = new Date(checkOut[0],checkOut[1],checkOut[2]);
+	  
+      var betweenTime = Math.abs(end.getTime() - start.getTime());
+      var dateCnt = Math.floor(betweenTime / (1000 * 60 * 60 * 24));
+	  
+      check = check + " /" + dateCnt + "일";
+      document.getElementById("date").setAttribute("value", check);
+      
+      var headcount = document.getElementById("headcount").value +"명";
+      document.getElementById("cnt").setAttribute("value", headcount);
+      
+      var price = document.getElementById("totalprice").value;
+      document.getElementById("price").setAttribute("value", price);
+      
+      
+     
+	  paymodal.style.display = "block";
+  }
+	  
+  function cancelBtn(){
+	  paymodal.style.display = "none";	  
+  }
+ 
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+
   <script>
   
   const checkinDate = document.querySelector(".checkin");

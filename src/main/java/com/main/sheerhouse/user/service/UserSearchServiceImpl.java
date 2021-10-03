@@ -35,6 +35,14 @@ public class UserSearchServiceImpl implements UserSearchService {
 		return mapper.getComment(home_seq);
 	}
 
+
+
+	@Override
+	public String searchHostEmail(String home_seq) {
+
+		return mapper.searchHostEmail(home_seq);
+	}
+
 	
 	
 	

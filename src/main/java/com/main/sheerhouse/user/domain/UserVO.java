@@ -1,5 +1,6 @@
 package com.main.sheerhouse.user.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class UserVO {
@@ -10,7 +11,7 @@ public class UserVO {
 	private String phone;
 	private String role;
 	private String gender;
-	private Timestamp birthday;
+	private Date birthday;
 	private boolean smsConfirm;
 	private boolean emailConfirm;
 	private String address;
@@ -68,11 +69,11 @@ public class UserVO {
 		this.gender = gender;
 	}
 
-	public Timestamp getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Timestamp birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

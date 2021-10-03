@@ -12,4 +12,6 @@ public interface UserSearchResultMapper {
 	public List<ResultVO> getDetail(String home_seq);
 	
 	public List<CommentVO> getComment(String home_seq);
+	
+	public String searchHostEmail(String home_seq);
 }

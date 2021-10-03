@@ -19,7 +19,12 @@
 		
     	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
     	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
-	
+	<style>
+		.spanMsg{
+			font-size: 12px;
+			color:red;
+		}
+	</style>
 </head>
 
   <body class="main">
@@ -233,11 +238,14 @@
 		        <div class="divider"></div>
 		        <form class="loginForm" action="emailUserInfo.do" name="loginForm" method="post">
 		            <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요" />
-		            <span onclick="emailsend();" class="authMsg">인증번호 받기</span>
+		            <span id="emailMsg" class="spanMsg"></span>
+		            <span onclick="emailsend();" class="authMsg" id="emailSend">인증번호 받기</span>
 		            <input type="hidden" name="emailcheck" id="emailcheck" class="emailcheck" placeholder="인증번호를 입력해주세요" />
+		            <span id="emailTextMsg" class="spanMsg" ></span>
 		            <span class="movoToJoin" id="emailtext" onClick="emailCheck();"></span>
 		            <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" />
 		            <input type="hidden" name="passwordcheck" id="passwordcheck" placeholder="비밀번호를 다시 입력해주세요" />
+		            <span id="passwordMsg" class="spanMsg" ></span>
 		            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
 		            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
 		        </form>
@@ -282,10 +290,8 @@
     </div>
       </div> <!-- 시작 태그 missing  -->
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
   	<script type="text/javascript" src="/resources/js/main.js"></script>
  	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-
 
 
 <script>
