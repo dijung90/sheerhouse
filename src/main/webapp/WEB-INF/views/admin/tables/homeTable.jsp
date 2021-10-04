@@ -376,7 +376,7 @@
                   
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">회원 정보</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">숙소 정보</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -410,17 +410,8 @@
                                     	<td>${home.info }</td>
                                     	<td>${home.rule }</td>
                                     	<td>${home.host_info }</td>
-                                    	<th>
-	                                    	<c:if test = "${home.status eq on }">
-	                                    		<c:out value = "대여가능" />
-	                                    	</c:if>
-	                                    	<c:if test = "${home.status eq off }">
-	                                    		<c:out value = "대여불가" />
-	                                    	</c:if>
-	                                    	<c:if test = "${home.status eq 알수없음 }">
-	                                    		<c:out value = "대여승인중" />
-	                                    	</c:if>
-                                    	</th>
+                                    	<th>&{home.status}</th>
+	                                    
                                     </tbody>
                                     </c:forEach>
                                 </table>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.main.sheerhouse.admin.service.AdminUserService;
@@ -63,6 +64,14 @@ public class AdminUserController {
 		}
 		
 		return "admin/tables/userTable";
+	}
+	
+	@PostMapping("/userTable.mdo")
+	public String updatestatus(Model model) {
+		List<UserVO> userList = new ArrayList<UserVO>();
+		userList = service.userListAll();
+		model.addAttribute("userList", userList);
+		return "redirect:/admin/tables/userTable";
 	}
 
 /*	

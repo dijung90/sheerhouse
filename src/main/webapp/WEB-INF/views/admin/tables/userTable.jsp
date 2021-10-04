@@ -384,11 +384,12 @@
                                 			<input type = "text" name = "result" placeholder="email 검색" />
                                				<input type = "submit" value="검색" />
                             </form>
+                            <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn">선택</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                  
                                 	<thead>
                                         <tr>
-                                        	<th></th>
+                                        	<th>선택</th>
                                         	 <th>no.</th>
                                             <th>email</th>
                                             <th>이름</th>
@@ -401,14 +402,15 @@
                                     
                                     <c:forEach var="user" items= "${userList}" varStatus="status">
                                     <tbody>
-                                    	<th><input type="checkbox" value="flase"></th>
-                                    	<th>${status.count }</th>
-                                    	<th>${user.email }</th>
-                                    	<th>${user.name }</th>
-                                    	<th>${user.phone }</th>
-                                    	<th>${user.role }</th>
-                                    	<th>${user.regdate }</th>
-                                    	<th>
+                                    <tr>
+                                    	<td><input type="checkbox" name="user_checkBox"></td>
+                                    	<td>${status.count }</td>
+                                    	<td>${user.email }</td>
+                                    	<td>${user.name }</td>
+                                    	<td>${user.phone }</td>
+                                    	<td>${user.role }</td>
+                                    	<td>${user.regdate }</td>
+                                    	<td>
 	                                    	<c:if test = "${user.status eq 1 }">
 	                                    		<c:out value = "정상" />
 	                                    	</c:if>
@@ -418,10 +420,12 @@
 	                                    	<c:if test = "${user.status eq 3 }">
 	                                    		<c:out value = "정지" />
 	                                    	</c:if>
-                                    	</th>
+                                    	</td>
+                                    </tr>
                                     </tbody>
                                     </c:forEach>
                                 </table>
+                                
                                 <div style="display: block; text-align: center;">		
 									<c:if test="${paging.startPage != 1 }">
 										<a href="/userTable.mdo?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -439,7 +443,10 @@
 									<c:if test="${paging.endPage != paging.lastPage}">
 										<a href="/userTable.mdo?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 									</c:if>
-								</div>               
+								</div> 
+								
+								<div class="col-lg-12" id="result1"></div>
+                                <div class="col-lg-12" id="result2"></div>              
                          </div>
                     </div>
 
@@ -506,6 +513,53 @@
 
     <!-- Page level custom scripts -->
     <script src="/resources/admin/js/demo/datatables-demo.js"></script>
+    
+    <script type="text/javascript">
+									$("#selectBtn").click(function(){
+									
+										var rowData = new Array();
+										var tdArr = new Array();
+										var checkbox = $("input[name=user_CheckBox]:checked");
+										
+										// 체크된 체크박스 값을 가져온다
+										checkbox.each(function(i) {
+								
+											// checkbox.parent() : checkbox의 부모는 <td>이다.
+											// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+											var tr = checkbox.parent().parent().eq(i);
+											var td = tr.children();
+											
+											// 체크된 row의 모든 값을 배열에 담는다.
+											rowData.push(tr.text());
+											
+											// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+											var email = td.eq(2).text()+", ";
+											var name = td.eq(3).text()+", ";
+											var phone = td.eq(4).text()+", ";
+											var role = td.eq(5).text()+", ";
+											var regdate = td.eq(6).text()+", ";
+											var status = td.eq(7).text();
+											
+											// 가져온 값을 배열에 담는다.
+											tdArr.push(email);
+											tdArr.push(name);
+											tdArr.push(phone);
+											tdArr.push(role);
+											tdArr.push(regdate);
+											tdArr.push(status);
+											
+											//console.log("email : " + email);
+											//console.log("name : " + name);
+											//console.log("phone : " + phone);
+											//console.log("role : " + role);
+											//console.log("regdate : " + regdate);
+											//console.log("status : " + status);
+										});
+										
+										$("#result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);	
+										$("#result2").html(tdArr);	
+									});
+								</script>
 
 </body>
 

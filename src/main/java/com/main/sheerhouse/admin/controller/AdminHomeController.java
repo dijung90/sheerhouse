@@ -24,7 +24,6 @@ public class AdminHomeController {
 		List<HomeVO> homeList = new ArrayList<HomeVO>();
 		homeList = service.homeListAll();
 		model.addAttribute("homeList", homeList);
-				
 		return "admin/tables/homeTable";
 	}
 

@@ -19,6 +19,8 @@ public interface AdminUserService {
 	public List<UserVO> userResultList(String result);
 	
 	public List<UserVO> selectBoardList(PagingVO vo);
+	
+	public String updatestatus(UserVO vo);
 
 	
 }

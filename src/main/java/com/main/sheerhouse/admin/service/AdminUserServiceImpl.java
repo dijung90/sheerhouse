@@ -2,7 +2,6 @@ package com.main.sheerhouse.admin.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +47,13 @@ public class AdminUserServiceImpl implements AdminUserService{
 	public List<UserVO> selectBoardList(PagingVO vo) {
 		
 		return mapper.selectBoardList(vo);
+		
+	}
+	
+	@Override
+	public String updatestatus(UserVO vo) {
+		
+		return mapper.updatestatus(vo);
 		
 	}
 

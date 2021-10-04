@@ -35,4 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where email like CONCAT('%',#{result},'%') limit #{start}, #{cntPerPage}
 	</select>
 	
+	<update id ="updatestatus">
+		update user set status = #{status} where email = #{email}
+	</update>
+	
 </mapper>
