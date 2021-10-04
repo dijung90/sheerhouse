@@ -2,6 +2,7 @@ package com.main.sheerhouse.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +14,17 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.main.sheerhouse.admin.domain.NoticeVO;
+import com.main.sheerhouse.admin.domain.TermVO;
+import com.main.sheerhouse.admin.service.NoticeImpl;
+import com.main.sheerhouse.admin.service.TermServiceImpl;
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.service.UserLoginService;
@@ -32,6 +39,12 @@ public class UserLoginController {
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	
+	
+	@Autowired
+	NoticeImpl noticeim;
+	
+	@Autowired
+	private TermServiceImpl termim;
 	//메인페이지
 	@GetMapping("/index.do")
 	public void index() {}
@@ -212,5 +225,31 @@ public class UserLoginController {
 	
 	}
 	
+
+	@GetMapping("/newsroom.do")
+    public String boardList(@ModelAttribute("noticeVO") NoticeVO notice, Model model) throws Exception{             
+        List<NoticeVO> list = noticeim.selectnotice(notice);     
+        model.addAttribute("Notice", list);       
+        System.out.println(list);       
+        return "user/newsroom";
+    }
 	
+	
+	@GetMapping("/termcheck.do")
+	public String termcheckpage(TermVO term, HttpServletRequest request, HttpSession session, HttpServletResponse response)throws Exception{
+		session = request.getSession();
+		session.setAttribute("basic", termim.selectbasicterm(term));
+		session.setAttribute("guest", termim.selectguestterm(term));
+		session.setAttribute("host", termim.selecthostterm(term));
+		return "user/termcheck";
+	}
+	
+	@GetMapping("/termaccept.do")
+	public String termpage(TermVO term, HttpServletRequest request, HttpSession session, HttpServletResponse response)throws Exception{
+		session = request.getSession();
+		session.setAttribute("basic", termim.selectbasicterm(term));
+		session.setAttribute("guest", termim.selectguestterm(term));
+		session.setAttribute("host", termim.selecthostterm(term));
+		return "user/termaccept";
+	}
 }	
