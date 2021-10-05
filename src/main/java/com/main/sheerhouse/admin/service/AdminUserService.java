@@ -20,7 +20,18 @@ public interface AdminUserService {
 	
 	public List<UserVO> selectBoardList(PagingVO vo);
 	
-	public String updatestatus(UserVO vo);
+		
+	public List<UserVO> selectHostListAll(PagingVO vo);
+	
+	public List<UserVO> selectHostWaitList(PagingVO vo);
+	
+	public int hostCountBoard();
+	
+	public int hostCountBoardKey();
+	
+	public String updateStopStatus(UserVO vo);
+	
+	public String updateCancleStatus(UserVO vo);
 
 	
 }

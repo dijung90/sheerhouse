@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>sheerHouse - hostPage</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,95 +50,50 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.mdo">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>처음으로</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Menu
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
+            
+             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>숙소정보</span></a>
             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+            
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>회원정보</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+               
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                      
+                        <a class="collapse-item" href="userTable.mdo">유저 목록</a>
+                        <a class="collapse-item" href="hostTable.mdo">호스트 목록</a>
+                        
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
+           
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>차트</span></a>
             </li>
 
             <!-- Divider -->
@@ -168,21 +123,7 @@
                         </button>
                     </form>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-					
-                    <ul class="navbar-nav ml-auto">
+                   <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -255,7 +196,7 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                              
                             </div>
                         </li>
 
@@ -366,26 +307,22 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
+                  <!-- DataTales Example -->
                   
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">회원 정보</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                            <form method = "get" action = "userTable.mdo">
+                            <div class="table">
+                            <form method = "get" action = "hostTable.mdo">
                                 			<input type = "text" name = "result" placeholder="email 검색" />
                                				<input type = "submit" value="검색" />
-                               				<button type="button" class="btn btn-outline btn-primary pull-right" id="stopBtn" onclick="Check()">정지</button>
-                               				<button type="button" class="btn btn-outline btn-primary pull-right" id="cancleBtn">해제</button>
-                              	<form method="get" action ="userTable.mdo">
+                            </form>
+                            
+                            <form method = "get" action = "hostTable.mdo">
+                            
+                            <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn">선택</button>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                  
                                 	<thead>
@@ -395,33 +332,28 @@
                                             <th>email</th>
                                             <th>이름</th>
                                             <th>연락처</th>
-                                            <th>호스팅 여부</th>
+                                            <th>호스팅 승인 여부</th>
                                             <th>가입일자</th>
-                                            <th>상태</th>
                                         </tr>
                                     </thead>
                                     
-                                    <c:forEach var="user" items= "${userList}" varStatus="status">
+                                    <c:forEach var="host" items= "${hostList}" varStatus="status">
                                     <tbody>
                                     <tr>
-                                    	<td><input type="checkbox" name="user_checkBox"></td>
+                                    	<td><input type="checkbox" name="host_checkBox"></td>
                                     	<td>${status.count }</td>
-                                    	<td>${user.email }</td>
-                                    	<td>${user.name }</td>
-                                    	<td>${user.phone }</td>
-                                    	<td>${user.role }</td>
-                                    	<td>${user.regdate }</td>
+                                    	<td>${host.email }</td>
+                                    	<td>${host.name }</td>
+                                    	<td>${host.phone }</td>
                                     	<td>
-	                                    	<c:if test = "${user.status eq 1 }">
-	                                    		<c:out value = "정상" />
+	                                    	<c:if test = "${host.role eq 'wait' }">
+	                                    		<c:out value = "심사중" />
 	                                    	</c:if>
-	                                    	<c:if test = "${user.status eq 2 }">
-	                                    		<c:out value = "탈퇴" />
+	                                    	<c:if test = "${host.role eq 'host' }">
+	                                    		<c:out value = "심사완료" />
 	                                    	</c:if>
-	                                    	<c:if test = "${user.status eq 3 }">
-	                                    		<c:out value = "정지" />
-	                                    	</c:if>
-                                    	</td>
+	                                    </td>
+	                                    <td>${host.regdate }</td>
                                     </tr>
                                     </tbody>
                                     </c:forEach>
@@ -430,7 +362,7 @@
                                 </form>
                                 <div style="display: block; text-align: center;">		
 									<c:if test="${paging.startPage != 1 }">
-										<a href="/userTable.mdo?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+										<a href="/hostTable.mdo?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 									</c:if>
 									<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 										<c:choose>
@@ -438,17 +370,14 @@
 												<b>${p}</b>
 											</c:when>
 										<c:when test="${p != paging.nowPage }">
-											<a href="/userTable.mdo?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
+											<a href="/hostTable.mdo?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p}</a>
 										</c:when>
 										</c:choose>
 									</c:forEach>
 									<c:if test="${paging.endPage != paging.lastPage}">
-										<a href="/userTable.mdo?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+										<a href="/hostTable.mdo?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 									</c:if>
-								</div> 
-								</form>
-								<div class="col-lg-12" id="emailList"></div>
-                                           
+								</div>               
                          </div>
                     </div>
 
@@ -462,7 +391,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; sheerHouse 2021</span>
                     </div>
                 </div>
             </footer>
@@ -514,11 +443,7 @@
 
     <!-- Page level custom scripts -->
     <script src="/resources/admin/js/demo/datatables-demo.js"></script>
-    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-    
-    <script src="/resources/admin/js/checkbox.js"></script>
-    
+
 </body>
 
 </html>

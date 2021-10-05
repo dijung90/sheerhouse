@@ -9,6 +9,8 @@ public interface AdminUserMapper {
 	
 	public List<UserVO> userListAll();
 	
+	
+	
 		// 게시물 총 갯수
 	public int countBoard();
 
@@ -20,5 +22,15 @@ public interface AdminUserMapper {
 	
 	public List<UserVO> selectBoardList(PagingVO vo);
 	
-	public String updatestatus(UserVO vo);
+	public List<UserVO> selectHostListAll(PagingVO vo);
+	
+	public List<UserVO> selectHostWaitList(PagingVO vo);
+	
+	public int hostCountBoard();
+	
+	public int hostCountBoardKey();
+	
+	public String updateStopStatus(UserVO vo);
+	
+	public String updateCancleStatus(UserVO vo);
 }

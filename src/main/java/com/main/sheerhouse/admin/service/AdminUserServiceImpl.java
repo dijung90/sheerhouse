@@ -20,7 +20,7 @@ public class AdminUserServiceImpl implements AdminUserService{
 		
 		return mapper.userListAll();
 	}
-	
+		
 	@Override
 	public List<UserVO> userResultList(String result) {
 		
@@ -49,12 +49,35 @@ public class AdminUserServiceImpl implements AdminUserService{
 		return mapper.selectBoardList(vo);
 		
 	}
+		
+	@Override
+	public List<UserVO> selectHostListAll(PagingVO vo){
+		return mapper.selectHostListAll(vo);
+	}
 	
 	@Override
-	public String updatestatus(UserVO vo) {
-		
-		return mapper.updatestatus(vo);
-		
+	public List<UserVO> selectHostWaitList(PagingVO vo){
+		return mapper.selectHostWaitList(vo);
+	}
+	
+	@Override
+	public int hostCountBoard() {
+		return mapper.hostCountBoard();
+	}
+	
+	@Override
+	public int hostCountBoardKey() {
+		return mapper.hostCountBoardKey();
+	}
+	
+	@Override
+	public String updateStopStatus(UserVO vo) {
+		return mapper.updateStopStatus(vo);
+	}
+	
+	@Override
+	public String updateCancleStatus(UserVO vo) {
+		return mapper.updateCancleStatus(vo);
 	}
 
 	
