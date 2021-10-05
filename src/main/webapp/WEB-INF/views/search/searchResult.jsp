@@ -8,16 +8,45 @@
 <title>검색결과입니다</title>
 
 <link rel="stylesheet" href="/resources/css/searchResult.css" />
+<script type="text/javascript">
+function imgSetting(url){
+	var imgs = url.slice(1,-1);
+	var img = imgs.split(",");
+	//console.log(img);
+	return img[0];
+}
+
+
+function heart(){
+	var home = document.getElementById("home").value;
+	var wish = document.getElementById("wishlist").value;
+	var list = wish.slice(1, -1);
+	list = list.split(", ");
+
+	var result = list.some(function (e, i, arr){
+		var r = false;
+		if(e === home) r = true;
+		return r;
+	});
+	
+	if(result){
+		console.log(list);
+		console.log(document.getElementById(home));
+		document.getElementById(home).style.color='#e55763';
+	}
+	document.getElementById("home").remove();
+
+}
+
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
-     
-<%-- 	<c:set var="email" value="jenny" /> --%>
 	
       <div class="accomodationResults-container">
         <div class="accomodationResult">
           <section class="accomodationResult-container">
-            <h2 class="searchresultHeader">${location } 지역의 숙소 결과입니다.</h2>
+            <h2 class="searchresultHeader">${search.location} 지역의 숙소 결과입니다.</h2>
             <span class="searchHeader-sub">코로나 관련 정보를 확인하세요</span>
           </section>
           
@@ -28,7 +57,17 @@
             <div class="resultAccomodation-container">
               <div class="resultAccomodation">
                 <div class="resultAccomodationImg">
-                  <img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${search.home_seq}${search.host_seq}/${search.home_seq}${search.host_seq}${search.title}-1.jpg" alt="accomodationPhoto1" />
+                	<input type="hidden" id="home_seq" value="${search.home_seq}"/>
+                	<input type="hidden" id="url" value="${search.url}"/>
+					<img src="" id="${search.home_seq}h" alt="homephoto" />
+                      <script>
+                      var home_seq = document.getElementById("home_seq").value+"h";
+                      var url = document.getElementById("url").value;
+                      
+                      document.getElementById(home_seq).src=imgSetting(url);
+                      document.getElementById("home_seq").remove();
+                      document.getElementById("url").remove();
+					</script>
                 </div>
                 <div class="resultAccomodationText">
                   <a href="searchResultDetail.do?home_seq=${search.home_seq}&title=${search.title}" target="_blank"><span>${search.title }</span></a>
@@ -36,9 +75,12 @@
                   <input class="prices" type="text" value="${search.price }"/>원 <span> /1박</span>
                   <input class="locations" type="hidden" value="${search.address }"/>
                 </div>
-                <div class="wishlistHeartIcon" id="wishlistHeartIcon">
-                	<span class="entypo-heart wishlist ${search.home_seq}" id="${search.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
-                </div>
+                	<div class="wishlistHeartIcon" id="wishlistHeartIcon">
+                	<input type="hidden" id="home" value="${search.home_seq }">
+                	<input type="hidden" id="wishlist" value="${wishlist}"/>
+                		<span class="entypo-heart wishlist ${search.home_seq}" id="${search.home_seq}" active="false" style="color:rgb(157,157,157);"></span> 
+                		<script>heart();</script>
+                	</div>
               </div>
             </div>
             <div class="divider-resultAccomodation"></div>
@@ -87,18 +129,18 @@
 					geocoder.addressSearch(locations[i].value, getmapData);
 				}
 				getMapDes();
-			  console.log("Hello");
+			 // console.log("Hello");
 			  await sleep(2000);
-			  console.log("in sleep " + posX[1]);
-			  console.log("in sleep " + positions[1]);
+			 // console.log("in sleep " + posX[1]);
+			 // console.log("in sleep " + positions[1]);
 			  drawToMap();
-			  console.log("World!");
+			//  console.log("World!");
 			  await sleep(2000);
-			  console.log("Goodbye!");
+			//  console.log("Goodbye!");
 			}
 
 			delayedGreeting();
-		 console.log(positions);
+		 //console.log(positions);
 		 function getmapData(results, status){
 				if (status === kakao.maps.services.Status.OK) {
 					for (var i = 0; i<results.length; i++){
@@ -106,12 +148,12 @@
 			            //console.log(results[i].y);
 			            posX.push(results[i].x);
 			            posY.push(results[i].y);
-			            console.log(posX);
-			            console.log(posY);
-			       		//return posX, posY;
+			            //console.log(posX);
+			           // console.log(posY);
+			       		return posX, posY;
 			        }
 				}
-			       console.log("in getMapData " + posX[0]);
+			   //    console.log("in getMapData " + posX[0]);
 			}
 		
 		 
@@ -161,7 +203,7 @@
 				wishlists.forEach(wishlist => {
 					wishlist.addEventListener('change', function() {
 					 	var con = wishlist.getAttribute("active");
-					 	console.log("hihi" + con);
+					 	//console.log("hihi" + con);
 					  });
 					})
 		
@@ -186,10 +228,10 @@
 						dataType: "text",
 						success : function(result){
 							if(result == "selected"){
-								console.log("added");
+								//console.log("added");
 								$('.'+ home_seq).addBack().css({"color": "#e55763"});
 								}else{
-									console.log("error");
+									//console.log("error");
 									$('.'+ home_seq).addBack().css({"color": "#9d9d9d"});
 
 							}
@@ -204,6 +246,7 @@
 </script>
 <%@ include file="/WEB-INF/views/Footer.jsp"%>
 </body>
+
 </html>
 
 </body>

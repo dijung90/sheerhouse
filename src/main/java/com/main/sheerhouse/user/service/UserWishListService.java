@@ -7,4 +7,6 @@ import com.main.sheerhouse.user.domain.WishListVO;
 public interface UserWishListService {
 
 	public String wishlist(WishListVO wish);
+	
+	public List<Integer> selectUserWishlist(String email);
 }

@@ -1,80 +1,93 @@
 package com.main.sheerhouse.host.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class HomeVO {
-	private int homeSeq;
-	private int hostSeq;
+
+	private int home_seq;
+	private int host_seq;
+	private String hostEmail;
 	private String title;
 	private String type;
 	private String status;
 	private String address;
-	private String unusedDate;
-	private String peakSeason;
-	private String offSeason;
-	private int peakPricePer;
-	private int offPricePer;
-	private int weekendPrice;
+	private String unused_date;
+	private String peck_season;
+	private String off_season;
+	private int peak_price_per;
+	private int off_price_per;
+	private int weekend_price;
 	private int price;
 	private int headcount;
 	private String info;
 	private String rule;
 	private String url;
-	private String hostInfo;
+	private String host_info;
+	private Timestamp update_date;
+	private int min_date_count;
+	private int max_date_count;
+	private int long_price_per;
 	private Timestamp regdate;
-	private Timestamp updataDate;
-	private int minDateCount;
-	private int maxDateCount;
-	private int longPricePer;
 	private int cnt;
 	
 	public HomeVO() {}
 
-	public HomeVO(int homeSeq, int hostSeq, String title, String type, String status, String address, String unusedDate,
-			String peakSeason, String offSeason, int peakPricePer, int offPricePer, int weekendPrice, int price,
-			int headcount, String info, String rule, String url, String hostInfo, Timestamp regdate,
-			Timestamp updataDate, int minDateCount, int maxDateCount, int longPricePer, int cnt) {
+	public HomeVO(int home_seq, int host_seq, String hostEmail, String title, String type, String status,
+			String address, String unused_date, String peck_season, String off_season, int peak_price_per,
+			int off_price_per, int weekend_price, int price, int headcount, String info, String rule, String url,
+			String host_info, Timestamp update_date, int min_date_count, int max_date_count, int long_price_per,
+			Timestamp regdate, int cnt) {
 		super();
-		this.homeSeq = homeSeq;
-		this.hostSeq = hostSeq;
+		this.home_seq = home_seq;
+		this.host_seq = host_seq;
+		this.hostEmail = hostEmail;
 		this.title = title;
 		this.type = type;
 		this.status = status;
 		this.address = address;
-		this.unusedDate = unusedDate;
-		this.peakSeason = peakSeason;
-		this.offSeason = offSeason;
-		this.peakPricePer = peakPricePer;
-		this.offPricePer = offPricePer;
-		this.weekendPrice = weekendPrice;
+		this.unused_date = unused_date;
+		this.peck_season = peck_season;
+		this.off_season = off_season;
+		this.peak_price_per = peak_price_per;
+		this.off_price_per = off_price_per;
+		this.weekend_price = weekend_price;
 		this.price = price;
 		this.headcount = headcount;
 		this.info = info;
 		this.rule = rule;
 		this.url = url;
-		this.hostInfo = hostInfo;
+		this.host_info = host_info;
+		this.update_date = update_date;
+		this.min_date_count = min_date_count;
+		this.max_date_count = max_date_count;
+		this.long_price_per = long_price_per;
 		this.regdate = regdate;
-		this.updataDate = updataDate;
-		this.minDateCount = minDateCount;
-		this.maxDateCount = maxDateCount;
-		this.longPricePer = longPricePer;
 		this.cnt = cnt;
 	}
 
-	public int getHomeSeq() {
-		return homeSeq;
+	public int getHome_seq() {
+		return home_seq;
 	}
 
-	public void setHomeSeq(int homeSeq) {
-		this.homeSeq = homeSeq;
+	public void setHome_seq(int home_seq) {
+		this.home_seq = home_seq;
 	}
 
-	public int getHostSeq() {
-		return hostSeq;
+	public int getHost_seq() {
+		return host_seq;
 	}
 
-	public void setHostSeq(int hostSeq) {
-		this.hostSeq = hostSeq;
+	public void setHost_seq(int host_seq) {
+		this.host_seq = host_seq;
+	}
+
+	public String getHostEmail() {
+		return hostEmail;
+	}
+
+	public void setHostEmail(String hostEmail) {
+		this.hostEmail = hostEmail;
 	}
 
 	public String getTitle() {
@@ -109,52 +122,52 @@ public class HomeVO {
 		this.address = address;
 	}
 
-	public String getUnusedDate() {
-		return unusedDate;
+	public String getUnused_date() {
+		return unused_date;
 	}
 
-	public void setUnusedDate(String unusedDate) {
-		this.unusedDate = unusedDate;
+	public void setUnused_date(String unused_date) {
+		this.unused_date = unused_date;
 	}
 
-	public String getPeakSeason() {
-		return peakSeason;
+	public String getPeck_season() {
+		return peck_season;
 	}
 
-	public void setPeakSeason(String peakSeason) {
-		this.peakSeason = peakSeason;
+	public void setPeck_season(String peck_season) {
+		this.peck_season = peck_season;
 	}
 
-	public String getOffSeason() {
-		return offSeason;
+	public String getOff_season() {
+		return off_season;
 	}
 
-	public void setOffSeason(String offSeason) {
-		this.offSeason = offSeason;
+	public void setOff_season(String off_season) {
+		this.off_season = off_season;
 	}
 
-	public int getPeakPricePer() {
-		return peakPricePer;
+	public int getPeak_price_per() {
+		return peak_price_per;
 	}
 
-	public void setPeakPricePer(int peakPricePer) {
-		this.peakPricePer = peakPricePer;
+	public void setPeak_price_per(int peak_price_per) {
+		this.peak_price_per = peak_price_per;
 	}
 
-	public int getOffPricePer() {
-		return offPricePer;
+	public int getOff_price_per() {
+		return off_price_per;
 	}
 
-	public void setOffPricePer(int offPricePer) {
-		this.offPricePer = offPricePer;
+	public void setOff_price_per(int off_price_per) {
+		this.off_price_per = off_price_per;
 	}
 
-	public int getWeekendPrice() {
-		return weekendPrice;
+	public int getWeekend_price() {
+		return weekend_price;
 	}
 
-	public void setWeekendPrice(int weekendPrice) {
-		this.weekendPrice = weekendPrice;
+	public void setWeekend_price(int weekend_price) {
+		this.weekend_price = weekend_price;
 	}
 
 	public int getPrice() {
@@ -197,12 +210,44 @@ public class HomeVO {
 		this.url = url;
 	}
 
-	public String getHostInfo() {
-		return hostInfo;
+	public String getHost_info() {
+		return host_info;
 	}
 
-	public void setHostInfo(String hostInfo) {
-		this.hostInfo = hostInfo;
+	public void setHost_info(String host_info) {
+		this.host_info = host_info;
+	}
+
+	public Timestamp getUpdate_date() {
+		return update_date;
+	}
+
+	public void setUpdate_date(Timestamp update_date) {
+		this.update_date = update_date;
+	}
+
+	public int getMin_date_count() {
+		return min_date_count;
+	}
+
+	public void setMin_date_count(int min_date_count) {
+		this.min_date_count = min_date_count;
+	}
+
+	public int getMax_date_count() {
+		return max_date_count;
+	}
+
+	public void setMax_date_count(int max_date_count) {
+		this.max_date_count = max_date_count;
+	}
+
+	public int getLong_price_per() {
+		return long_price_per;
+	}
+
+	public void setLong_price_per(int long_price_per) {
+		this.long_price_per = long_price_per;
 	}
 
 	public Timestamp getRegdate() {
@@ -211,38 +256,6 @@ public class HomeVO {
 
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
-	}
-
-	public Timestamp getUpdataDate() {
-		return updataDate;
-	}
-
-	public void setUpdataDate(Timestamp updataDate) {
-		this.updataDate = updataDate;
-	}
-
-	public int getMinDateCount() {
-		return minDateCount;
-	}
-
-	public void setMinDateCount(int minDateCount) {
-		this.minDateCount = minDateCount;
-	}
-
-	public int getMaxDateCount() {
-		return maxDateCount;
-	}
-
-	public void setMaxDateCount(int maxDateCount) {
-		this.maxDateCount = maxDateCount;
-	}
-
-	public int getLongPricePer() {
-		return longPricePer;
-	}
-
-	public void setLongPricePer(int longPricePer) {
-		this.longPricePer = longPricePer;
 	}
 
 	public int getCnt() {
@@ -255,13 +268,15 @@ public class HomeVO {
 
 	@Override
 	public String toString() {
-		return "HomeVO [homeSeq=" + homeSeq + ", hostSeq=" + hostSeq + ", title=" + title + ", type=" + type
-				+ ", status=" + status + ", address=" + address + ", unusedDate=" + unusedDate + ", peakSeason="
-				+ peakSeason + ", offSeason=" + offSeason + ", peakPricePer=" + peakPricePer + ", offPricePer="
-				+ offPricePer + ", weekendPrice=" + weekendPrice + ", price=" + price + ", headcount=" + headcount
-				+ ", info=" + info + ", rule=" + rule + ", url=" + url + ", hostInfo=" + hostInfo + ", regdate="
-				+ regdate + ", updataDate=" + updataDate + ", minDateCount=" + minDateCount + ", maxDateCount="
-				+ maxDateCount + ", longPricePer=" + longPricePer + ", cnt=" + cnt + "]";
+		return "HomeVO [home_seq=" + home_seq + ", host_seq=" + host_seq + ", hostEmail=" + hostEmail + ", title="
+				+ title + ", type=" + type + ", status=" + status + ", address=" + address + ", unused_date="
+				+ unused_date + ", peck_season=" + peck_season + ", off_season=" + off_season + ", peak_price_per="
+				+ peak_price_per + ", off_price_per=" + off_price_per + ", weekend_price=" + weekend_price + ", price="
+				+ price + ", headcount=" + headcount + ", info=" + info + ", rule=" + rule + ", url=" + url
+				+ ", host_info=" + host_info + ", update_date=" + update_date + ", min_date_count=" + min_date_count
+				+ ", max_date_count=" + max_date_count + ", long_price_per=" + long_price_per + ", regdate=" + regdate
+				+ ", cnt=" + cnt + "]";
 	}
 	
+
 }

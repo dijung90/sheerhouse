@@ -2,6 +2,7 @@ package com.main.sheerhouse.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +14,14 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.main.sheerhouse.commons.CoolSmsAPI;
+import com.main.sheerhouse.commons.ImportAPI;
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.service.UserLoginService;
@@ -31,6 +35,31 @@ public class UserLoginController {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
+	@Autowired
+	private CoolSmsAPI api;
+	
+	
+	@GetMapping("/test.do")
+	public void test() {}
+	
+	@PostMapping("/test.do")
+	public @ResponseBody String testPost(String tel, Model model){
+		
+		String result = "";
+		String confirmNumber = "";
+		Random rand = new Random();
+		for(int i=0; i<6; i++) {
+			String random = Integer.toString(rand.nextInt(10));
+			confirmNumber+=random;
+		}
+		
+		api.certifiedSMS(tel, confirmNumber);
+		
+		result = confirmNumber;
+		
+		return result;
+	}
 	
 	//메인페이지
 	@GetMapping("/index.do")

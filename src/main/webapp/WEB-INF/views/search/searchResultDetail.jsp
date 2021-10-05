@@ -51,7 +51,34 @@
   color: #6f1313;
   font-size: 20px;
 </style>
+<script type="text/javascript">
 
+function imgSetting(url, num){
+	console.log("진입");
+	var imgs = url.slice(1,-1);
+	var img = imgs.split(", ");
+	return img[num];
+}
+
+function heart(){
+	var home = document.getElementById("home").value;
+	var wish = document.getElementById("wishlist").value;
+	var list = wish.slice(1, -1);
+	list = list.split(", ");
+
+	var result = list.some(function (e, i, arr){
+		var r = false;
+		if(e === home) r = true;
+		return r;
+	});
+	document.getElementById("home").remove();
+	if(result){
+		document.getElementById(home).style.color= "#e55763";
+		
+	}
+}
+
+</script>
 </head>
  <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
@@ -59,41 +86,45 @@
       
 
           <div class="headerTitle">
-            <h2>${title}</h2>
+            <h2>${DetailInfo[0].title}</h2>
           </div>  
           
              <div class="slideshow-container">
-          <c:forEach var="detail" items="${DetailInfo}" >
+       <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
                <div class="mySlides faded">
                  <div class="numbertext">1 / 3</div>
-                 <img
-                   src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-1.jpg" alt="accomodationPhoto1"
-                   style="width: 100%"
-                 />
+				<input type="hidden" id="url" value="${detail.url}"/> 
+                 <img src="" id="1" style="width: 100%" alt="accomodationPhoto1"/>
+                      <script>
+                      var url = document.getElementById("url").value;
+                      document.getElementById("1").src=imgSetting(url,0);
+                      </script>
                  <div class="text">${detail.title }</div>
                </div>
    
                <div class="mySlides faded">
                  <div class="numbertext">2 / 3</div>
-                 <img
-                    src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-2.jpg" alt="accomodationPhoto2"
-                   style="width: 100%"
-                 />
+                <img src="" id="2" style="width: 100%" alt="accomodationPhoto1"/>
+                      <script>
+                      var url = document.getElementById("url").value;
+                      document.getElementById("2").src=imgSetting(url,1);
+                      </script>
                  <div class="text">${detail.title }</div>
-                   <input type="hidden" value="${user.email}" id="email_val" />
                </div>
    
                <div class="mySlides fade">
                  <div class="numbertext">3 / 3</div>
-                    <img
-                       src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-3.jpg" alt="accomodationPhoto3"
-                      style="width: 100%"
-                    />
+                    <img src="" id="3" style="width: 100%" alt="accomodationPhoto1"/>
+                     <script>
+                      var url = document.getElementById("url").value;
+                      document.getElementById("3").src=imgSetting(url,2);
+                      </script>
                     <div class="text">${detail.title }</div>
+                    <input type="hidden" value="${user.email}" id="email_val" />
                 </div>
                 
-                 </c:forEach>
+               </c:forEach>
            
             <div class="arrows">
                <!-- Next and previous buttons -->
@@ -123,15 +154,18 @@
                                    <div class="title">
                                       <h2>${detail.title }</h2>
                                       <section class="wishlistHeartIcon">
+                                        <input type="hidden" id="home" value="${detail.home_seq }">
+                                     	<input type="hidden" id="wishlist" value="${wishlist}"/>
                                         <span class="entypo-heart wishlist ${detail.home_seq}" id="${detail.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
+                                        <script>heart();</script>
                                       </section>
                               </div>
                                    <div class="divider-long"></div>
                                    <div class="hostInfo">
                                    <h3>숙소 기본 정보</h3>
                                       <dl>
-                                         <dt>호스트 ${detail.host_info } 님</dt>
-                                         <dd>호스트 소개글 HERE</dd> <!-- //호스트 소개내용을 추가해주세요  -->
+                                         <dt>호스트 ${hostEmail} 님</dt>
+                                         <dd>${detail.host_info}</dd> <!-- //호스트 소개내용을 추가해주세요  -->
                                        </dl>
                                        <p> 숙소 최대 수용 인원 : <span class="maxPeopleNum">${detail.headcount }</span></p>
                                        <input class="unusedDate" type="hidden" value="${detail.unused_date}"/>
@@ -146,15 +180,12 @@
                                 <div>
                                   <span>${detail.rule }</span>
                              </div>
-
-
 					            </div>
-			     
 	  						</div>
 	  					</c:forEach>
 	  					<div class="reviewHeader">
 	  						<h2>후기</h2>
-	  						<span>{} 개의 후기가 있습니다. </span>
+	  						<span>${commentCnt} 개의 후기가 있습니다. </span>
 	  					</div>
 	  			
 	  					<c:forEach var="comment" items="${CommentInfo}">	
@@ -192,7 +223,9 @@
 		                       			 </div> -->
 			                       			 <div class="date-container">
 										        
-										         <div class="input-group input-daterange"> <input name="checkin" type="text" class="form-control input1" placeholder="체크인" readonly> <input name="checkout" type="text" class="form-control input2" placeholder="체크 아웃" readonly> </div>
+										         <div class="input-group input-daterange"> 
+										         <input id="checkin" name="checkin" type="text" class="form-control input1" placeholder="체크인" readonly> 
+										         <input id="checkout" name="checkout" type="text" class="form-control input2" placeholder="체크 아웃" readonly> </div>
 										          
 										      </div>
 				                    	</div>
@@ -211,6 +244,7 @@
 								                  value="+"
 								                />
 								                  <input
+								                  id="headcount"
 								                  type="text"
 								                  value="0"
 								                  name="searchMaxPeople"
@@ -238,36 +272,39 @@
 									                				<span class="manyNights">N 박</span>
 							                					</div>
 								                				<div class="totalPrice">
-								                					<input class="totalPriceInput" value="" type="text" name="totalprice"/>
+								                					<input id="totalPrice" class="totalPriceInput" value="" type="text" name="totalprice"/>
 								                				</div>
 															</div>
 							                			</div>
 							              			</div>
 							              	</c:forEach>
 			                    		
-			                    		<input class="reservationBtn" type="submit" value="예약하기">
+			                    		<input class="reservationBtn" type="button" value="예약하기" onclick="resBtn()"/>
 			                    		<p class="warnMsg">  </p>
+			                    		<span id="resMsg" style="align-content: center; font-size: 12px; color: red;">
 	                				</div>
 	                				</form>	
 	            		</div>
 	        	</section>
 	        </div>
-	    </div>
+	 
 	          	<div class="pay-modal" >
                 					<div class="pay-modalContent">
                 					<h3 class="payHeader">예약 정보 확인</h3>
                 					<div class="divider"></div>
                 					<form class="payForm" action="payment.do" method="post" name="payForm">
-										<span>숙소 이름 : <input type="text" name="title" id="title" value="${title }" readonly/></span>
+										<span>숙소 이름 : <input type="text" name="title" id="title" value="${DetailInfo[0].title }" readonly/></span>
 										<span>호스트 이메일 : <input type="text" name="host" id="host" value="${hostEmail }" readonly/></span>
 										<span>예약 날짜 : <input type="text" id="date" name="date" readonly></span>
 										<span>인원수 : <input type="text" id="cnt" name="cnt" readonly></span>
 										<span>결제금액:<input type="text" id="price" name="price" readonly></span>
 										<input type="hidden" value="${user.email}" id="userEmail"/>
+										<input type="hidden" value="${user.birthday}" id="userBirthday"/>
+										<input type="hidden" value="${DetailInfo[0].headcount}" id="maxHeadcount"/>
+										<input type="hidden" value="${DetailInfo[0].home_seq}" id="home_seq"/>
 										<input type="button" id="confirm" value="결제하기" onclick="importPay()"/>
 										<input type="button" id="cancel" value="취소하기" onclick="cancelBtn()"/>
 										<input type="button" id="refund" value="환불하기" onclick="importRefund()"/>
-										
 									</form>
 									
                 					</div>
@@ -282,6 +319,7 @@
   <script type="text/javascript">
   
   function importPay(){
+	  var paymodal = document.querySelector(".pay-modal");
 	  var userEmail = document.getElementById("userEmail").value;
 	  var hostEmail = document.getElementById("host").value;
 	  var price = document.getElementById("price").value;
@@ -290,8 +328,9 @@
 	  var headcount = document.getElementById("headcount").value;
 	  headcount.slice(0,-1);
 	  var apply_num;
-	  var res_date = document.getElementById("checkin").value + "," + document.getElementById("checkout").value;
-	 console.log(hostEmail);
+	  var checkin = document.getElementById("checkin").value;
+	  var checkout = document.getElementById("checkout").value;
+	  var home_seq = document.getElementById("home_seq").value;
   	IMP.init('imp96676683');
   	IMP.request_pay({
 	  pg:'html5_inicis',
@@ -316,8 +355,7 @@
  				if(data == false){
  					alert("결제 검증 실패. 다시 시도해주세요.");
  					apply_num = rsp.apply_num;
- 					console.log("결제 승인번호 "+apply_num);
- 					history.back();
+ 	 				paymodal.style.display = "none";	  
  					return;
  				}else {
  					  
@@ -332,16 +370,22 @@
  			  				 "email": rsp.buyer_email, 
  			  				 "pay_date": rsp.paid_at,
  			  				 "title": rsp.name,
- 			  				 "res_date": res_date,
+ 			  				 "checkin": checkin,
+ 			  				 "checkout": checkout,
  			  				 "headcount": headcount,
- 			  				 "hostEmail": hostEmail
+ 			  				 "hostEmail": hostEmail,
+ 			  				 "home_seq": home_seq
+ 			  			 },
+ 			  			 success: function(){
+ 			  				location.href="mypage.do";
  			  			 }
  					});
  				}
  			})//end ajax	
  			}else {
  				alert(rsp.error_msg);
- 				history.back();
+ 				paymodal.style.display = "none";	  
+
  			}//end if
   		}//end function(rsp)
   		
@@ -350,46 +394,86 @@
 
   function importRefund(){
   		console.log("환불 승인번호: " + apply_num);
-  	
-  	
-  	}
+  }
   	
   	
   </script>
   
   <script type="text/javascript">
+  console.log("진입");
   var paymodal = document.querySelector(".pay-modal");
-  function resBtnClick(){
+  //const warnMsg = document.querySelector(".warnMsg");
+  var msg = document.getElementById("resMsg");
+  function resBtn(){
+	  var ci = document.getElementById("checkin").value;
+	  var co = document.getElementById("checkout").value;
+	  var userEmail = document.getElementById("userEmail").value;
+	  var headcount = document.getElementById("headcount").value;
+	  var maxHeadcount = document.getElementById("maxHeadcount").value;
+	  var userAge = calcAge(document.getElementById("userBirthday").value);
 	  
-	  var check = document.getElementById("checkin").value + " ~ " + document.getElementById("checkout").value;
+	  if(userEmail==""){
+		  msg.innerHTML="로그인한 회원만 예약가능합니다.";	
+		  return;
+  	  }else if(ci == "" || co == ""){
+  		msg.innerHTML="예약날짜는 필수사항입니다.";
+		  return;
+  	  }else if(ci == co){
+  		msg.innerHTML="예약날짜는 1박 이상만 예약가능합니다.";
+		  return;
+  	  }else if(headcount == 0){
+  		msg.innerHTML="예약 인원수는 최소 1명 이상입니다.";
+	  	  return;
+	  }else if(document.getElementById("userBirthday").value == ""){
+		  msg.innerHTML="생년월일은 필수정보입니다. 마이페이지에서 회원정보를 수정해주세요.";
+		  return;
+	  }else if (userAge < 19){
+		  msg.innerHTML="만 18세 이상만 예약할 수 있습니다.";
+		  return;
+	  }
+  
 	  
-	  var checkIn = document.getElementById("checkin").value.split("-");
-	  var checkOut = document.getElementById("checkout").value.split("-");
+	  msg.innerHTML="";
+	  var check = ci + " ~ " + co;
+	  document.getElementById("date").setAttribute("value", check);
+	  
+	  var checkIn = ci.split("-");
+	  var checkOut = co.split("-");
 
 	  var start = new Date(checkIn[0],checkIn[1],checkIn[2]);
 	  var end = new Date(checkOut[0],checkOut[1],checkOut[2]);
 	  
       var betweenTime = Math.abs(end.getTime() - start.getTime());
       var dateCnt = Math.floor(betweenTime / (1000 * 60 * 60 * 24));
-	  
-      check = check + " /" + dateCnt + "일";
-      document.getElementById("date").setAttribute("value", check);
       
-      var headcount = document.getElementById("headcount").value +"명";
+      var headcount = headcount +"명";
       document.getElementById("cnt").setAttribute("value", headcount);
       
-      var price = document.getElementById("totalprice").value;
+      var price = document.getElementById("totalPrice").value;
       document.getElementById("price").setAttribute("value", price);
-      
-      
      
 	  paymodal.style.display = "block";
   }
-	  
+  
   function cancelBtn(){
 	  paymodal.style.display = "none";	  
   }
  
+  function calcAge(birth) {
+	    var date = new Date();
+	    var year = date.getFullYear();
+	    var month = (date.getMonth() + 1);
+	    var day = date.getDate();       
+	    if (month < 10) month = '0' + month;
+	    if (day < 10) day = '0' + day;
+	    var monthDay = month + day;
+	    birth = birth.replace('-', '').replace('-', '');
+	    var birthdayy = birth.substr(0, 4);
+	    var birthdaymd = birth.substr(4, 4); 
+	    var age = monthDay < birthdaymd ? year - birthdayy - 1 : year - birthdayy;
+	    return age;
+	} 
+  
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>

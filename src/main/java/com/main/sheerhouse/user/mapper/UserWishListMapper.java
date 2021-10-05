@@ -1,5 +1,7 @@
 package com.main.sheerhouse.user.mapper;
 
+import java.util.List;
+
 import com.main.sheerhouse.user.domain.WishListVO;
 
 public interface UserWishListMapper {
@@ -8,5 +10,5 @@ public interface UserWishListMapper {
 	
 	public void deleteWishlist(WishListVO wish);
 	
-
+	public List<Integer> selectUserWishlist(String email);
 }
