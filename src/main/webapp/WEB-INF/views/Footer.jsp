@@ -22,7 +22,7 @@
 
       <ul class="nav__ul">
         <li><a href="">쉬어가 이용방법</li>
-				<li><a href="">뉴스룸</li>
+				<li><a href="newsroom.do">뉴스룸</li>
       </ul>
     </li>
     
@@ -30,8 +30,8 @@
       <h2 class="nav__title">호스팅하기</h2>
       
       <ul class="nav__ul nav__ul">
-        <li><a href="">숙소 호스팅</li>
-				<li><a href="">체험 호스팅</li>
+        <li><a href="host.host">숙소 호스팅</li>
+		<li><a href="">체험 호스팅</li>
         
 
         
@@ -42,8 +42,8 @@
       <h2 class="nav__title">쉬어가 지원</h2>
       
       <ul class="nav__ul">
-        <li><a href="">쉬어가</li>
-				<li><a href="">도움말</li>
+        <li><a href="companyDetial.do">쉬어가</li>
+		<li><a href="help.do">도움말</li>
         
  
       </ul>
@@ -53,13 +53,11 @@
   <div class="bottom">
     <p>© 2021 SheerHouse.
 					<span>·</span>
-					<a href="">개인정보 처리방침</a>
+					<a href="term.do">개인정보 처리방침</a>
 					<span>·</span>
-					<a href="">이용약관</a>
+					<a href="term.do">이용약관</a>
 					<span>·</span>
-					<a href="">사이트맵</a>
-					<span>·</span>
-					<a href="">회사 세부 정보</a></p>
+					<a href="companyDetail.do">회사 세부 정보</a></p>
     </div>
   </div>
 </footer>

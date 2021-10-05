@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.WishListVO;
 import com.main.sheerhouse.user.mapper.UserWishListMapper;
 import com.mysql.cj.protocol.Resultset;

@@ -89,8 +89,41 @@ function heart(){
             <h2>${DetailInfo[0].title}</h2>
           </div>  
           
-             <div class="slideshow-container">
-       <c:forEach var="detail" items="${DetailInfo}" >
+       	<div class="slideshow-container">
+          <c:forEach var="detail" items="${DetailInfo}" >
+          <!-- Full-width images with number and caption text -->
+	            <div class="mySlides faded">
+	              <div class="numbertext">1 / 3</div>
+	              <img
+	                src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-1.jpg" alt="accomodationPhoto1"
+	                style="width: 100%"
+	              />
+	              <div class="text">${detail.title }</div>
+	            </div>
+	
+	            <div class="mySlides faded">
+	              <div class="numbertext">2 / 3</div>
+	              <img
+	                 src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-2.jpg" alt="accomodationPhoto2"
+	                style="width: 100%"
+	              />
+	              <div class="text">${detail.title }</div>
+	                <input type="hidden" value="${user.email}" id="email_val" />
+	            </div>
+	
+	            <div class="mySlides fade">
+	              <div class="numbertext">3 / 3</div>
+		              <img
+		                 src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Accomodation/${detail.home_seq}${detail.host_seq}/${detail.home_seq}${detail.host_seq}${detail.title}-3.jpg" alt="accomodationPhoto3"
+		                style="width: 100%"
+		              />
+	              	<div class="text">${detail.title }</div>
+	             </div>
+	             
+	              </c:forEach>
+
+           <div class="slideshow-container">
+          <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
                <div class="mySlides faded">
                  <div class="numbertext">1 / 3</div>
@@ -124,8 +157,9 @@ function heart(){
                     <input type="hidden" value="${user.email}" id="email_val" />
                 </div>
                 
+
                </c:forEach>
-           
+ 
             <div class="arrows">
                <!-- Next and previous buttons -->
                <a class="slideprev" onclick="moveSlides(-1)">&#10094;</a>

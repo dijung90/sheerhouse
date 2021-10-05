@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,6 @@
 function imgSetting(url){
 	var imgs = url.slice(1,-1);
 	var img = imgs.split(",");
-	//console.log(img);
 	return img[0];
 }
 
@@ -42,12 +43,13 @@ function heart(){
 </head>
 <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
-	
+
       <div class="accomodationResults-container">
         <div class="accomodationResult">
           <section class="accomodationResult-container">
             <h2 class="searchresultHeader">${search.location} 지역의 숙소 결과입니다.</h2>
             <span class="searchHeader-sub">코로나 관련 정보를 확인하세요</span>
+            <input type="hidden" value="${user.email}" id="email_val" />
           </section>
           
           <!--  숙소 list for문 시작  -->
