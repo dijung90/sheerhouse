@@ -3,8 +3,10 @@ package com.main.sheerhouse.user.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.ReservationInfoVO;
 import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.UserVO;
@@ -64,6 +66,29 @@ public class UserMypageServiceImpl implements UserMypageService {
 		// TODO Auto-generated method stub
 		return mapper.showReservationDetail(apply_num);
 	}
+
+	@Override
+	public String insertComment(CommentVO comment) {
+		// TODO Auto-generated method stub
+		try {		
+			mapper.insertComment(comment);
+			System.out.println("inserted");
+			return "inserted";
+		}catch(DataAccessException e) {
+			e.printStackTrace();
+			System.out.println("unInserted");
+			return "unInserted";
+		}
+	}
+
+	@Override
+	public String deleteComment(CommentVO comment) {
+		// TODO Auto-generated method stub
+		mapper.deleteComment(comment);
+		return "delete";
+	}
+
+
 
 
 

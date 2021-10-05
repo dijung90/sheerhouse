@@ -157,6 +157,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE 
 				r.apply_num = #{apply_num} 
 	</select>
-	
-	
+	<insert id="insertComment">
+		INSERT INTO comment (home_seq, act_seq, name, content, regdate, apply_num) VALUES (#{home_seq}, 0, #{name}, #{content}, now(), #{apply_num})
+	</insert>
+	<delete id="deleteComment">
+		DELETE FROM comment WHERE apply_num = #{apply_num}
+	</delete>
 </mapper>

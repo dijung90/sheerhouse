@@ -62,7 +62,7 @@
             <h2>${title}</h2>
           </div>  
           
-<<<<<<< HEAD
+
        	<div class="slideshow-container">
           <c:forEach var="detail" items="${DetailInfo}" >
           <!-- Full-width images with number and caption text -->
@@ -310,9 +310,9 @@
   </body>
     <!--  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>-->
   <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script><!-- jQuery CDN --->
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script><!-- jQuery CDN --->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
   <script type="text/javascript">
   

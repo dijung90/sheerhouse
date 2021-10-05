@@ -52,54 +52,49 @@
       <div class="detailContainer">
         <section id="bookingDetail" class="bookingDetail tabContent" data-mypage-type="booking">
             <ol class="bookingLists">
-            <c:forEach var="reservationlist" items="${reservationlist}">
-            
-            	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate"/>
-           		<c:set var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}"></c:set> 
-           		<input type="text" value="${starDate}" />
-            	<fmt:formatDate value="" pattern="yyyy-MM-dd" var="Staying"/> 
-            	
-            	
-              <li class="bookingList">
-                <div>	
-                    <div class="accomodationImage">
-                    <input  class="imageUrl" type="hidden" value="${reservationlist.url}" />
-              <!--         <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" /> -->
-                    </div>
-                    <div class="accomodationTexts">
-                            <div class="accomodationContent">
-                      		<a href="searchResultDetail.do?home_seq=${reservationlist.home_seq}&title=${reservationlist.title}" target="_blank">
-                            	<h2>${reservationlist.title}</h2>
-                        	</a>
-                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
-                            	<div class="reservationDateInfo">
-                            		<span>예약 일자 : </span>
-                            		<span class="reservationDate">${reservationlist.stayingDate}</span>	
-                            	</div>
-                            	
-                            	<span> 예약 인원 : ${reservationlist.headcount}</span>
-                            		
-                            </div>
-                             <div class="bookingInfo">
-                         		 <!-- button onclick="bookingInfo('{booking.seq}')">예약상세</button> -->
-                         		 <input  class="fullImageUrl" type="hidden" value="${reservationlist.url}" />
-                      			<a href="mypageBookingInfo.do?home_seq=${reservationlist.home_seq}&apply_num=${reservationlist.apply_num}" target="_blank">
-                         		  		<button class="bookingInfoBtn">예약상세</button>
-                         		 </a>
-                      		 </div>
-                      </div>
-                      <div>
-                      	<input class="reservationState" type="button" value="${reservationlist.res_status }" /> 
-                      	<input type="hidden" class="reservationCancel" type="button" value="${reservationlist.cancel_reason }" /> 
-                      </div>                    
-                </div>
-                </li>
-                
-                <div class="divider"></div>
-                </c:forEach>
-        
-                
-            
+		            <c:forEach var="reservationlist" items="${reservationlist}">	
+		            	<c:set var="today" value="<%=new java.util.Date()%>"/>
+		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}" pattern="yyyy-MM-dd"/>
+		            	<c:if test="${starDate > today }">
+		
+				              <li class="bookingList">
+				                <div>	
+					                    <div class="accomodationImage">
+					                    <input  class="imageUrl" type="hidden" value="${reservationlist.url}" />
+					              <!--         <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" /> -->
+					                    </div>
+					                    <div class="accomodationTexts">
+					                            <div class="accomodationContent">
+					                      		<a href="searchResultDetail.do?home_seq=${reservationlist.home_seq}&title=${reservationlist.title}" target="_blank">
+					                            	<h2>${reservationlist.title}</h2>
+					                        	</a>
+					                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
+					                            	<div class="reservationDateInfo">
+					                            		<span>기간 : </span>
+					                            		<input type="text" class="reservationDates" value="${reservationlist.stayingDate}" readonly/>	
+					                            	</div>
+					                            	
+					                            	<span> 예약 인원 : ${reservationlist.headcount}</span>
+					                            		
+					                            </div>
+					                             <div class="bookingInfo">
+					                         		 <!-- button onclick="bookingInfo('{booking.seq}')">예약상세</button> -->
+					                         		 <input  class="fullImageUrl" type="hidden" value="${reservationlist.url}" />
+					                      			<a href="mypageBookingInfo.do?home_seq=${reservationlist.home_seq}&apply_num=${reservationlist.apply_num}" target="_blank">
+					                         		  		<button class="bookingInfoBtn">예약상세</button>
+					                         		 </a>
+					                      		 </div>
+					                      </div>
+					                      <div>
+					                      	<input class="reservationState" type="button" value="${reservationlist.res_status }" /> 
+					                      	<input type="hidden" class="reservationCancel" type="button" value="${reservationlist.cancel_reason }" /> 
+					                      </div>                    
+					                </div>
+				                </li>
+		                
+		                <div class="divider"></div>
+		                </c:if>
+		             </c:forEach>
             </ol>           
         </section>
         
@@ -138,7 +133,55 @@
 		        
 
 		       
-        <section id="historyDetail" class="historyDetail tabContent" data-mypage-type="history"></section>
+        <section id="historyDetail" class="historyDetail tabContent" data-mypage-type="history">
+        	<ol class="historyLists">
+		            <c:forEach var="reservationlist" items="${reservationlist}">	
+		            	<c:set var="today" value="<%=new java.util.Date()%>"/>
+		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}" pattern="yyyy-MM-dd"/>
+		            	<c:if test="${starDate < today }">
+		
+				              <li class="historyList">
+				                <div>	
+					                    <div class="historyImage">
+					                    <input  class="imageUrls" type="hidden" value="${reservationlist.url}" />
+					              <!--         <img src="/resources/Images/place/place2.jpg" alt="bookingphoto" /> -->
+					                    </div>
+					                    <div class="historyTexts">
+					                            <div class="historyContent">
+					                      		<a href="searchResultDetail.do?home_seq=${reservationlist.home_seq}&title=${reservationlist.title}" target="_blank">
+					                            	<h2>${reservationlist.title}</h2>
+					                        	</a>
+					                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
+					                            	<div class="reservationDateInfo">
+					                            		<span>기간 : </span>	
+					                            		<input type="text" class="reservationDates" value="${reservationlist.stayingDate}" readonly/>	
+					                            	</div>
+					                            	
+					                            	<span> 예약 인원 : ${reservationlist.headcount}</span>
+					                            		
+					                            </div>
+					                             <div class="bookingInfo">
+					                         		 <!-- button onclick="bookingInfo('{booking.seq}')">예약상세</button> -->
+					                         		 <input  class="fullImageUrl" type="hidden" value="${reservationlist.url}" />
+					                      			<a href="mypageReview.do?home_seq=${reservationlist.home_seq}&apply_num=${reservationlist.apply_num}" target="_blank">
+					                         		  		<button class="historyInfoBtn">예약상세 / 리뷰작성</button>
+					                         		 </a>
+					                      		 </div>
+					                      </div>
+					                      <div>
+					                      	<%-- <input class="reservationState" type="button" value="${reservationlist.res_status }" />  --%>
+					                      	<input class="reservationState complete" type="button" value="완료" /> 
+					                      	<input type="hidden" class="reservationCancel" type="button" value="${reservationlist.cancel_reason }" /> 
+					                      </div>                    
+					                </div>
+				                </li>
+		                
+		                <div class="divider"></div>
+		                </c:if>
+		             </c:forEach>
+            </ol>           
+        
+        </section>
         <section id="infoDetail" class="infoDetail tabContent" data-mypage-type="privateInfo">
           <div>
              <form action="updateUser.do" method="post" class="myInfoForm" name="myInfoForm">
@@ -164,30 +207,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script>
     const urls = document.querySelectorAll(".imageUrl");
+    const historyurls = document.querySelectorAll(".imageUrls");
     
- /*        // 다음의 위치로 알아야 되기 때문에 
-        imgOn = imgOn + 1;
-        
-        if( imgOn === imgLen ){
-          // 다음의 위치가 총 개수보다 클 경우
-          // 처음의 위치로 돌아간다
-          $(".imgBox .img").eq(0).css("opacity", 1);
-          $(".imgBox .img").eq(0).addClass("on");
-        }else{
-          // 다음 위치가 있는 경우 
-          $(".imgBox .img").eq(imgOn).css("opacity", 1);
-          $(".imgBox .img").eq(imgOn).addClass("on");
-        }
-      }); */
-    
-    
-    
-  
-/* 	var url = urls.value;	
-	var imgs = url.slice(1,-1);
-	var img = imgs.split(", ");
-*/
-	
+
 	/* 나의 예약 썸네일 지정  */
 	
  	const thumNail = document.querySelectorAll(".accomodationImage");
@@ -206,11 +228,35 @@
 	 for(var i=0; i < thumNail.length; i++){
 		 	thumNail[i].innerHTML = '<img src="'+ imgArr[i]+'" alt="bookingphoto" />'; 
 		 	
-	} 
+	}
+	 
+	 
+	 
+	 
+	 /* 나의 히스토리 썸네일 지정 */
+	 
+	 const historythumNail = document.querySelectorAll(".historyImage");
+		/* thumNail.innerHTML = '<img src="'+img[0]+'" alt="bookingphoto" />'; */
+		var historyimgArr = [];
+		for(var j=0; j<historyurls.length; j++){
+			var historyurl = historyurls[j].value;
+			var historyimgs = historyurl.slice(1,-1);
+			var historyimg = historyimgs.split(", ");
+			/* console.log(img[j]); */
+			historyimgArr.push(historyimg[j]);
+			
+			
+		}
+		
+		 for(var i=0; i < historythumNail.length; i++){
+			 historythumNail[i].innerHTML = '<img src="'+ historyimgArr[i]+'" alt="bookingphoto" />'; 
+			 	
+		} 
+		
 	
 	
 	
-	$(document).on("click", ".reservationInfoExit", function(){
+/* 	$(document).on("click", ".reservationInfoExit", function(){
 		$(".reservationDetailInfoContainer").css({'display': 'none'});
 	})
 	
@@ -220,13 +266,10 @@
 		$(".reservationInfoDetail").append(title);
 		
 		
-	})
+	}) */
 	
 	
 	
-    
-
-
   
   /* 예약확정, 취소 버튼 기능입니다. res_status 값을 받아옵니다. */
   
@@ -246,6 +289,45 @@
   		}
   	}
   	
+  	var imgContent = "";
+	for(var i=0; i<img.length; i++){
+		console.log(img[i]);
+		imgContent += '<li class="mySlides fade" ><img src="'+ img[i]+'" alt="bookingphoto" /></li>'; 
+	}
+	
+	$(".slideImagesContainer").append(imgContent);
+  	
+	const reservStarDate = document.querySelectorAll(".reservationDates");
+	const spanDate = document.querySelectorAll(".reservationDate");
+	var resContent = "";
+	
+	for(var num=0; num< [...reservStarDate].length; num++){
+		var dates = reservStarDate[num].value;
+		var date = dates.split(",");
+		var nights = date.length;
+		
+		var strCheckin = date[0];
+  		var strCheckout = date[date.length -1];
+  		
+		var arr1 = strCheckin.split('-');
+		var arr2 = strCheckout.split('-');
+		
+		
+		var checkin = new Date(arr1[0], arr1[1], arr1[2]);
+		var checkout = new Date(arr2[0], arr2[1], arr2[2]);
+				
+		var diff = checkout - checkin;
+		var currentDay = 24 * 60 * 60 * 1000;
+		
+		let result = parseInt(diff/currentDay);
+		
+		resContent = result + '박' + nights + '일';
+		reservStarDate[num].value = resContent;
+		console.log(resContent);
+		
+	}
+/* 
+		var stayingDates = []; */
 
 
   		

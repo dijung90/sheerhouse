@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.Sha256;
+import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.SearchVO;
 import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.domain.WishListVO;
+import com.main.sheerhouse.user.mapper.UserSearchResultMapper;
 import com.main.sheerhouse.user.service.UserLoginService;
 import com.main.sheerhouse.user.service.UserMypageService;
 import com.main.sheerhouse.user.service.UserSearchService;
@@ -36,6 +38,9 @@ public class UserMypageController {
 	
 	@Autowired
 	private UserSearchService userService;
+	
+	@Autowired
+	private UserSearchResultMapper resultMapper;
 
 	@RequestMapping(value="/updateUser.do",method =  RequestMethod.POST)
 	public String updatemypage(WishListVO wish, HttpServletRequest req,UserVO user,HttpSession session,HttpServletResponse res) throws Exception{
@@ -83,7 +88,34 @@ public class UserMypageController {
 		return "user/mypageBookingDetail";
 	}
 	
+	@RequestMapping("/mypageReview.do")
+	public String showandWriteReview(HttpServletRequest request, Model model, ResultVO result, @RequestParam("home_seq") String home_seq ,@RequestParam("apply_num") int apply_num){
+		
+		HttpSession session = request.getSession();
+		UserVO user = (UserVO)session.getAttribute("user");
+		session.setAttribute("user", user);
+		
+		model.addAttribute("bookingDetail",service.reservationDetail(apply_num));
+		model.addAttribute("hostEmail", userService.searchHostEmail(home_seq));
+		model.addAttribute("CommentInfo", resultMapper.getComment(home_seq));
+		
+		System.out.println("show detail reservation " +service.reservationDetail(apply_num));
+		System.out.println(userService.searchHostEmail(home_seq));
+		System.out.println("CommentInfo" + resultMapper.getComment(home_seq));
+		return "user/mypageReview";
+	}
 
 	
+
+	@PostMapping("/mypageReviewInsert.do")
+	public String insertReview(CommentVO comment) {
+		String result = service.insertComment(comment);
+		return result;
+	}
 	
+	@RequestMapping("/mypageReviewDelete.do")
+	public String deleteReview(CommentVO comment) {
+		String result = service.deleteComment(comment);
+		return result;
+	}
 }
