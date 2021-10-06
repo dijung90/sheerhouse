@@ -68,10 +68,10 @@
 					                      		<a href="searchResultDetail.do?home_seq=${reservationlist.home_seq}&title=${reservationlist.title}" target="_blank">
 					                            	<h2>${reservationlist.title}</h2>
 					                        	</a>
-					                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
+					                            	<span> 결제 금액 : ${reservationlist.total_price}</span>
 					                            	<div class="reservationDateInfo">
 					                            		<span>기간 : </span>
-					                            		<input type="text" class="reservationDates" value="${reservationlist.stayingDate}" readonly/>	
+					                            		<input type="text" class="reservationDates" value="${reservationlist.res_date}" readonly/>	
 					                            	</div>
 					                            	
 					                            	<span> 예약 인원 : ${reservationlist.headcount}</span>
@@ -86,7 +86,7 @@
 					                      		 </div>
 					                      </div>
 					                      <div>
-					                      	<input class="reservationState" type="button" value="${reservationlist.res_status }" /> 
+					                      	<input class="reservationState" type="button" value="${reservationlist.pay_status }" /> 
 					                      	<input type="hidden" class="reservationCancel" type="button" value="${reservationlist.cancel_reason }" /> 
 					                      </div>                    
 					                </div>
@@ -137,7 +137,7 @@
         	<ol class="historyLists">
 		            <c:forEach var="reservationlist" items="${reservationlist}">	
 		            	<c:set var="today" value="<%=new java.util.Date()%>"/>
-		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}" pattern="yyyy-MM-dd"/>
+		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.res_date, ',')[0]}" pattern="yyyy-MM-dd"/>
 		            	<c:if test="${starDate < today }">
 		
 				              <li class="historyList">
@@ -154,7 +154,7 @@
 					                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
 					                            	<div class="reservationDateInfo">
 					                            		<span>기간 : </span>	
-					                            		<input type="text" class="reservationDates" value="${reservationlist.stayingDate}" readonly/>	
+					                            		<input type="text" class="reservationDates" value="${reservationlist.res_date}" readonly/>	
 					                            	</div>
 					                            	
 					                            	<span> 예약 인원 : ${reservationlist.headcount}</span>
@@ -276,10 +276,10 @@
   	const reservationStates = document.querySelectorAll(".reservationState");
 
   	for(var i=0; i< [...reservationStates].length; i++){
-  		if(reservationStates[i].value === 'confirm'){
+  		if(reservationStates[i].value === 'paid'){
   			reservationStates[i].value =  "예약확정";
   			console.log([...reservationStates].length);
-  		}else if(reservationStates[i].value === 'cancel'){
+  		}else if(reservationStates[i].value === 'failed'){
   			const cancelReason = document.querySelector(".reservationCancel");
   			reservationStates[i].value =  "취소";
   			reservationStates[i].style.backgroundColor = '#d65f5f';

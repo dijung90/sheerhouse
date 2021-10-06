@@ -70,9 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="home_seq" column="home_seq"></result>
 		<result property="act_seq" column="act_seq"></result>
 		<result property="email" column="email"></result>
-		<result property="totalprice" column="totalprice"></result>
-		<result property="stayingDate" column="stayingDate"></result>
-		<result property="res_status" column="res_status"></result>
+		<result property="total_price" column="total_price"></result>
+		<result property="pay_date" column="pay_date"></result>
+		<result property="pay_status" column="pay_status"></result>
 		<result property="res_date" column="res_date"></result>
 		<result property="cancel_reason" column="cancel_reason"></result>
 		<result property="apply_num" column="apply_num"></result>
@@ -102,15 +102,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 	
 			r.home_seq,
 			r.email,
-			r.totalprice,
-			r.stayingDate,
-			r.res_status,
 			r.res_date,
 			r.cancel_reason,
 			r.apply_num,
-			r.stayingDate,
-			r.res_status,
-			r.totalprice,
+			r.pay_date,
+			r.pay_status,
+			r.total_price,
 			r.headcount,
 			h.title,
 			h.type,
@@ -120,7 +117,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			h.price,
 			h.url
 			FROM 
-				reservations as r
+				reservation as r
 			LEFT JOIN
 				home as h
 			ON r.home_seq = h.home_seq
@@ -132,15 +129,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 	
 			r.home_seq,
 			r.email,
-			r.totalprice,
-			r.stayingDate,
-			r.res_status,
+			r.total_price,
+			r.pay_date,
 			r.res_date,
 			r.cancel_reason,
-			r.apply_num,
-			r.stayingDate,
-			r.res_status,
-			r.totalprice,
+			r.apply_num,,
+			r.pay_status,
 			r.headcount,
 			h.title,
 			h.type,
@@ -150,7 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			h.price,
 			h.url
 			FROM 
-				reservations as r
+				reservation as r
 			LEFT JOIN
 				home as h
 			ON r.home_seq = h.home_seq
