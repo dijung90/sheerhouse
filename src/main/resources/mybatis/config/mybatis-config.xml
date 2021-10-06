@@ -12,5 +12,7 @@
  		<mapper resource="mybatis/mapper/admin/admin-mapper.xml"/>
  		<mapper resource="mybatis/mapper/host/host-registMapper.xml"/>
  		<mapper resource="mybatis/mapper/host/host-pageMapper.xml"/>
+ 		<mapper resource="mybatis/mapper/admin/admin-noticemapper.xml"/>
+ 		<mapper resource="mybatis/mapper/admin/admin-termmapper.xml"/>
  	</mappers>
  </configuration>

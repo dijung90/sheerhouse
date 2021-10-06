@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.main.sheerhouse.admin.mapper.AdminMapper">
+	<select id="selectbasicterm" resultType="com.main.sheerhouse.admin.domain.TermVO" >
+		select * from terms where title='basic'
+	</select>
+	<select id="selectguestterm" resultType="com.main.sheerhouse.admin.domain.TermVO" >
+		select * from terms where title='guest'
+	</select>
+	<select id="selecthostterm" resultType="com.main.sheerhouse.admin.domain.TermVO" >
+		select * from terms where title='host'
+	</select>
+	<insert id="confirm_term">
+		insert into terms_accept(confirm) values(${confirm});
+	</insert>
+	</mapper>

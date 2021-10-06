@@ -1,6 +1,12 @@
 package com.main.sheerhouse.user.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,54 +14,68 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.main.sheerhouse.user.domain.ResultVO;
+import com.main.sheerhouse.host.domain.HomeVO;
+import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.SearchVO;
-import com.main.sheerhouse.user.mapper.UserSearchResultMapper;
+import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.service.UserSearchService;
+import com.main.sheerhouse.user.service.UserWishListService;
 
 //searchResult CONTROLLER
 @Controller
 public class SearchResultController {
 	
 	@Autowired
-	private UserSearchResultMapper resultMapper;
-	
-	@Autowired
 	private UserSearchService service;
 	
+	@Autowired
+	private UserWishListService wishService;
+	
 	@GetMapping("/searchResult.do")
-	public String searchResult(Model model, ResultVO result, SearchVO search, @RequestParam("searchLocation") String location, @RequestParam("searchCheckin") String checkin, 
-			@RequestParam("searchCheckout") String checkout, @RequestParam("searchMaxPeople") String people) {
+	public String searchResult(Model model, @RequestParam("searchLocation") String location, @RequestParam("searchCheckin") String checkin, 
+			@RequestParam("searchCheckout") String checkout, @RequestParam("searchMaxPeople") String people, HttpServletRequest request) {
 		
-		System.out.println(location);
-		System.out.println(checkin);
-		System.out.println(checkout);
-		System.out.println(people);
+		HttpSession session = request.getSession();
 		
-		model.addAttribute("location", location);
-		model.addAttribute("checkin", checkin);
-		model.addAttribute("checkin", checkin);
-		model.addAttribute("checkout", checkout);
-		model.addAttribute("people", people);
-		model.addAttribute("resultList", service.searchResultList(location));
-		System.out.println("resultList" + service.searchResultList(location));
+		UserVO user = (UserVO)session.getAttribute("user");
+		
+		if(user != null) {
+			model.addAttribute("wishlist", wishService.selectUserWishlist(user.getEmail()));
+			System.out.println(wishService.selectUserWishlist(user.getEmail()).toString());
+
+		}
+
+		SearchVO search = new SearchVO();
+		search.setLocation(location);
+		search.setCheckin(checkin);
+		search.setCheckout(checkout);
+		search.setPeople(people);
+		
+		model.addAttribute("search", search);
+		model.addAttribute("resultList", service.searchResultList(search));
 		
 		return "search/searchResult";
 	}
 	
 	@RequestMapping("/searchResultDetail.do")
-	public String resultDatail(Model model, ResultVO result, SearchVO search, @RequestParam("home_seq") String home_seq , @RequestParam("title") String title) {
-		System.out.println(home_seq);
-		System.out.println(title);
+	public String resultDatail(Model model, @RequestParam("home_seq") String home_seq, HttpServletRequest request) {
+		HttpSession session = request.getSession(); 
 		
-		model.addAttribute("home_seq", home_seq);
-		model.addAttribute("title", title);
+		UserVO user = (UserVO)session.getAttribute("user");
+		if(user != null) {
+			model.addAttribute("wishlist", wishService.selectUserWishlist(user.getEmail()));
+
+		}
+		
+		List<HomeVO> home = new ArrayList<HomeVO>();
+		home.add(service.searchDetailList(home_seq));
+		System.out.println(home.toString());
+		List<CommentVO> comments = service.getCommentList(home_seq);
+		model.addAttribute("DetailInfo", home);
 		model.addAttribute("hostEmail", service.searchHostEmail(home_seq));
-		model.addAttribute("DetailInfo", resultMapper.getDetail(home_seq));
-		model.addAttribute("CommentInfo", resultMapper.getComment(home_seq));
-		System.out.println(resultMapper.getDetail(home_seq));
-		System.out.println("CommentInfo" + resultMapper.getComment(home_seq));
-		
+		model.addAttribute("CommentInfo", comments);
+		model.addAttribute("commentCnt", comments.size());
+		model.addAttribute("hostEmail", service.searchHostEmail(home_seq));
 		return "search/searchResultDetail";
 	}
 }

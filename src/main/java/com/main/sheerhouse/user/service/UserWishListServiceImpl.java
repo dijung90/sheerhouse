@@ -20,7 +20,7 @@ public class UserWishListServiceImpl implements UserWishListService {
 	@Override
 	public String wishlist(WishListVO wish) {
 		try {
-			
+			System.out.println("위시리스트 추가삭제 : " + wish.toString());
 			mapper.insertWishList(wish);
 			System.out.println("selected");
 			return "selected";
@@ -31,5 +31,12 @@ public class UserWishListServiceImpl implements UserWishListService {
 			return "unselected";
 		}
 	}
+
+	@Override
+	public List<Integer> selectUserWishlist(String email) {
+		
+		return mapper.selectUserWishlist(email);
+	}
+	
 
 }

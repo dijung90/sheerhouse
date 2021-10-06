@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.main.sheerhouse.commons.ImportAPI;
+import com.main.sheerhouse.commons.StartDateBetweenEndDate;
 import com.main.sheerhouse.commons.UnixTimeToString;
+import com.main.sheerhouse.host.domain.HomeVO;
 import com.main.sheerhouse.user.domain.ReservationVO;
 import com.main.sheerhouse.user.service.UserPaymentService;
 
@@ -26,7 +29,7 @@ public class UserPaymentController {
 
 	@Autowired
 	private UserPaymentService service;
-	
+
 	//결제 수행 메서드
 	@ResponseBody
 	@RequestMapping("/verifyPayment.do")
@@ -88,15 +91,25 @@ public class UserPaymentController {
 	
 	//결제정보 예약 테이블에 insert
 	@PostMapping("/insertHomePayInfo.do")
-	public String paymentInfo(ReservationVO res, String title, String hostEmail) {
-		
-		System.out.println(hostEmail);
-		
+	public String paymentInfo(ReservationVO res, String title, String hostEmail, String checkin, String checkout, String home_seq) {
+
+		List<String> date = StartDateBetweenEndDate.getStartAndEnd(checkin, checkout);
 		String payTime = UnixTimeToString.getTimestampToDate(res.getPay_date());
 		res.setPay_date(payTime);
-		
+		res.setRes_date(date.toString().replace(" ",""));
 		service.insertHomeReservation(res, title, hostEmail);
-
+		HomeVO home = service.selectHome(home_seq);
+	    
+		String[] unused = home.getUnused_date().split(",");
+		for (int i = 0; i < unused.length;i++) {
+			if(unused[i].equals("")) {
+				continue;
+			}else if(!date.contains(unused[i])) {
+				date.add(unused[i]);
+			}
+		}
+		service.updateUnusedDate(date.toString(), home_seq);
+		
 		return "user/mypage";
 	}
 }

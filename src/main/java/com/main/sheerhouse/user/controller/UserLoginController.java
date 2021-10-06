@@ -2,22 +2,29 @@ package com.main.sheerhouse.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.Random;
+import java.util.List;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.main.sheerhouse.commons.CoolSmsAPI;
+import com.main.sheerhouse.commons.ImportAPI;
+import com.main.sheerhouse.admin.domain.NoticeVO;
+import com.main.sheerhouse.admin.domain.TermVO;
+import com.main.sheerhouse.admin.service.NoticeImpl;
+import com.main.sheerhouse.admin.service.TermServiceImpl;
 import com.main.sheerhouse.commons.Sha256;
 import com.main.sheerhouse.user.domain.UserVO;
 import com.main.sheerhouse.user.service.UserLoginService;
@@ -31,7 +38,39 @@ public class UserLoginController {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	//임시 smsAPI 컨트롤러 추가
+	@Autowired
+	private CoolSmsAPI api;
 	
+	
+	@GetMapping("/test.do")
+	public void test() {}
+	
+	@PostMapping("/test.do")
+	public @ResponseBody String testPost(String tel, Model model){
+		
+		String result = "";
+		String confirmNumber = "";
+		Random rand = new Random();
+		for(int i=0; i<6; i++) {
+			String random = Integer.toString(rand.nextInt(10));
+			confirmNumber+=random;
+		}
+		
+		api.certifiedSMS(tel, confirmNumber);
+		
+		result = confirmNumber;
+		
+		return result;
+	}
+
+	
+	@Autowired
+	NoticeImpl noticeim;
+	
+	@Autowired
+	private TermServiceImpl termim;
+
 	//메인페이지
 	@GetMapping("/index.do")
 	public void index() {}
@@ -212,5 +251,31 @@ public class UserLoginController {
 	
 	}
 	
+
+	@GetMapping("/newsroom.do")
+    public String boardList(@ModelAttribute("noticeVO") NoticeVO notice, Model model) throws Exception{             
+        List<NoticeVO> list = noticeim.selectnotice(notice);     
+        model.addAttribute("Notice", list);       
+        System.out.println(list);       
+        return "user/newsroom";
+    }
 	
+	
+	@GetMapping("/termcheck.do")
+	public String termcheckpage(TermVO term, HttpServletRequest request, HttpSession session, HttpServletResponse response)throws Exception{
+		session = request.getSession();
+		session.setAttribute("basic", termim.selectbasicterm(term));
+		session.setAttribute("guest", termim.selectguestterm(term));
+		session.setAttribute("host", termim.selecthostterm(term));
+		return "user/termcheck";
+	}
+	
+	@GetMapping("/termaccept.do")
+	public String termpage(TermVO term, HttpServletRequest request, HttpSession session, HttpServletResponse response)throws Exception{
+		session = request.getSession();
+		session.setAttribute("basic", termim.selectbasicterm(term));
+		session.setAttribute("guest", termim.selectguestterm(term));
+		session.setAttribute("host", termim.selecthostterm(term));
+		return "user/termaccept";
+	}
 }	
