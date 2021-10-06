@@ -52,20 +52,17 @@
   font-size: 20px;
 </style>
 <script type="text/javascript">
-
 function imgSetting(url, num){
 	console.log("진입");
 	var imgs = url.slice(1,-1);
 	var img = imgs.split(", ");
 	return img[num];
 }
-
 function heart(){
 	var home = document.getElementById("home").value;
 	var wish = document.getElementById("wishlist").value;
 	var list = wish.slice(1, -1);
 	list = list.split(", ");
-
 	var result = list.some(function (e, i, arr){
 		var r = false;
 		if(e === home) r = true;
@@ -77,21 +74,17 @@ function heart(){
 		
 	}
 }
-
 </script>
 </head>
  <body>
 <%@ include file="/WEB-INF/views/search/Header.jsp"%>
     <div class="detailContainer">
       
-
           <div class="headerTitle">
             <h2>${DetailInfo[0].title}</h2>
           </div>  
-
            <div class="slideshow-container">
           <c:forEach var="detail" items="${DetailInfo}" >
-
           <!-- Full-width images with number and caption text -->
                <div class="mySlides faded">
                  <div class="numbertext">1 / 3</div>
@@ -126,7 +119,6 @@ function heart(){
                 </div>
                 
                  </c:forEach>
-
             <div class="arrows">
                <!-- Next and previous buttons -->
                <a class="slideprev" onclick="moveSlides(-1)">&#10094;</a>
@@ -386,13 +378,11 @@ function heart(){
  			}else {
  				alert(rsp.error_msg);
  				paymodal.style.display = "none";	  
-
  			}//end if
   		}//end function(rsp)
   		
   	);//end request_pay  	
   	}//end importPay()
-
   function importRefund(){
   		console.log("환불 승인번호: " + apply_num);
   }
@@ -440,7 +430,6 @@ function heart(){
 	  
 	  var checkIn = ci.split("-");
 	  var checkOut = co.split("-");
-
 	  var start = new Date(checkIn[0],checkIn[1],checkIn[2]);
 	  var end = new Date(checkOut[0],checkOut[1],checkOut[2]);
 	  
@@ -479,7 +468,6 @@ function heart(){
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
-
   <script>
   
   const checkinDate = document.querySelector(".checkin");
@@ -496,37 +484,30 @@ function heart(){
   
   const unusedDate = document.querySelector(".unusedDate");
     var slideIndex = 0; //slide index
-
     // HTML 로드가 끝난 후 동작
     window.onload = function () {
       showSlides(slideIndex);
-
       // Auto Move Slide
       //   var sec = 3000;
       //   setInterval(function(){
       //     slideIndex++;
       //     showSlides(slideIndex);
-
       //   }, sec);
     };
-
     // Next/previous controls
     function moveSlides(n) {
       slideIndex = slideIndex + n;
       showSlides(slideIndex);
     }
-
     // Thumbnail image controls
     function currentSlide(n) {
       slideIndex = n;
       showSlides(slideIndex);
     }
-
     function showSlides(n) {
       var slides = document.getElementsByClassName("mySlides");
       var dots = document.getElementsByClassName("dot");
       var size = slides.length;
-
       if (n + 1 > size) {
         slideIndex = 0;
         n = 0;
@@ -534,14 +515,12 @@ function heart(){
         slideIndex = size - 1;
         n = size - 1;
       }
-
       for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
       }
       for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
       }
-
       slides[n].style.display = "block";
       dots[n].className += " active";
     }
@@ -553,7 +532,6 @@ function heart(){
     	  }else if(peopleBtnContainer.classList.contains("displayNone")){
     		  peopleBtnContainer.classList.remove("displayNone");
     	  }
-
     	}
     
     function peopleIncre() {
@@ -574,7 +552,6 @@ function heart(){
     		  warnMsg.innerHTML = "최대 수용인원을 초과하였습니다. "
     	  }
     	}
-
     	function peopleDecre() {
     	  const peopleNumInput = document.querySelector(".peopleBtnNumInput");
     	  const peoInput = document.querySelector(".peopleBtnNumInput");
@@ -588,7 +565,6 @@ function heart(){
     	  }
     	  console.log(currentValue - 1);
     	}
-
     	
     	const datePick = () => {
     		///cal dates //
@@ -612,7 +588,6 @@ function heart(){
     		
     		strtotal = pricePerNight.innerText;
 			var priceArr = strtotal.split('/');
-
 			
 			priceNight = parseInt(priceArr[0]);
 			
@@ -629,7 +604,6 @@ function heart(){
 /*     checkinDate.addEventListener("change", datePick);
     checkoutDate.addEventListener("change", datePick);
      */
-
 	
      const unusedDate_value = unusedDate.value;
      const unusedDateArr = unusedDate_value.split(",");
@@ -655,13 +629,11 @@ function heart(){
   	     $('.input2').datepicker('setStartDate', minDate);
   	     $('.input2').datepicker('setDate', minDate); // <--THIS IS THE LINE ADDED
   	 });
-
   	 $(".input2").datepicker()
   	     .on('changeDate', function (selected) {
   	         var maxDate = new Date(selected.date.valueOf());
   	         $('.input1').datepicker('setEndDate', maxDate);
   	     });
-
      });
      
      
@@ -675,7 +647,6 @@ function heart(){
 			 	console.log("hihi" + con);
 			  });
 			})
-
 		$(document).on("click", ".wishlist", function(){
 			let email = $("#email_val").val();
 			let html = '';
@@ -689,7 +660,6 @@ function heart(){
 					alert("로그인이 필요합니다.");
 					return false;
 				}
-
 			
 			$.ajax({
 				url : "search/wishlist.do",
@@ -703,7 +673,6 @@ function heart(){
 						}else{
 							console.log("error");
 							$('.'+ home_seq).addBack().css({"color": "#9d9d9d"});
-
 					}
 					
 				} 
@@ -711,12 +680,10 @@ function heart(){
 		})
 		
 	})
-
      
      
      
 /*      $(document).ready(function(){
-
     	 $("#startdate").datepicker({
     	     todayBtn:  1,
     	     autoclose: true,
@@ -725,20 +692,17 @@ function heart(){
     	     $('#enddate').datepicker('setStartDate', minDate);
     	     $('#enddate').datepicker('setDate', minDate); // <--THIS IS THE LINE ADDED
     	 });
-
     	 $("#enddate").datepicker()
     	     .on('changeDate', function (selected) {
     	         var maxDate = new Date(selected.date.valueOf());
     	         $('#startdate').datepicker('setEndDate', maxDate);
     	     });
-
     	 }); */
 		
 	$(".input1")
      
      	strtotal = pricePerNight.innerText;
 		var priceArr = strtotal.split('/');
-
 		
 		let priceNight = parseInt(priceArr[0]);
      	
@@ -757,7 +721,6 @@ function heart(){
 		var checkin = new Date(arr1[0], arr1[1], arr1[2]);
 		var checkout = new Date(arr2[0], arr2[1], arr2[2]);
 		
-
 		
 		var diff = checkout - checkin;
 		var currentDay = 24 * 60 * 60 * 1000;
@@ -778,9 +741,6 @@ function heart(){
     	 console.log(priceNight);
     	 console.log(result);
      })
-
-
-
     
   </script>
 </html>

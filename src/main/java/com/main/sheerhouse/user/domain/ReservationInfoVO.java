@@ -6,9 +6,9 @@ public class ReservationInfoVO {
 	private int home_seq;
 	private int act_seq;
 	private String email;
-	private int totalprice;
-	private String stayingDate;
-	private String res_status;
+	private int total_price;
+	private String pay_date;
+	private String pay_status;
 	private Date res_date;
 	private String cancel_reason;
 	private int apply_num;
@@ -17,69 +17,24 @@ public class ReservationInfoVO {
 	private String host_info;
 	private String info;
 	private String address;
-	private int headcount;
-	private String rule;
-	private String url;
 	
 
 	@Override
 	public String toString() {
-		return "ReservationInfoVO [home_seq=" + home_seq + ", act_seq=" + act_seq + ", email=" + email + ", totalprice="
-				+ totalprice + ", stayingDate=" + stayingDate + ", res_status=" + res_status + ", res_date=" + res_date
-				+ ", cancel_reason=" + cancel_reason + ", apply_num=" + apply_num + ", title=" + title + ", price="
-				+ price + ", host_info=" + host_info + ", info=" + info + ", address=" + address + ", headcount="
-				+ headcount + ", rule=" + rule + ", url=" + url + "]";
+		return "ReservationInfoVO [home_seq=" + home_seq + ", act_seq=" + act_seq + ", email=" + email
+				+ ", total_price=" + total_price + ", pay_date=" + pay_date + ", pay_status=" + pay_status
+				+ ", res_date=" + res_date + ", cancel_reason=" + cancel_reason + ", apply_num=" + apply_num
+				+ ", title=" + title + ", price=" + price + ", host_info=" + host_info + ", info=" + info + ", address="
+				+ address + ", headcount=" + headcount + ", rule=" + rule + ", url=" + url + "]";
 	}
+	public String getPay_status() {
+		return pay_status;
+	}
+	public void setPay_status(String pay_status) {
+		this.pay_status = pay_status;
+	}
+	private int headcount;
 	
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getRule() {
-		return rule;
-	}
-	public void setRule(String rule) {
-		this.rule = rule;
-	}
-	public int getHeadcount() {
-		return headcount;
-	}
-	public void setHeadcount(int headcount) {
-		this.headcount = headcount;
-	}
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
-	public String getHost_info() {
-		return host_info;
-	}
-	public void setHost_info(String host_info) {
-		this.host_info = host_info;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
 	public int getHome_seq() {
 		return home_seq;
 	}
@@ -98,24 +53,19 @@ public class ReservationInfoVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getTotalprice() {
-		return totalprice;
+	public int getTotal_price() {
+		return total_price;
 	}
-	public void setTotalprice(int totalprice) {
-		this.totalprice = totalprice;
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
 	}
-	public String getStayingDate() {
-		return stayingDate;
+	public String getPay_date() {
+		return pay_date;
 	}
-	public void setStayingDate(String stayingDate) {
-		this.stayingDate = stayingDate;
+	public void setPay_date(String pay_date) {
+		this.pay_date = pay_date;
 	}
-	public String getRes_status() {
-		return res_status;
-	}
-	public void setRes_status(String res_status) {
-		this.res_status = res_status;
-	}
+
 	public Date getRes_date() {
 		return res_date;
 	}
@@ -134,4 +84,57 @@ public class ReservationInfoVO {
 	public void setApply_num(int apply_num) {
 		this.apply_num = apply_num;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getHost_info() {
+		return host_info;
+	}
+	public void setHost_info(String host_info) {
+		this.host_info = host_info;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public int getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(int headcount) {
+		this.headcount = headcount;
+	}
+	public String getRule() {
+		return rule;
+	}
+	public void setRule(String rule) {
+		this.rule = rule;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	private String rule;
+	private String url;
+	
+
+
 }

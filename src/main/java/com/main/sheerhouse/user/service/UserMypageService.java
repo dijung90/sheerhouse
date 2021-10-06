@@ -2,6 +2,7 @@ package com.main.sheerhouse.user.service;
 
 import java.util.List;
 
+import com.main.sheerhouse.user.domain.CommentVO;
 import com.main.sheerhouse.user.domain.ReservationInfoVO;
 import com.main.sheerhouse.user.domain.ResultVO;
 import com.main.sheerhouse.user.domain.UserVO;
@@ -20,6 +21,7 @@ public interface UserMypageService {
 	
 	public ReservationInfoVO reservationDetail(int apply_num);
 	
-	
+	public String insertComment(CommentVO comment);
+	public String deleteComment(CommentVO comment);
 
 }

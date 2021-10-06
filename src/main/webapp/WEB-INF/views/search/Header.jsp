@@ -152,34 +152,62 @@
       </div> <!-- 시작 태그 missing  -->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-  	<script type="text/javascript" src="/resources/js/main.js"></script>
- 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
+ <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
 
 
 <script>
 
-//tabmenu 
+/*const joinnbtn = document.querySelector(".joinBtn");*/
+const loginbtn = document.querySelector(".loginBtn");
+const joinExitBtn = document.querySelector(".join-exitBtn");
+const joinModal = document.querySelector(".join-modal");
+const loginExitBtn = document.querySelector(".login-exitBtn");
+const loginModal = document.querySelector(".login-modal");
+const checkInDate = document.querySelector(".CheckinDate");
+const checkOutDate = document.querySelector(".CheckoutDate");
+const movoToJoin = document.querySelector(".movoToJoin");
 
-const accomodationSearch = document.querySelector(".accomodationSearch");
-const activitySearch = document.querySelector(".activitySearch");
-const searchPlaceForm = document.querySelector(".searchContainer");
-const searchActivityForm = document.querySelector(".searchContainer-activity");
 
-function showTabContent1(){
-	activitySearch.classList.remove('borderBottom');
-	accomodationSearch.classList.add('borderBottom');
-	searchActivityForm.style.zIndex  = "1";
-	searchPlaceForm.style.zIndex= "2";
+// joinModal
+
+function joginBtnClicked() {
+  joinModal.style.display = "block";
 }
 
-function showTabContent2(){
-	accomodationSearch.classList.remove('borderBottom');
-	activitySearch.classList.add('borderBottom');
-	searchPlaceForm.style.zIndex= "1";
-	searchActivityForm.style.zIndex  = "2";
+function joinExitbtnClicked() {
+  joinModal.style.display = "none";
 }
 
+function joinoutsideClick(e) {
+  if (e.target == joinModal) {
+    joinModal.style.display = "none";
+  }
+}
+
+// login modal
+
+function loginnbtnClicked() {
+  loginModal.style.display = "block";
+}
+
+function loginExitbtnClicked() {
+  loginModal.style.display = "none";
+}
+
+function loginoutsideClick(e) {
+  if (e.target == loginModal) {
+    loginModal.style.display = "none";
+  }
+}
+
+//move to Join
+
+function moveTojoinPage() {
+  loginModal.style.display = "none";
+  joinModal.style.display = "block";
+}
 
 //기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
 function statusChangeCallback(res){
