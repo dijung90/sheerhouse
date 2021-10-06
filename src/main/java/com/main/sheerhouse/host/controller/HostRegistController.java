@@ -52,6 +52,7 @@ public class HostRegistController {
 	}
 	@PostMapping("/homeRegist.host")
 	public String homeRegist(HomeVO home, HttpServletRequest request) {
+		System.out.println("숙소");
 		HttpSession session = request.getSession();
 		UserVO user = (UserVO)session.getAttribute("user");
 		AwsS3 awsS3 = AwsS3.getInstance();
@@ -74,7 +75,7 @@ public class HostRegistController {
 		HostVO host = service.hostSelect(user.getEmail());
 		session.setAttribute("host", host);
 		
-		return "host/hostPage";
+		return "redirect:/hostPage.host";
 	}
 	
 }

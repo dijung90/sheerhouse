@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class HostVO {
 
-	private long host_seq;
+	private int host_seq;
 	private String email;
 	private String name;
 	private String phone;
@@ -16,7 +16,7 @@ public class HostVO {
 	
 	public HostVO() {}
 
-	public HostVO(long host_seq, String email, String name, String phone, String host_info, Timestamp regdate,
+	public HostVO(int host_seq, String email, String name, String phone, String host_info, Timestamp regdate,
 			Timestamp updatedate, int certificateNum, String certificateTitle) {
 		super();
 		this.host_seq = host_seq;
@@ -30,11 +30,11 @@ public class HostVO {
 		this.certificateTitle = certificateTitle;
 	}
 
-	public long getHost_seq() {
+	public int getHost_seq() {
 		return host_seq;
 	}
 
-	public void setHost_seq(long host_seq) {
+	public void setHost_seq(int host_seq) {
 		this.host_seq = host_seq;
 	}
 
