@@ -54,14 +54,14 @@ function heart(){
           
           <!--  숙소 list for문 시작  -->
           
-          <c:forEach var="search" items="${resultList}" >
+          <c:forEach var="home" items="${resultList}" >
           <section>
             <div class="resultAccomodation-container">
               <div class="resultAccomodation">
                 <div class="resultAccomodationImg">
-                	<input type="hidden" id="home_seq" value="${search.home_seq}"/>
-                	<input type="hidden" id="url" value="${search.url}"/>
-					<img src="" id="${search.home_seq}h" alt="homephoto" />
+                	<input type="hidden" id="home_seq" value="${home.home_seq}"/>
+                	<input type="hidden" id="url" value="${home.url}"/>
+					<img src="" id="${home.home_seq}h" alt="homephoto" />
                       <script>
                       var home_seq = document.getElementById("home_seq").value+"h";
                       var url = document.getElementById("url").value;
@@ -72,15 +72,15 @@ function heart(){
 					</script>
                 </div>
                 <div class="resultAccomodationText">
-                  <a href="searchResultDetail.do?home_seq=${search.home_seq}&title=${search.title}" target="_blank"><span>${search.title }</span></a>
+                  <a href="searchResultDetail.do?home_seq=${home.home_seq}&title=${home.title}&searchLocation=${search.location}&searchCheckin=${search.checkin}&searchCheckout=${search.checkout}&searchMaxPeople=${search.people}" target="_blank"><span>${home.title }</span></a>
                   <div class="divider-short"></div>
-                  <input class="prices" type="text" value="${search.price }"/>원 <span> /1박</span>
-                  <input class="locations" type="hidden" value="${search.address }"/>
+                  <input class="prices" type="text" value="${home.price }"/>원 <span> /1박</span>
+                  <input class="locations" type="hidden" value="${home.address }"/>
                 </div>
                 	<div class="wishlistHeartIcon" id="wishlistHeartIcon">
-                	<input type="hidden" id="home" value="${search.home_seq }">
+                	<input type="hidden" id="home" value="${home.home_seq }">
                 	<input type="hidden" id="wishlist" value="${wishlist}"/>
-                		<span class="entypo-heart wishlist ${search.home_seq}" id="${search.home_seq}" active="false" style="color:rgb(157,157,157);"></span> 
+                		<span class="entypo-heart wishlist ${home.home_seq}" id="${home.home_seq}" active="false" style="color:rgb(157,157,157);"></span> 
                 		<script>heart();</script>
                 	</div>
               </div>

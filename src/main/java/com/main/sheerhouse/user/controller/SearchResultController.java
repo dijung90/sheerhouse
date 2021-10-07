@@ -58,9 +58,17 @@ public class SearchResultController {
 	}
 	
 	@RequestMapping("/searchResultDetail.do")
-	public String resultDatail(Model model, @RequestParam("home_seq") String home_seq, HttpServletRequest request) {
+	public String resultDatail(Model model, @RequestParam("home_seq") String home_seq, @RequestParam("searchLocation") String location, @RequestParam("searchCheckin") String checkin, 
+			@RequestParam("searchCheckout") String checkout, @RequestParam("searchMaxPeople") String people, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		SearchVO search = (SearchVO)model.getAttribute("search");
+		SearchVO search = new SearchVO();
+		search.setLocation(location);
+		search.setCheckin(checkin);
+		search.setCheckout(checkout);
+		search.setPeople(people);
+		
+		System.out.println(search.toString());
+		
 		UserVO user = (UserVO)session.getAttribute("user");
 		if(user != null) {
 			model.addAttribute("wishlist", wishService.selectUserWishlist(user.getEmail()));
@@ -76,7 +84,7 @@ public class SearchResultController {
 		model.addAttribute("CommentInfo", comments);
 		model.addAttribute("commentCnt", comments.size());
 		model.addAttribute("hostEmail", service.searchHostEmail(home_seq));
-	    model.addAttribute("search", search);
+		model.addAttribute("search", search);
 		return "search/searchResultDetail";
 	}
 }
