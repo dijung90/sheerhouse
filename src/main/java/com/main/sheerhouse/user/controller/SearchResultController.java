@@ -60,7 +60,7 @@ public class SearchResultController {
 	@RequestMapping("/searchResultDetail.do")
 	public String resultDatail(Model model, @RequestParam("home_seq") String home_seq, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		
+		SearchVO search = (SearchVO)model.getAttribute("search");
 		UserVO user = (UserVO)session.getAttribute("user");
 		if(user != null) {
 			model.addAttribute("wishlist", wishService.selectUserWishlist(user.getEmail()));
@@ -76,6 +76,7 @@ public class SearchResultController {
 		model.addAttribute("CommentInfo", comments);
 		model.addAttribute("commentCnt", comments.size());
 		model.addAttribute("hostEmail", service.searchHostEmail(home_seq));
+		model.addAttribute("search", search);
 		return "search/searchResultDetail";
 	}
 }
