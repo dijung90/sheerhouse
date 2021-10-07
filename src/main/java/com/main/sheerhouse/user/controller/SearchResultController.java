@@ -41,7 +41,7 @@ public class SearchResultController {
 		
 		if(user != null) {
 			model.addAttribute("wishlist", wishService.selectUserWishlist(user.getEmail()));
-			System.out.println(wishService.selectUserWishlist(user.getEmail()).toString());
+			System.out.println(wishService.selectUserWishlist(user.getEmail()).toString());	
 
 		}
 
