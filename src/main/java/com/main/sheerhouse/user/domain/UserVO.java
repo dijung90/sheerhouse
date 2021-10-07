@@ -16,10 +16,31 @@ public class UserVO {
 	private boolean emailConfirm;
 	private String address;
 	private String userInfo;
+	private int status;
 	private Timestamp regdate;
 	private Timestamp updatedate; 
 	
 	public UserVO() {}
+
+	public UserVO(String email, String name, String password, String phone, String role, String gender, Date birthday,
+			boolean smsConfirm, boolean emailConfirm, String address, String userInfo, int status, Timestamp regdate,
+			Timestamp updatedate) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.phone = phone;
+		this.role = role;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.smsConfirm = smsConfirm;
+		this.emailConfirm = emailConfirm;
+		this.address = address;
+		this.userInfo = userInfo;
+		this.status = status;
+		this.regdate = regdate;
+		this.updatedate = updatedate;
+	}
 
 	public String getEmail() {
 		return email;
@@ -109,6 +130,14 @@ public class UserVO {
 		this.userInfo = userInfo;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -129,8 +158,10 @@ public class UserVO {
 	public String toString() {
 		return "UserVO [email=" + email + ", name=" + name + ", password=" + password + ", phone=" + phone + ", role="
 				+ role + ", gender=" + gender + ", birthday=" + birthday + ", smsConfirm=" + smsConfirm
-				+ ", emailConfirm=" + emailConfirm + ", address=" + address + ", userInfo=" + userInfo + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
+				+ ", emailConfirm=" + emailConfirm + ", address=" + address + ", userInfo=" + userInfo + ", status="
+				+ status + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
+
+	
 	
 }

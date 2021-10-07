@@ -1,7 +1,5 @@
 package com.main.sheerhouse.user.service;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,8 @@ public class UserLoginServiceImpl implements UserLoginService{
 	@Override
 	public boolean emailCheck(String email) {
 		boolean result = false;
-		String emailCheck = mapper.emailCheck(email);
-		if(emailCheck != null) result = true;
+		UserVO user = mapper.emailCheck(email);
+		if(user.getEmail() != null || user.getStatus() == 1) result = true;
 		return result;
 	}
 
@@ -60,6 +58,18 @@ public class UserLoginServiceImpl implements UserLoginService{
 	public void logout(HttpServletResponse response) throws Exception {
 			
 	}
+
+	@Override
+	public int getUserStatus(String email) {
+		return mapper.getUserStatus(email);
+	}
+
+	@Override
+	public void updateStatus(String email) {
+		mapper.updateStatus(email);
+	}
+	
+	
 	
 	
 }

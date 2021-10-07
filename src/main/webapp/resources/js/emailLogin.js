@@ -17,6 +17,7 @@ $("#email").on("change keyup paste", function(){
 
 	function emailsend(){
 		var useremail = document.getElementById("email").value;
+		
 		var emailexp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		if(useremail.match(emailexp) == null){
 		}else{
@@ -28,6 +29,7 @@ $("#email").on("change keyup paste", function(){
 				data: {email:useremail},
 				success: function(result){
 					check = result;
+
 				}
 				
 			});
@@ -84,9 +86,10 @@ $("#email").on("change keyup paste", function(){
 function emailCheck(){
 	
 	var codeCheck = document.getElementById("emailcheck").value;
-	
+	var e_check = document.getElementById("e_check");
 	if(usercode == codeCheck){
 		document.getElementById("emailMsg").innerHTML="이메일 인증이 성공적으로 완료되었습니다.";
+		e_check.setAttribute("value", "check");
 		document.getElementById("emailSend").innerHTML="";
 		clearInterval(x);
 		document.getElementById("emailtext").innerHTML ="";
@@ -97,6 +100,7 @@ function emailCheck(){
 		passwordcheck.setAttribute("type","password");
 	}else{
 		document.getElementById("emailMsg").innerHTML="이메일 인증에 실패하였습니다. 다시 시도해주세요";
+		e_check.setAttribute("value", "");
 		clearInterval(x);
 		document.getElementById("emailtext").innerHTML ="";
 		emailcheck.setAttribute("type","hidden");

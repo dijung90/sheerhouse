@@ -7,6 +7,86 @@
 <meta charset="UTF-8">
 <title>호스트 전용 페이지 입니다.</title>
 <link rel="stylesheet" href="resources/css/hostpage.css" />
+<style>
+.resForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.res-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+.divider-res {
+  width: 50%;
+  border-bottom: 1px solid #d65f5f;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.res-modalContent {
+  margin: 130px auto;
+  width: 450px;
+  height: 400px;
+  background-color: #eeeeee;
+  border-radius: 0.6rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+}
+.resHeader {
+  text-align: center;
+  color: #6f1313;
+  font-size: 20px;
+}
+
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.email-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+.divider-email {
+  width: 50%;
+  border-bottom: 1px solid #d65f5f;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.email-modalContent {
+  margin: 130px auto;
+  width: 450px;
+  height: 400px;
+  background-color: #eeeeee;
+  border-radius: 0.6rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+}
+.emailHeader {
+  text-align: center;
+  color: #6f1313;
+  font-size: 20px;
+}
+</style>
+
 <script type="text/javascript">
 function imgSetting(url){
 	var imgs = url.slice(1,-1);
@@ -95,18 +175,19 @@ function imgSetting(url){
                       document.getElementById("${home.title}").src=imgSetting("${home.url}")</script>
                     </div>
                     <div class="accomodationTexts">
-                        <a href="#">
+                        <a href="searchResultDetail.do?home_seq=${home.home_seq }" target='_blank'>
                             <div class="accomodationContent">
                             <h2>${home.title}</h2>
                             <span>${home.info }</span>
                             </div>
                         </a>
                         <div class="hostingInfoBtn">
-                          <a href="/#"></a><input type="button" value="숙소 정보"></a>
+                          <a href="hostSettingPage.host?home_seq=${home.home_seq}&host_seq=${host.host_seq}" target='_blank'><input type="button" value="숙소 정보"></a>
                         </div>
                     </div>
                 </div>
                 </li>
+                
           	</c:forEach>
             </ol>
         
@@ -116,47 +197,166 @@ function imgSetting(url){
             <h3>예약 정보입니다.</h3>
             <div>
             <ul class="reservationLists">
+            	<c:forEach var="res" items="${resInfo}">
+            		<input type="hidden" id="${res.apply_num }title" value="${res.title }"/>
+              	  	<input type="hidden" id="${res.apply_num }useremail" value="${res.email }"/>
+              	  	<input type="hidden" id="${res.apply_num }res_date" value="${res.res_date }"/>
+                	<input type="hidden" id="${res.apply_num }total_price" value="${res.total_price }"/>
+                	<input type="hidden" id="${res.apply_num }headcount" value="${res.headcount}"/>
+                	<input type="hidden" id="${res.apply_num }pay_status" value="${res.pay_status }"/>
+                	<input type="hidden" id="${res.apply_num }pay_date" value="${res.pay_date }"/>
+                	<input type="hidden" id="${res.apply_num }cancel_reason" value="${res.cancel_reason }"/>
               <li>
-                <a href="#">
+                <a href="searchResultDetail.do?home_seq=${res.home_seq }">
                   <div>
-                    <img src="resources/Images/place/place5.jpg" alt="bookingphoto" />
+                    <img src="" id="${res.home_seq}" alt="bookingphoto" />
+                      <script>
+                      document.getElementById("${res.home_seq}").src=imgSetting("${res.url}")</script>
                   </div>
                   <div>
                     <div class="reaservation-userInfo">
-                        <h4>예약자: {guest.name}</h4>
-                        <h4>예약 일자: {booking.date}</h4>
+                        <h4>예약자: ${res.email }</h4>
+                        <h4>예약 일자: ${res.res_date }</h4>
+                        <c:choose>
+                        	<c:when test="${res.pay_status == 'paid'}">
+                        		<h4>결제 상태: 완료</h4>
+                        	</c:when>
+                        	<c:when test="${res.pay_status == 'failed'}">
+                        		<h4>결제 상태: 취소</h4>
+                        	</c:when>
+                        </c:choose>
                      </div>
                       <div class="reservationContent">
-                        <h3>{acccomodation.title}</h3>
-                        <span>{accomodation.shortDescription}</span>
+                        <h3>${res.title }</h3>
+                        <span>${res.info }</span>
                       </div>
                   </div>
-                  <div class="moreInfoBtn">
-                      <input type="button" value="더 많은 정보" />
-                  </div>
                 </a>
+                   <div class="moreInfoBtn">
+                      <input type="button" value="더 많은 정보" onclick="resInfo('${res.apply_num}')" />
+                      <input type="button" value="게스트에게 메일 보내기"  onclick="emailModalOpen('${res.apply_num}')"/>
+                  </div>
               </li>
+              </c:forEach>
             </ul>
           </div>
         </section>
-        <section id="historyDetail" class="historyDetail tabContent"data-myhostpage-type="history"></section>
+        <section id="historyDetail" class="historyDetail tabContent"data-myhostpage-type="history">
+        <h3>히스토리 - 게스트들의 지난 예약내역을 확인할 수 있습니다.</h3>
+            <div>
+            <ul class="reservationLists">
+            	<c:forEach var="his" items="${hisInfo}">
+            		<input type="hidden" id="${his.apply_num }title" value="${his.title }"/>
+              	  	<input type="hidden" id="${his.apply_num }useremail" value="${his.email }"/>
+              	  	<input type="hidden" id="${his.apply_num }res_date" value="${his.res_date }"/>
+                	<input type="hidden" id="${his.apply_num }total_price" value="${his.total_price }"/>
+                	<input type="hidden" id="${his.apply_num }headcount" value="${his.headcount}"/>
+                	<input type="hidden" id="${his.apply_num }pay_status" value="${his.pay_status }"/>
+                	<input type="hidden" id="${his.apply_num }pay_date" value="${his.pay_date }"/>
+                	<input type="hidden" id="${his.apply_num }cancel_reason" value="${his.cancel_reason }"/>
+              <li>
+                <a href="searchResultDetail.do?home_seq=${his.home_seq }">
+                  <div>
+                    <img src="" id="${his.home_seq}" alt="bookingphoto" />
+                      <script>
+                      document.getElementById("${his.home_seq}").src=imgSetting("${his.url}")</script>
+                  </div>
+                  <div>
+                    <div class="reaservation-userInfo">
+                        <h4>예약자: ${his.email }</h4>
+                        <h4>예약 일자: ${his.res_date }</h4>
+                        <c:choose>
+                        	<c:when test="${his.pay_status == 'paid'}">
+                        		<h4>결제 상태: 완료</h4>
+                        	</c:when>
+                        	<c:when test="${his.pay_status == 'failed'}">
+                        		<h4>결제 상태: 취소</h4>
+                        	</c:when>
+                        </c:choose>
+                     </div>
+                      <div class="reservationContent">
+                        <h3>${his.title }</h3>
+                        <span>${his.info }</span>
+                      </div>
+                  
+                  </div>
+
+                </a>
+                  <div class="moreInfoBtn">
+                      <input type="button" value="더 많은 정보" onclick="resInfo('${his.apply_num}')" />
+                  </div>
+              </li>
+              </c:forEach>
+
+            </ul>
+          </div>
+        </section>
         <section id="hostinfoDetail" class="hostinfoDetail tabContent"data-myhostpage-type="hostInfo">
           <h3>게스트와 소통할 수 있는 정보를 입력, 수정할 수 있어요!</h3>
             <div>
-            <form action="hostUpdate.host" method="post" class="myHostInfoForm">
+            <input type="hidden" id="smsResult" value="false"/>
+            <input type="hidden" id="beforePhone" value="${host.phone }"/>
+            <form action="hostUpdate.host" method="post" class="myHostInfoForm" name="hostUpdateForm">
               <label for="name">이름</label>
               <input type="text" id="name" name="name" value="${host.name}" />
               <label for="email">연락 이메일</label>
-              <input type="text" id="email" name="email" value="${host.email}" />
+              <input type="text" id="email" name="email" value="${host.email}" readonly/>
               <label for="phone">연락 전화번호</label>
-              <input type="text" id="phone" name="phone" value="${host.phone}" />
-              <label for="introduction">소개</label>
-              <textarea type="text" id="introduction" name="host_info">${host.host_info}</textarea> 
-              <input class="submitBtn" type="submit" value="수정 / 반영하기" />
+              <input type="text" id="phone" name="phone" value="${host.phone}" placeholder=" '-'를 포함하여 전화번호를 입력해주세요" />
+              <span id="telSpan" style="align-content: center; font-size: 12px; color: red;"></span>
+              <input type="button" id="smsSendBtn" value="인증번호 발송" onclick="smsConfirm()"/>
+              <input type="hidden" id="smsCheckBtn" value="인증하기" onclick="smsCheck()"/>
+              <input type="hidden" id="confirmNumber" name="confirmNumber" placeholder="인증번호를 입력해주세요"/>
+              <input type="hidden" id="confirmNumberCheck" name="confirmNumberCheck"/>
+              <br><label for="introduction">소개</label>
+              <textarea id="introduction" name="host_info" style="resize: none;">${host.host_info}</textarea> 
+			  <span id="submitSpan" style="align-content: center; font-size: 12px; color: red;"></span>
+              <input class="submitBtn" type="button" value="수정 / 반영하기" onclick="updateHostInfo()"/>
             </form>
           </div>
         </section>
-        <section id="paymentDetail" class="paymentDetail tabContent"data-myhostpage-type="payment"></section>
+        <section id="paymentDetail" class="paymentDetail tabContent" data-myhostpage-type="payment">
+        		<h3>통장사본 등록 / 변경</h3>
+        		<c:choose>
+        			<c:when test="${host.account_url == ''}">
+        				<span>등록된 통장사본이 없습니다. 정산을 받으려면 통장사본을 등록해주세요.</span><br>
+        			</c:when>
+        			<c:otherwise>
+        				<span>이미 등록된 통장사본이 존재합니다.</span><br>
+        			</c:otherwise>
+                </c:choose>
+               		 <input type="file" id="file" accept="image/*"/>
+                     <div class="moreInfoBtn">
+                      <input type="button" id="uploadBtn" value="등록" onclick="uploadImg()"/>
+                     </div>
+                <h3>정산 내역 조회</h3>
+                	<div>
+                		<span>총 정산 금액:</span>
+                		<span>미 정산 금액:</span>
+               		 	<span>정산 금액:</span>
+                	</div>
+                <span>조회: </span>
+				<select id="status_keyword" name="status_keyword" >
+   					<option value="all" selected="selected">전체</option>
+   					<option value="true">완료</option>
+   					<option value="false">미완료</option>
+				</select>
+				<input type="button" id="setBtn" value="검색" onclick="statusSearch()"/>  
+				<div>
+					<img src="" />
+					<!-- 
+					<img src="" id="${set.list}" alt="hostingphoto" />
+                      <script>
+                      document.getElementById("${home.title}").src=imgSetting("${home.url}")
+                      </script> -->
+                    </div>
+					<h2>{숙소이름}</h2>
+					<span>{정산금액}</span>
+					<span>{결제일시}</span>
+					<span>{정산상태}</span>
+					<span>{정산일시}</span>
+				</div>
+        </section>
          
         <!-- alert modal section -->
         <div class="modal1">
@@ -169,8 +369,221 @@ function imgSetting(url){
           </div>
         </div>
       </div>
-
+      <div class="res-modal" >
+       	<div class="res-modalContent">
+      		<h3 class="resHeader">게스트 예약 정보</h3>
+           		<div class="divider-res"></div>
+                	<form class="resForm" action="#" method="post" name="payForm">
+						<span>숙소 이름 : <input type="text" name="title" id="title" value="" readonly/></span>
+						<span>게스트 이메일 : <input type="text" name="useremail" id="useremail" readonly/></span>
+						<span>예약 날짜 : <input type="text" id="res_date" name="res_date" readonly></span>
+						<span>결제 금액 : <input type="text" id="total_price" name="total_price" readonly></span>
+						<span>게스트 인원 : <input type="text" id="headcount" name="headcount" readonly></span>
+						<span>결제 상태 : <input type="text" id="pay_status" name="pay_status" readonly></span>
+						<span>결제 날짜 : <input type="text" id="pay_date" name="pay_date" readonly></span>
+						<span id="cancelMsg"></span>
+						<textarea id="cancel_reason" style="display: none; resize: none;" readonly cols="30"></textarea>
+						<input type="button" value="닫기" onclick="resInfoClose()"/>
+					</form>
+         </div>
+   	  </div>
+   	  <div class="email-modal" >
+       	<div class="email-modalContent">
+      		<h3 class="emailHeader">게스트에게 이메일 보내기</h3>
+           		<div class="divider-email"></div>
+                	<form class="emailForm" action="#" method="post">
+						<span>호스트 이메일 : <input type="text" id="host_email" value="${host.email}" readonly/></span>
+						<span>게스트 이메일 : <input type="text" id="user_email" readonly/></span>
+						<input type="hidden" id="e_title" />
+						<span>보낼 내용</span>
+						<textarea id="message" style="resize: none;" cols="50" rows="15"></textarea>
+						<span id="emailMsg" style="align-content: center; font-size: 12px; color: red;"></span>
+						<input type="button" value="전송하기" onclick="emailSend()"/>
+						<input type="button" value="닫기" onclick="emailSendClose()"/>
+					</form>
+         </div>
+   	  </div>
 </body>
 <script src="resources/js/hostpage.js" ></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+<script type="text/javascript">
+	emailjs.init('user_uCSqkvJln6DKsZNHVEhr5');
+</script>
+<script type="text/javascript">
+var resmodal = document.querySelector(".res-modal");
+
+function resInfo(apply_num){
+
+	var title = document.getElementById(apply_num+"title").value;
+	var email = document.getElementById(apply_num+"useremail").value;
+	var res_date = document.getElementById(apply_num+"res_date").value;
+	var total_price = document.getElementById(apply_num+"total_price").value;
+	var headcount = document.getElementById(apply_num+"headcount").value;
+	var pay_status = document.getElementById(apply_num+"pay_status").value;
+	var pay_date = document.getElementById(apply_num+"pay_date").value;
+	var cancel_reason = document.getElementById(apply_num+"cancel_reason").value;
+	
+	document.getElementById("title").setAttribute("value",title);
+	document.getElementById("useremail").setAttribute("value",email);
+	document.getElementById("res_date").setAttribute("value",res_date);
+	document.getElementById("total_price").setAttribute("value",total_price);
+	document.getElementById("headcount").setAttribute("value",headcount);
+	document.getElementById("pay_status").setAttribute("value",pay_status);
+	document.getElementById("pay_date").setAttribute("value",pay_date);
+	
+	if(pay_status == "paid"){
+		document.getElementById("pay_status").setAttribute("value","완료");
+	}else{
+		document.getElementById("pay_status").setAttribute("value","취소");
+	}
+	
+	if(pay_status == "paid"){
+		document.getElementById("cancelMsg").innerHTML="";
+		document.getElementById("cancel_reason").style.display="none";
+	}else{
+		document.getElementById("cancelMsg").innerHTML="취소 사유: ";
+		document.getElementById("cancel_reason").value=cancel_reason;
+		document.getElementById("cancel_reason").style.display="block";
+	}
+	
+	 resmodal.style.display = "block";
+}
+
+function resInfoClose(){
+	 resmodal.style.display = "none";
+}
+
+var confirmNumberCheck = document.getElementById("confirmNumberCheck");
+var confirmNumber = document.getElementById("confirmNumber");
+var sendBtn = document.getElementById("smsSendBtn");
+var checkBtn = document.getElementById("smsCheckBtn");
+var beforePhone = document.getElementById("beforePhone").value;
+var smsResult = document.getElementById("smsResult");
+var phone = document.getElementById("phone");
+function smsConfirm(){
+		var tel = phone.value;
+		var regexp = /^\d{3}-\d{3,4}-\d{4}$/
+		if(tel.match(regexp) == null || tel==""){
+			document.getElementById("telSpan").innerHTML=" '-'를 포함하여 전화번호를 입력해주세요";
+			return;
+		}
+		
+		$.ajax({
+			url: 'hostSms.host',
+			type: 'POST',
+			data: {"tel": tel },
+			success: function(result){
+				console.log(result);
+				sendBtn.setAttribute("type","hidden");
+				checkBtn.setAttribute("type","button");
+				confirmNumber.setAttribute("type", "text");
+				confirmNumberCheck.setAttribute("value", result);
+				document.getElementById("telSpan").innerHTML="인증번호가 발송되었습니다.";
+				console.log(confirmNumber);
+			}
+		});
+
+	}
+
+function smsCheck(){
+	var confirmNum = confirmNumber.value;
+	var confirmCheck = confirmNumberCheck.value;
+	
+	if(confirmNum == confirmCheck){
+		document.getElementById("telSpan").innerHTML="인증이 성공적으로 완료되었습니다.";
+		confirmNumber.setAttribute("type", "hidden");
+		smsResult.setAttribute("value","true");
+	}else{
+		document.getElementById("telSpan").innerHTML="인증이 실패하였습니다. 다시시도해주세요.";
+		confirmNumber.setAttribute("type", "hidden");
+		smsResult.setAttribute("value","false");
+	}
+	checkBtn.setAttribute("type", "hidden");
+	sendBtn.setAttribute("type","button");
+	
+	
+}
+
+function updateHostInfo(){
+	var result = smsResult.value;
+	
+	if(phone.value != beforePhone && result =="false"){
+		document.getElementById("submitSpan").innerHTML="전화번호 변경시 인증은 필수입니다.";
+		return;
+	}
+	document.hostUpdateForm.submit();
+	
+}
+
+var emailmodal = document.querySelector(".email-modal");
+function emailModalOpen(apply_num){
+	document.getElementById("emailMsg").innerHTML="";
+	document.getElementById("message").value="";
+	var user_email = document.getElementById(apply_num+"useremail").value;
+	var title = document.getElementById(apply_num+"title").value;
+	document.getElementById("user_email").setAttribute("value", user_email);
+	document.getElementById("e_title").setAttribute("value", title);
+	emailmodal.style.display = "block";
+}
+
+function emailSend(){
+	var h_title = document.getElementById("e_title").value;
+	var u_email = document.getElementById("user_email").value;
+	var h_message = document.getElementById("message").value;
+	var h_email = document.getElementById("host_email").value;
+
+	if(h_message == ""){
+		document.getElementById("emailMsg").innerHTML="보낼 내용은 필수입니다.";
+		return;
+	}
+	
+	 emailjs.send("service_avx135c","template_7gw19yk",{
+  	   user_email: u_email,
+  	   message: h_message,
+  	   host_email: h_email,
+  	   title: h_title,
+  	   }).then(function(response){
+  		   alert('전송이 완료되었습니다.');
+  		   emailmodal.style.display = "none";
+  	   }, function(error){
+  	 alert(JSON.stringify(error));
+   });
+	
+}
+
+function emailSendClose(){
+	 emailmodal.style.display = "none";
+}
+
+function uploadImg(){
+	var file = document.getElementById('file');
+	var filedata = new FormData(); 
+	if (!file.value){
+		alert("전송할 파일을 첨부해주세요.");
+		return;
+	}  
+	
+	filedata.set("img",file.files[0]);
+	
+	 $.ajax({
+		 url: "uploadHostAccount.host",
+		 enctype: 'multipart/form-data',
+		 type:"POST",
+		 data: filedata,
+		 async: false,
+	  	 processData: false,
+	  	 contentType: false,
+	  	 success: function(result){
+	  		 console.log(result);
+	  		 alert("성공적으로 업로드 되었습니다.");
+	  	 }
+	  });
+}
+
+function statusSearch(){
+	
+}
+</script>
 
 </html>

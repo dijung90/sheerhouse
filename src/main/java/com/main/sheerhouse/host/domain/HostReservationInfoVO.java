@@ -1,6 +1,6 @@
-package com.main.sheerhouse.user.domain;
+package com.main.sheerhouse.host.domain;
 
-public class ReservationVO {
+public class HostReservationInfoVO {
 
 	private int apply_num;
 	private int home_seq;
@@ -12,11 +12,16 @@ public class ReservationVO {
 	private String pay_date;
 	private String res_date;
 	private String cancel_reason;
+	private String title;
+	private String info;
+	private String rule;
+	private String url;
+	
+	public HostReservationInfoVO() {}
 
-	public ReservationVO() {}
-
-	public ReservationVO(int apply_num, int home_seq, int act_seq, String email, int total_price, int headcount,
-			String pay_status, String pay_date, String res_date, String cancel_reason) {
+	public HostReservationInfoVO(int apply_num, int home_seq, int act_seq, String email, int total_price, int headcount,
+			String pay_status, String pay_date, String res_date, String cancel_reason, String title, String info,
+			String rule, String url) {
 		super();
 		this.apply_num = apply_num;
 		this.home_seq = home_seq;
@@ -28,6 +33,10 @@ public class ReservationVO {
 		this.pay_date = pay_date;
 		this.res_date = res_date;
 		this.cancel_reason = cancel_reason;
+		this.title = title;
+		this.info = info;
+		this.rule = rule;
+		this.url = url;
 	}
 
 	public int getApply_num() {
@@ -110,10 +119,44 @@ public class ReservationVO {
 		this.cancel_reason = cancel_reason;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public String getRule() {
+		return rule;
+	}
+
+	public void setRule(String rule) {
+		this.rule = rule;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
 	public String toString() {
-		return "ReservationVO [apply_num=" + apply_num + ", home_seq=" + home_seq + ", act_seq=" + act_seq + ", email="
-				+ email + ", total_price=" + total_price + ", headcount=" + headcount + ", pay_status=" + pay_status
-				+ ", pay_date=" + pay_date + ", res_date=" + res_date + ", cancel_reason=" + cancel_reason + "]";
+		return "HostReservationInfoVO [apply_num=" + apply_num + ", home_seq=" + home_seq + ", act_seq=" + act_seq
+				+ ", email=" + email + ", total_price=" + total_price + ", headcount=" + headcount + ", pay_status="
+				+ pay_status + ", pay_date=" + pay_date + ", res_date=" + res_date + ", cancel_reason=" + cancel_reason
+				+ ", title=" + title + ", info=" + info + ", rule=" + rule + ", url=" + url + "]";
 	}
+	
 }

@@ -24,7 +24,7 @@ public class AwsS3 {
 
 	private AmazonS3 s3Client;
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
-	private String bucket = "sheerhouse";
+	private String bucket = "sheerhouse2";
 	
 	private AwsS3() {
 		createS3Client();
@@ -104,8 +104,8 @@ public class AwsS3 {
 	
 	public List<String> getUrl(String key) {
 		List<String> list = new ArrayList<String>();
-		String rootPath = "https://sheerhouse.s3.ap-northeast-2.amazonaws.com/";
-		ObjectListing objects = s3Client.listObjects("sheerhouse", key);
+		String rootPath = "https://sheerhouse2.s3.ap-northeast-2.amazonaws.com/";
+		ObjectListing objects = s3Client.listObjects("sheerhouse2", key);
 		for (S3ObjectSummary os : objects.getObjectSummaries()) {
 			list.add(rootPath + os.getKey());
 		}
@@ -113,4 +113,14 @@ public class AwsS3 {
 		return list;
 	}
 
+	public String getUrl(String key, String account) {
+		String url="";
+		String rootPath = "https://sheerhouse2.s3.ap-northeast-2.amazonaws.com/";
+		ObjectListing objects = s3Client.listObjects("sheerhouse2", key);
+		for (S3ObjectSummary os : objects.getObjectSummaries()) {
+			url = rootPath + os.getKey();
+		}
+		
+		return url;
+	}
 }

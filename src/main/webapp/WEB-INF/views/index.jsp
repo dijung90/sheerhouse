@@ -248,6 +248,7 @@
 		            <span id="passwordMsg" class="spanMsg" ></span>
 		            <input class="loginSubmit" type="button" onClick="emailLogin();" value="로그인 하기"/>
 		            <span onclick="moveTojoinPage()" class="movoToJoin">비밀번호 찾기</span>
+		            <input type="hidden" id="e_check" name="e_check" value=""/>
 		        </form>
 		          <div class="divider bottom-margin"></div>
 		          

@@ -13,11 +13,13 @@ public class HostVO {
 	private Timestamp updatedate;
 	private int certificateNum;
 	private String certificateTitle;
+	private String account_url;
+	private int status;
 	
 	public HostVO() {}
 
 	public HostVO(int host_seq, String email, String name, String phone, String host_info, Timestamp regdate,
-			Timestamp updatedate, int certificateNum, String certificateTitle) {
+			Timestamp updatedate, int certificateNum, String certificateTitle, String account_url, int status) {
 		super();
 		this.host_seq = host_seq;
 		this.email = email;
@@ -28,6 +30,8 @@ public class HostVO {
 		this.updatedate = updatedate;
 		this.certificateNum = certificateNum;
 		this.certificateTitle = certificateTitle;
+		this.account_url = account_url;
+		this.status = status;
 	}
 
 	public int getHost_seq() {
@@ -102,13 +106,28 @@ public class HostVO {
 		this.certificateTitle = certificateTitle;
 	}
 
+	public String getAccount_url() {
+		return account_url;
+	}
+
+	public void setAccount_url(String account_url) {
+		this.account_url = account_url;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "HostVO [host_seq=" + host_seq + ", email=" + email + ", name=" + name + ", phone=" + phone
 				+ ", host_info=" + host_info + ", regdate=" + regdate + ", updatedate=" + updatedate
-				+ ", certificateNum=" + certificateNum + ", certificateTitle=" + certificateTitle + "]";
+				+ ", certificateNum=" + certificateNum + ", certificateTitle=" + certificateTitle + ", account_url="
+				+ account_url + ", status=" + status + "]";
 	}
 
-
-	
 }

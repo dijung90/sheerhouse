@@ -6,7 +6,7 @@ import com.main.sheerhouse.user.domain.UserVO;
 public interface UserLoginMapper {
 
 
-	public String emailCheck(String email);
+	public UserVO emailCheck(String email);
 
 	public void insertUser(UserVO user);
 
@@ -15,4 +15,9 @@ public interface UserLoginMapper {
 	public int passwordUpdate(UserVO user);
 	
 	public UserVO selectUserInfo(UserVO user);
+	
+	public int getUserStatus(String email);
+	
+	public void updateStatus(String email);
+	
 }

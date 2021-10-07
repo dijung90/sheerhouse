@@ -38,32 +38,6 @@ public class UserLoginController {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-	//임시 smsAPI 컨트롤러 추가
-	@Autowired
-	private CoolSmsAPI api;
-	
-	
-	@GetMapping("/test.do")
-	public void test() {}
-	
-	@PostMapping("/test.do")
-	public @ResponseBody String testPost(String tel, Model model){
-		
-		String result = "";
-		String confirmNumber = "";
-		Random rand = new Random();
-		for(int i=0; i<6; i++) {
-			String random = Integer.toString(rand.nextInt(10));
-			confirmNumber+=random;
-		}
-		
-		api.certifiedSMS(tel, confirmNumber);
-		
-		result = confirmNumber;
-		
-		return result;
-	}
-
 	
 	@Autowired
 	NoticeImpl noticeim;
@@ -155,13 +129,32 @@ public class UserLoginController {
 	}
 	
 	@PostMapping("/emailUserInfo.do")
-	public String emailLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException{
+	public String emailLoginAndRegist(UserVO user, HttpServletRequest request, HttpSession session, HttpServletResponse response, String e_check) throws IOException{
 		boolean emailCheck = service.emailCheck(user.getEmail());
 		user.setPassword(Sha256.encrypt(user.getPassword()));
 		
-		if(!emailCheck) { //중복 이메일이 없으면 회원가입 성공
+		System.out.println(e_check);
+		if(!emailCheck) { //중복 이메일 없으면 회원가입 성공
 			user.setEmailConfirm(true);
 			service.insertUser(user);
+		}else {
+			//1정상 2탈퇴 3정지
+			int status = service.getUserStatus(user.getEmail());
+			if(status == 2 && e_check.equals("")) {
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('탈퇴처리된 사용자입니다. 이메일 인증 후 다시 가입해주세요');location.href='index.do'</script>");
+				out.flush();
+				return "index";
+			}else if(status == 2 && e_check.equals("check")){	
+				service.updateStatus(user.getEmail());
+			}else {
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('정지된 사용자입니다.');location.href='index.do'</script>");
+				out.flush();
+				return "index";
+			}
 		}
 		
 		boolean passwordCheck= service.passwordCheck(user);
@@ -216,9 +209,21 @@ public class UserLoginController {
 	}
 
 	@RequestMapping("/searchEmail.do")
-	public String searchEmail(UserVO user) {
+	public String searchEmail(UserVO user,  HttpServletResponse response)  throws IOException{
 		boolean emailCheck = service.emailCheck(user.getEmail());
+		//중복이메일과 상태가 1일결우 true
+		if(!emailCheck) { //중복 이메일 없으면 회원가입 성공
+			int status = service.getUserStatus(user.getEmail()); //2, 3 반환
+			if(status == 3) {
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('정지된 사용자입니다.');location.href='index.do'</script>");
+				out.flush();
+				return "index";
+			}
+		}
 		String result = String.valueOf(emailCheck);
+		
 		return result;
 	}
 	

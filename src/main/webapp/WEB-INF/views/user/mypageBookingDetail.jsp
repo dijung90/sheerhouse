@@ -74,8 +74,6 @@
 						                		<textarea class="emailMsg" name="message"></textarea>	
 						                		<button id="sendBtn" class="sendBtn">전송</button>		
 						                	</div>
-						         
-						                
 						               </div>
 									<br>
 									

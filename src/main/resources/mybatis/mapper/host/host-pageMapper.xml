@@ -10,4 +10,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectHome" resultType="com.main.sheerhouse.host.domain.HomeVO">
 		select * from home where host_seq=(select host_seq from host where email=#{email})
 	</select>
+	<select id="selectResInfo" resultType="com.main.sheerhouse.host.domain.HostReservationInfoVO">
+		select r.*, h.title, h.info, h.rule, h.url 
+		from reservation as r join home as h on h.home_seq = r.home_seq
+		where h.host_seq=(select host_seq from host where host_seq=#{host_seq}) and right(r.res_date,10) > CURRENT_DATE()
+	</select>
+	
+	<select id="selectHisInfo" resultType="com.main.sheerhouse.host.domain.HostReservationInfoVO">
+		<![CDATA[select r.*, h.title, h.info, h.rule, h.url 
+				from reservation as r join home as h on h.home_seq = r.home_seq
+				where h.host_seq=(select host_seq from host where host_seq=#{host_seq}) and right(r.res_date,10) < CURRENT_DATE()
+				order by right(r.res_date,10) DESC]]>
+	</select>
+	<update id="updateHostAccountUrl">
+		update host set account_url=#{path} where host_seq=#{host_seq} 
+	</update>
+	<select id="selectSetList" resultType="com.main.sheerhouse.host.domain.SettlementHistotyVO">
+		select s.set_seq, (select title from home as h where h.home_seq=r.home_seq) as title, r.total_price, r.pay_date, s.status, s.update_date
+		from settlement_history as s join reservation as r on s.apply_num = r.apply_num
+		where host_seq=#{host_seq} and s.status=#{statusKeyword} order by r.pay_date DESC;
+	</select>
+	
 </mapper>
