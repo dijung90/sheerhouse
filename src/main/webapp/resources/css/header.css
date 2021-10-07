@@ -34,10 +34,11 @@ body {
   padding: 1rem;
 }
 
-.navContainer .logoContainer h2 {
-  font-size: 38px;
+.navContainer .logoContainer img {
+  width: 150px;
   letter-spacing: 2px;
   color: #ac0c0c;
+  padding-left: 40px;
 }
 .navContainer .logoContainer span {
   font-size: 9px;
@@ -46,8 +47,9 @@ body {
 .searchbar-small {
   width: 550px;
   height: 60px;
-  margin-top: 40px;
-  margin-right:0px;
+  margin-top: 50px;
+  margin-right:20px;
+  margin-left:20px;
   border-radius: 99999px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 }
@@ -73,18 +75,18 @@ body {
   width: 150px;
 }
 .menuContainer {
-  width: 35%;
-  text-align: center;
+  width: 350px;
   padding-top: 40px;
   padding-left: 0px;
   padding-right: 0px;
 }
 .menuContainer .menus{
-	margin-top: 17px;
+  display: flex;
+  margin-right: 35px;
+  margin-top: 30px;
 }
 .menuContainer .menus li {	
-  float:left;
-  margin-right : 35px;
+  margin: auto;
 }
 
 
@@ -387,3 +389,7 @@ select {
 }
 
 
+.movoToJoin {
+  margin-top: 5px;
+  font-size: 14px;
+}

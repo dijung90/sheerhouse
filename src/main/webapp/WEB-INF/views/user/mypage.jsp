@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
  
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,9 @@
       </div>
       <div class="mypageGreeting">
         <h3>안녕하세요 ${user.name}님</h3>
+        <p></p>
       </div>
+       <div class="divider"></div>
       <div class="mypageSelect">
         <ul class="mypagelists">
           <li onclick="showMore(this)" class="tabs" id="myBooking" data-mypage-type="bookingDetail">
@@ -51,10 +53,11 @@
       </div>
       <div class="detailContainer">
         <section id="bookingDetail" class="bookingDetail tabContent" data-mypage-type="booking">
+        <h3>예약된 내용입니다.</h3>
             <ol class="bookingLists">
 		            <c:forEach var="reservationlist" items="${reservationlist}">	
 		            	<c:set var="today" value="<%=new java.util.Date()%>"/>
-		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.stayingDate, ',')[0]}" pattern="yyyy-MM-dd"/>
+		           		<fmt:parseDate var="starDate" value="${fn:split(reservationlist.res_date, ',')[0]}" pattern="yyyy-MM-dd"/>
 		            	<c:if test="${starDate > today }">
 		
 				              <li class="bookingList">
@@ -98,16 +101,12 @@
             </ol>           
         </section>
         
-        
-       
-        
-        
-        
-        
+
         <!-- wishlist section -->
        
 		        <section id="wishListDetail" class="wishListDetail tabContent" data-mypage-type="wishList">
 		          <div>
+		          <h3>회원님의 위시리스트에 담겨있어요!</h3>
 		            <ul class="wishLists">
 		             <c:forEach var="wishList" items="${wishList}" >
 				              <li>
@@ -122,7 +121,7 @@
 				                    	<span>${wishList.info}</span>
 				                  </div>
 				                 	<div class="wishIcon">
-				                    	<span class="entypo-heart wishlist ${wishList.home_seq}" id="${wishList.home_seq}" active="false" style="color: rgb(157,157,157);"></span> 
+				                    	<span class="entypo-heart wishlist ${wishList.home_seq}" id="${wishList.home_seq}" active="false" style="color: rgb(229,87,99);"></span> 
 				                    </div>
 				                <div class="divider"></div>
 				              </li>
@@ -151,7 +150,7 @@
 					                      		<a href="searchResultDetail.do?home_seq=${reservationlist.home_seq}&title=${reservationlist.title}" target="_blank">
 					                            	<h2>${reservationlist.title}</h2>
 					                        	</a>
-					                            	<span> 결제 금액 : ${reservationlist.totalprice}</span>
+					                            	<span> 결제 금액 : ${reservationlist.total_price}</span>
 					                            	<div class="reservationDateInfo">
 					                            		<span>기간 : </span>	
 					                            		<input type="text" class="reservationDates" value="${reservationlist.res_date}" readonly/>	

@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>얘약정보 입니다.</title>
 <link rel="stylesheet" href="/resources/css/UserMypage/mypageShowDetail.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 	<nav>
@@ -28,11 +29,7 @@
           </ul>
 		</div>
 	</nav>
-	<header>
-		<h2>
-			${bookingDetail.email }님의 예약정보입니다.
-		</h2>
-	</header>
+
 	<div class="reservationDetailInfoContainer">
 			 						<input class="imgUrls" type="hidden" value="${bookingDetail.url }" />
 			 						<div class="slideshow-container">
@@ -48,12 +45,17 @@
 									
 									
 									<div class="reservationInfoDetail">
-									<h2>${bookingDetail.title}</h2>
+										<div class="header">
+											<h2>
+												${bookingDetail.email }님의 예약정보입니다.
+											</h2>
+										</div>
+											<h2 class="title">${bookingDetail.title}</h2>
 						                	<div>
-						                		<p>총 결제 금액 : ${bookingDetail.totalprice}</p>
+						                		<p>총 결제 금액 : ${bookingDetail.total_price}</p>
 						                	</div>
 						                	<div>
-						                		<p>예약 일정 ${bookingDetail.stayingDate}</p>
+						                		<p>예약 일정 ${bookingDetail.res_date}</p>
 						                	</div>
 						                	<div>
 						                			<p>숙소 정보: ${bookingDetail.info}</p>
@@ -68,8 +70,8 @@
 						                	</div>
 						                	<div class="divider"></div>
 						                	<div class=sendEmailContainer id="emailForm">
-						                		<h2>호스트에게 연락하기</h2>
-						                		<input class="userEmail" name="from_name" type="text" value="${bookingDetail.email }" />
+						                		<h2 class="title">호스트에게 연락하기</h2>
+						                		<input class="userEmail" name="from_name" type="hidden" value="${bookingDetail.email }" />
 						                		<input class="hostEmail" name="to_name" type="hidden" value="${hostEmail}"/>
 						                		<textarea class="emailMsg" name="message"></textarea>	
 						                		<button id="sendBtn" class="sendBtn">전송</button>		

@@ -18,7 +18,7 @@ body {
   width: 100%;
   height: 130vh;
 }
-
+/* 
 .navContainer {
   width: 100%;
   height: 17%;
@@ -81,7 +81,7 @@ body {
 }
 .menuContainer .menus li {
   display: flex;	
-}
+} */
 
 .accomodationResults-container {
   display: flex;

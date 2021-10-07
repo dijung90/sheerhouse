@@ -19,12 +19,6 @@
 		
     	<script type="text/javascript" src="/resources/js/emailLogin.js"></script>
     	<script type="text/javascript" src="/resources/js/updatePassword.js"></script>
-	<style>
-		.spanMsg{
-			font-size: 12px;
-			color:red;
-		}
-	</style>
 </head>
 
   <body class="main">
@@ -32,9 +26,9 @@
     <div>
       <div class="navContainer">
         <div class="logoContainer">
-          <a href="/index.do"><h2>쉬어家</h2>
-          <span>sheerhouse</span></a>
-          <div class="bar"></div>
+          <a href="/index.do">
+          	<img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/Logo/logo%20ver2.png" alt="logo" />
+          </a>
         </div>
         <nav class="menuContainer">
           <ul class="menus">
@@ -44,10 +38,12 @@
 				<c:if test="${user.role eq 'user'}">
 		            <li><a href="mypage.do">마이페이지</a></li>
 					<li><a href="hostRegulation.host">호스트 등록하기</a></li>
+					<li><a href="logout.do">로그아웃</a></li>
 				</c:if>						
 				<c:if test="${user.role eq 'host'}">
 					<li><a href="mypage.do">마이페이지</a></li>
-					<li><a href="homes.host">호스트 페이지로 가기</a></li>
+					<li><a href="homes.host">호스트 페이지</a></li>
+					<li><a href="logout.do">로그아웃</a></li>
 				</c:if>
           </ul>
         </nav>
@@ -61,11 +57,11 @@
         </div>
         <div class="tabMenu">
         	<span class="accomodationSearch borderBottom" onclick=showTabContent1()>숙소</span>
-        	<span class="activitySearch" onclick=showTabContent2()>액티비티</span>
+        	<!-- <span class="activitySearch" onclick=showTabContent2()>액티비티</span> -->
         </div>
         
         <!--Activity Search Container  -->
-        <div class="Activity">
+        <!-- <div class="Activity">
 	        <form class="searchContainer-activity" action="searchActivity.do" method="get">
 	        	<div class="searchWhere">
 	            	<h3>Where</h3>
@@ -82,7 +78,7 @@
 	            </button>  
 	           </div>
 	        </form>
-        </div>
+        </div> -->
         
         <!-- Accomodation Search Container -->
         <div class="Accomodation">
@@ -162,29 +158,29 @@
         </div>
       </section>
       <section class="recommendActivityContainer">
-        <h3>이런 액티비티도 있어요</h3>
-        <div>
-          <div class="recommendActivity activity1">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity1.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity2">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity2.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity3">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity3.jpg" alt="place"
-            /></a>
-          </div>
-          <div class="recommendActivity activity4">
-            <a href="#"
-              ><img src="/resources/Images/activity/activity4.jpg" alt="place"
-            /></a>
-          </div>
-        </div>
+              <h3>최근 많은 사람들이 찾아 주셨어요</h3>
+		        <div>
+		          <div class="recommendActivity activity1">
+		            <a href="#"
+		              ><img src="/resources/Images/activity/activity1.jpg" alt="place"
+		            /></a>
+		          </div>
+		          <div class="recommendActivity activity2">
+		            <a href="#"
+		              ><img src="/resources/Images/activity/activity2.jpg" alt="place"
+		            /></a>
+		          </div>
+		          <div class="recommendActivity activity3">
+		            <a href="#"
+		              ><img src="/resources/Images/activity/activity3.jpg" alt="place"
+		            /></a>
+		          </div>
+		          <div class="recommendActivity activity4">
+		            <a href="#"
+		              ><img src="/resources/Images/activity/activity4.jpg" alt="place"
+		            /></a>
+		          </div>
+		        </div>
       </section>
 
 		  <section class="hostbanner">
@@ -200,8 +196,13 @@
           </div>
          
         </section>
-      <section class="footer"></section>
-		</div>
+
+
+
+		<!-- 풋터 footer -->
+      	<%@ include file="/WEB-INF/views/Footer.jsp"%>
+
+	
 		
 		
 		<div class="join-modal">
@@ -383,7 +384,7 @@ window.fbAsyncInit = function() {
 
   	  });
     }
-    </script> 
+</script> 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 Kakao.init('f6cac299feab96616592fa86fe86f09e'); //발급받은 키 중 javascript키를 사용해준다.

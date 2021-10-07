@@ -15,10 +15,13 @@ html {
   flex:  1 100%;
 }
 
-.footer__addr {
+.footer__addr img {
+  width: 150px;
+  margin-left: 30px;
+}
+.footer__nav{
 
 }
-
 .footer__logo {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -68,6 +71,8 @@ html {
 
 .footer li {
   line-height: 2em;
+  /* width: 120px; */
+  text-align: center;
 }
 
 .footer a {
@@ -86,6 +91,11 @@ html {
 
 .nav__ul a {
   color: #999;
+
+}
+
+.nav__ul li{
+  text-align: center;
 }
 
 .nav__ul--extra {
@@ -97,8 +107,12 @@ html {
   display: flex;
   flex-wrap: wrap;
   color: #999;
+  justify-content: center;
 }
-  
+.bottom a{
+  text-decoration: none;
+  color: #999;
+}
 
 @media screen and (min-width: 40.375em) {
   .footer__nav > * {

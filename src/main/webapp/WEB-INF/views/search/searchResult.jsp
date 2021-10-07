@@ -94,6 +94,12 @@ function heart(){
         </div>
         <div id="map" style="width:100%;height:900px;"></div>
       </div>
+      
+
+      		<%@ include file="/WEB-INF/views/Footer.jsp"%>
+
+     
+     </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c4e2675e9fcb8f1c39453c9511374e2b&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c4e2675e9fcb8f1c39453c9511374e2b&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -246,8 +252,8 @@ function heart(){
 
 
 </script>
-<%@ include file="/WEB-INF/views/Footer.jsp"%>
-</body>
+
+
 
 </html>
 
