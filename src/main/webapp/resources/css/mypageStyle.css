@@ -70,12 +70,13 @@ body {
 }
 
 .mypagelists li {
+  margin-top: 20px;
   padding: 10px;
   font-size: 20px;
   margin-right: 10px;
   cursor: pointer;
-  padding-bottom: 30px;
-  margin-bottom: 60px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
   height: 30px;
   width: 200px;
   text-align: center;
@@ -92,9 +93,16 @@ body {
 .detailContainer {
   width: 940px;
 }
+
+.detailContainer h3{
+  text-align: left;
+  padding-left: 125px;
+  font-size: 18px;
+  margin-bottom: 0px;
+  color: #d65f5f;
+}
 .bookingList, .historyList{
-  margin-left: 50px;
-  margin-left: 40px;
+  margin-left: 0px;
   display: flex;
   margin-bottom: 25px;
 } 
@@ -108,7 +116,7 @@ body {
 
 .bookingList div:first-child,
 .historyList div:first-child{
-  margin-left: 40px;
+  margin-left: 65px;
 }
 
 .bookingList div a,
@@ -144,16 +152,21 @@ body {
   width: 160px;
   height: 38px;
   background-color: #d65f5f;
+  border-radius: 7px;
   color: #eeeeee;
   font-size: 14px;
   margin-top: 22px;
-  margin-left: 40px;
+  margin-left: 60px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .reservationDateInfo{
   margin-left: 0px;
+}
+.reservationDates{
+  font-size: 14px;
+  margin-left: 10px;
 }
 .reservationState{
   font-size: 17px;
@@ -162,8 +175,9 @@ body {
   height: 35px;
   width: 100px;
   color: #ffffff;
-  margin-top: 80px;
+  margin-top: 90px;
   border-radius: 5px;
+  margin-left: 20px;
 }
 
 .complete{
@@ -179,16 +193,16 @@ body {
   position: absolute;
 }
 .bookingDetail {
-  margin-left: 100px;
+  margin-left: 160px;
   text-align: center;
   align-items: center;
 }
 .bookingList img, .historyList img {
-  width: 120px;
-  height: 140px;
-  margin-right: 50px;
+  width: 135px;
+  height: 160px;
   margin-left: 30px;
-  border-radius: 5px;
+  border-radius: 7px;
+  margin-top: 25px;
 }
 .accomodationContent h2 {
   margin: 0 0 5px 0;
@@ -196,9 +210,15 @@ body {
 
 .wishListDetail {
   width: 600px;
-  margin-left: 200px;
+  margin-left: 240px;
   margin-top: 25px;
   display: none;
+}
+
+.wishListDetail h3{
+  margin-bottom: 40px;
+  margin-top: -20px;
+  margin-left: -90px;
 }
 .wishLists .divider{
   width: 550px;
@@ -236,7 +256,7 @@ li {
 }
 .wishListContent h2 {
   margin: 5px 0 5px 0;
-  color: #d65f5f;
+  color: #ac0c0c;
 }
 
 .wishIcon {
@@ -265,7 +285,8 @@ li {
   display: none;
   width: 800px;
   height: 500px;
-  margin-left: 130px;
+  margin-left: 260px;
+  margin-top: 40px;
 }
 .infoDetail div form {
   width: 600px;
@@ -379,7 +400,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 .historyDetail{
   display: none;
-  margin-left: 100px;
+  margin-left: 240px;
   text-align: center;
   align-items: center;
 }

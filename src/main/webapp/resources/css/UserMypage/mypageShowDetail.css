@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
 
-* {box-sizing:border-box}
+* {
+	box-sizing:border-box
+}
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+
 ol,ul li{
     list-style: none;
 }
@@ -35,17 +43,10 @@ nav ul li a{
   color: #232323;
 }
 
-header{
-  width: 70%;
-  margin: auto;
-  text-align: center;
-  margin-bottom: 50px;
-  padding-left: 70px;
 
-}
 /* Slideshow container */
 .slideshow-container {
-  max-width: 700px;
+  max-width: 800px;
   position: relative;
   margin: auto;
 }
@@ -56,13 +57,13 @@ header{
 }
 
 .mySlides img {
-  width: 700px;
-  height: 400px;
+  width: 800px;
+  height: 450px;
   background-color: #eeeeee;
   text-align: center;
 }
 .prev{
-  left: 30px;
+  left: 40px;
 }
 .next{
   margin-right: -40px;
@@ -148,25 +149,27 @@ header{
   to {opacity: 1}
 }
 
-
+.header h2{
+  font-size: 14px;
+  color: #565656;
+}
 .reservationInfoDetail{
-    width: 650px;
+    width: 750px;
     margin: 10px auto;
-
     padding-left: 20px;
 }
 
 
-.reservationInfoDetail h2{
+.reservationInfoDetail .title{
     font-size: 32px;
     color: #232323;
-    margin-bottom: 30px;
-    text-align: center;
+    margin-bottom: 40px;
+    color: #e55757;
 }
 
 
 .sendEmailContainer{
-    width: 700px;
+    width: 750px;
     margin-top: 50px;
     padding-right: 70px;
 
@@ -183,24 +186,25 @@ header{
 
 .sendEmailContainer textarea{
     display: block;
-    width: 500px;
+    width: 700px;
     min-height: 200px;
     margin: 20px auto;
     border-radius: 3px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #787878;
 
 }
 
 .sendEmailContainer button{
     display: block;
      margin-top: 30px;
-     width: 300px;
-     height: 40px;
+     width: 200px;
+     height: 45px;
      margin: auto;
      color: #eeeeee;
      border: none;
      background-color: #d65f5f;
      border-radius: 3px;
+     font-size: 16px;
  }
 
  

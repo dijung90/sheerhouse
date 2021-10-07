@@ -9,7 +9,7 @@ public class ReservationInfoVO {
 	private int total_price;
 	private String pay_date;
 	private String pay_status;
-	private Date res_date;
+	private String res_date;
 	private String cancel_reason;
 	private int apply_num;
 	private String title;
@@ -66,10 +66,10 @@ public class ReservationInfoVO {
 		this.pay_date = pay_date;
 	}
 
-	public Date getRes_date() {
+	public String getRes_date() {
 		return res_date;
 	}
-	public void setRes_date(Date res_date) {
+	public void setRes_date(String res_date) {
 		this.res_date = res_date;
 	}
 	public String getCancel_reason() {

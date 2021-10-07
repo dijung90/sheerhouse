@@ -32,4 +32,8 @@ public class HostController {
 		return "host/hostregister";
 	}
 	
+	@GetMapping("/dateset.host")
+	public String setDate() {
+		return "host/hostDateSetting";
+	}
 }

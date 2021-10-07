@@ -18,56 +18,62 @@
 </head>
 <body>
       <div class="navContainer">
-        <div class="logoContainer">
-          <a href="/index.do"><h2>쉬어家</h2>
-            <span>sheerhouse</span></a>
-        </div>
-        <div>
-          <div class="searchbar-small">
-            <button class="locationBtn">
-              <div>
-          		<span>위치</span>
-                <input name="searchLocation" type="text" placeholder="${location}" />
-              </div>
-            </button>
-
-            <button class="dateBtn">
-              <div>
-              	<span>날짜</span>
-              	<input type="text" value="${checkin } - ${checkout }" />
-              </div>
-            </button>
-
-            <button class="peopleBtn">
-              <div>
-              	<span>인원</span>
-              	<input type="text" value="${people }" />
-              </div>
-            </button>
-          </div>
-        </div>
+	        <div class="logoContainer">
+	          <a href="/index.do">
+	           	<img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/Logo/logo%20ver1.png" alt="logo" />
+	           </a>
+	        </div>
+	        <div>
+	          <div class="searchbar-small">
+	            <button class="locationBtn">
+	              <div>
+	          			<span>위치</span>
+	               		 <input class="searchLocation" name="searchLocation" type="text" placeholder="${search.location}" />
+	              </div>
+	            </button>
+	
+	            <button class="dateBtn">
+		              <div>
+		              	<span>날짜</span>
+		              	<input class="dates" type="text" value="${search.checkin } - ${search.checkout }" />
+		              </div>
+	            </button>
+	
+	            <button class="peopleBtn">
+		              <div>
+		              	<span>인원</span>
+		              	<input class="people" type="text" value="${search.people }" />
+		              </div>
+	            </button>
+	          </div>
+	        </div>
         <nav class="menuContainer">
           <ul class="menus">
-            <c:if test="${user.email == null}">
-              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
-<!--               <li class="joinBtn" onclick="joginBtnClicked()">회원가입</li> -->
-              <!-- <li><a href="#">호스트 등록하기</a></li> -->
-            </c:if>
+	            <c:if test="${user.email == null}">
+	              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
+	            </c:if>
+	            
             <c:if test="${user.email != null}">
              	<c:if test="${user.name != null}">
-              <li><c:out value=" ${user.name}" />님 반갑습니다.</li>
-              <li><a href="logout.do">로그아웃</a></li>
-              </c:if>
+             		<%--  <li><c:out value=" ${user.name}" />님 반갑습니다.</li> --%>
+              		 <li><a href="logout.do">로그아웃</a></li>
+              	</c:if>
+              
               <c:if test="${user.name == null}">
-              <li><c:out value=" ${user.email}" />님 반갑습니다.</li>
-              <li><a href="logout.do">로그아웃</a></li>
+              		<li><c:out value=" ${user.email}" />님 반갑습니다.</li>
+              		<li><a href="logout.do">로그아웃</a></li>
               </c:if>
+              
               <li><a href="mypage.do">마이페이지</a></li>
               <li><a href="host.host">호스트 등록하기</a></li>
+            
             </c:if>
+          
           </ul>
         </nav>
       </div>
+      
+      
       <div class="join-modal">
 				<div class="join-modalContent">
 					<div onclick="joinExitbtnClicked()" class="join-exitBtn"><img src="/resources/Images/icons/close.png" alt="cancel" /></div>

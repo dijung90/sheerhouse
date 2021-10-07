@@ -13,30 +13,38 @@
 <body>
 	<div>
 	<%@ include file="/WEB-INF/views/user/Header.jsp"%>
-<%-- 			<nav>
-				<div>
-					<a href="index.do"><img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/Logo/logo%20ver1.png"  alt="banner"/></a>
-				</div>
-				<div>
-					<ul class="menus">
-			            <c:if test="${user.email == null}">
-			              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
-			            </c:if>
-			            
-		            	<c:if test="${user.email != null}">
-		              		<li><c:out value=" ${user.name}" />님 반갑습니다.</li>
-		              		<li><a href="logout.do">로그아웃</a></li>
-		              		<li><a href="mypage.do">마이페이지</a></li>
-		              </c:if>
-		
-		          </ul>
-				</div>
-			</nav>
-			<header>
-				<h2>
-					${bookingDetail.email }님의 예약정보입니다.
-				</h2>
-			</header> --%>
+	
+	<!-- include 생성 이전의 nav 메뉴 바 입니다. 후에 삭제 예정입니다. -->
+	
+	
+				<%-- 			<nav>
+								<div>
+									<a href="index.do"><img src="https://sheerhouse.s3.ap-northeast-2.amazonaws.com/Setting/Logo/logo%20ver1.png"  alt="banner"/></a>
+								</div>
+								<div>
+									<ul class="menus">
+							            <c:if test="${user.email == null}">
+							              <li class="loginBtn" onclick="loginnbtnClicked()">로그인 / 회원가입</li>
+							            </c:if>
+							            
+						            	<c:if test="${user.email != null}">
+						              		<li><c:out value=" ${user.name}" />님 반갑습니다.</li>
+						              		<li><a href="logout.do">로그아웃</a></li>
+						              		<li><a href="mypage.do">마이페이지</a></li>
+						              </c:if>
+						
+						          </ul>
+								</div>
+							</nav>
+							<header>
+								<h2>
+									${bookingDetail.email }님의 예약정보입니다.
+								</h2>
+							</header> --%>
+							
+							
+							
+							
 					<div class="reservationDetailInfoContainer">
 					 						<input class="imgUrls" type="hidden" value="${bookingDetail.url }" />
 					 						<div class="slideshow-container">
@@ -55,10 +63,10 @@
 											<div class="reservationInfoDetail">
 											<h2>${bookingDetail.title}</h2>
 								                	<div>
-								                		<p>총 결제 금액 : ${bookingDetail.totalprice}</p>
+								                		<p>총 결제 금액 : ${bookingDetail.total_price}</p>
 								                	</div>
 								                	<div>
-								                		<p>예약 일정 : ${bookingDetail.stayingDate}</p>
+								                		<p>예약 일정 : ${bookingDetail.res_date}</p>
 								                	</div>
 								                	<div>
 								                			<p>숙소 정보: ${bookingDetail.info}</p>
